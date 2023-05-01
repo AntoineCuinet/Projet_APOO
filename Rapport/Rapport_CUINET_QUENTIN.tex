@@ -1,0 +1,181 @@
+\documentclass[a4paper, titlepage, french]{report}
+
+\usepackage{amsmath,amsthm,amsfonts,delarray,fourier,manfnt}
+\usepackage[utf8]{inputenc} % accents
+\usepackage[T1]{fontenc}      % caractères français
+\usepackage[french]{babel}  % langue
+\usepackage{geometry,graphicx}         % marges % images
+\usepackage{lmodern,eso-pic,fullpage}  
+\usepackage{verbatim}         % texte préformaté
+\usepackage{stackengine,scalerel}
+\usepackage{authblk}
+\usepackage[linesnumbered,algosection]{algorithm2e} %Pour le PDL
+\usepackage{listings, xcolor}
+\usepackage{moreverb,wasysym}
+\usepackage{pgf, tikz} %pour dessiner
+\usepackage{multicol} %pour avoir multiples colonnes localement
+\usepackage{titlesec} %pour enlever le mot "chapitre"
+\usepackage{lipsum} %ajouter du texte dans les dessins tikz
+\usepackage{fancyvrb} %verbatim mais en mieux on l'utilise avec \begin{BVerbatim}, et cette fois on peut centrer
+\usepackage{moreverb} %verbatim en box ebvironnement boxedverbatim
+\usepackage{mdframed}
+
+%\SetKwIF{Si}{SinonSi}{Sinon}{si}{alors}{sinon si}{alors}{finSi}
+
+
+
+\usepackage[colorlinks=true, allcolors=black]{hyperref} %pour utiliser des liens internes, càd en réferencant une partie en peut mettre un lien vers celle-ci et ça avec \hyperref[nom du label]{le texte où y'aura le lien} sans oublier de mettre le \label{nom du label} sur la partie que vous voulez réferencer
+\usepackage[bottom]{footmisc} %remettre le compteur de footnote à 0 par section.
+\counterwithin*{footnote}{section} %numerote les footnote par section
+
+                          % Le PDL
+%les fonctions et leurs types
+
+%pour les entiers
+\SetKwProg{FnInt}{ \textcolor{blush}{entier} \textcolor{babyblueeyes}{fonction} }{}{\textcolor{babyblueeyes}{fin Fonction}}
+
+%pour les caractères
+\SetKwProg{FnChar}{ \textcolor{blush}{car} \textcolor{babyblueeyes}{fonction} }{}{\textcolor{babyblueeyes}{fin Fonction}}
+
+%pour les booléens
+\SetKwProg{FnBool}{ \textcolor{blush}{booléen} \textcolor{babyblueeyes}{fonction} }{ }{\textcolor{babyblueeyes}{fin Fonction}}
+
+%pour les tableaux de dimension 1
+\SetKwProg{FnTab}{\textcolor{blush}{tab[]} \textcolor{babyblueeyes}{fonction} }{}{\textcolor{babyblueeyes}{fin Fonction}}
+
+%pour les tableaux de caractères
+\SetKwProg{FnCharTab}{\textcolor{blush}{car[ ]} \textcolor{babyblueeyes}{fonction}  }{}{\textcolor{babyblueeyes}{fin Fonction}}
+
+%pour les positions
+\SetKwProg{FnPos}{ \textcolor{blush}{Position} \textcolor{babyblueeyes}{fonction} }{}{\textcolor{babyblueeyes}{fin Fonction}}
+
+%pour les matrices de dimension 2
+\SetKwProg{FnMat}{\textcolor{blush}{tab[][]} \textcolor{babyblueeyes}{fonction}}{}{\textcolor{babyblueeyes}{fin Fonction}}
+
+%pour les réels
+\SetKwProg{FnReel}{\textcolor{blush}{réel} \textcolor{babyblueeyes}{fonction} }{}{\textcolor{babyblueeyes}{fin Fonction}}
+
+%Actions
+\SetKwProg{Act}{\textcolor{chromeyellow}{action}}{}{\textcolor{chromeyellow}{fin Action}}
+
+% \newmdenv[linewidth=0, leftmargin= -14,rightmargin= 14, backgroundcolor=red!10]{sourcecode}
+
+%pour ajouter des commentaires dans l'algo 
+%\tcp{. . .}
+
+%couleur key words
+\definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}%joli bleu
+\definecolor{blush}{rgb}{0.87, 0.36, 0.51} %joli rose
+\definecolor{chromeyellow}{rgb}{1.0, 0.65, 0.0} %joli jaune\orange pour julie 
+\definecolor{camouflagegreen}{rgb}{0.47, 0.53, 0.42} %joli vert
+\definecolor{cardinal}{rgb}{0.77, 0.12, 0.23} %joli rouge
+
+
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries}{}{0pt}{\Huge}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\blap}[1]{\vbox to 0pt{#1\vss}}
+\newcommand\AtUpperLeftCorner[3]{%
+  \put(\LenToUnit{#1},\LenToUnit{\dimexpr\paperheight-#2}){\blap{#3}}%
+}
+\newcommand\AtTopCenterPage[2]{%
+  \put(\LenToUnit{.5\paperwidth},\LenToUnit{\dimexpr\paperheight-#1}){\blap{\hbox to 0pt{\hss#2\hss}}}%
+}
+
+\newcommand\AtUpperRightCorner[3]{%
+  \put(\LenToUnit{\dimexpr\paperwidth-#1},\LenToUnit{\dimexpr\paperheight-#2}){\blap{\llap{#3}}}%
+}
+
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape=true
+}
+
+\definecolor{purple}{rgb}{0.57, 0.36, 0.51}
+
+%algo
+\RestyleAlgo{boxed}
+ \SetAlgoSkip{1cm}
+ 
+ 
+
+
+
+\title{\LARGE{Projet d'APOO} \\[0,5cm] \LARGE{Analyse du jeu de blocage avec polyominos}}
+\author{   \\ Antoine \textsc{CUINET}  \\ Gaspar \textsc{QUENTIN}   }
+\makeatletter
+
+
+\begin{document}
+
+
+\selectlanguage{french}
+\begin{titlepage}
+ \enlargethispage{3cm}
+ 
+     \AddToShipoutPicture{
+        \AtUpperLeftCorner{1.5cm}{1cm}{\includegraphics[width=6cm]{ufclogo.jpg}} 
+    }
+
+ \begin{center}	
+
+        \vspace*{8cm}
+ 
+        \textsc{\@title} \\
+	\vspace*{0,5cm}
+        \HRule
+ 	 \vspace*{0,5cm}
+	\large{\@author} 
+    \end{center}
+
+  \vspace*{9cm}
+
+   \end{titlepage}
+
+\ClearShipoutPicture
+
+%si on veut rajouter une page vide
+%\newpage
+%\thispagestyle{empty}
+%\mbox{}
+%\newpage
+
+\tableofcontents
+% \listofalgorithms
+
+\newpage
+
+\chapter{Introduction}
+
+\newpage
+
+\chapter{Les fonctionnalités}
+
+\chapter{Les classe}
+\section{La classe Grille}
+\subsection{Nom de la classe}
+
+\subsection{Description de la classe}
+
+\chapter{Initialisation de jeu}
+
+\section{Dimensions du jeu}
+
+\section{Distribution des pièces}
+
+\chapter{Description des conditions}
+
+\section{Placement des pièces}
+\section{La partie est finie}
+
+\chapter{Jeu de l'ordinateur}
+
+\chapter{Ajouts/libertés prises}
+
+
+
+
+\chapter{Conclusion}
+
+\end{document}
