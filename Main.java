@@ -13,6 +13,7 @@ public class Main {
         Grid grid = new Grid();
         Domino d = new Domino();
         Triomino t = new Triomino();
+        Tetromino te = new Tetromino();
         int nbPiece = 18;
         int nbDomino = 3;
         int nbTriomino = 6;
@@ -36,7 +37,7 @@ public class Main {
         Ecran.sautDeLigne();
 
         Ecran.afficherln("Voici les différentes pièces dont vous disposez:");
-        Ecran.afficher(d.toString(), t.toString());
+        Ecran.afficher(d.toString(), t.toString(), te.toString());
         Ecran.sautDeLigne();
 
         Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET +", c'est à vous de commencer ! ");
@@ -49,6 +50,9 @@ public class Main {
             break;
             case 2:
                 Ecran.afficher(t.toString(true));
+            break;
+            case 3:
+                Ecran.afficher(te.toString(true));
             break;
             default:
             Ecran.afficher("Erreur dans le choix");
