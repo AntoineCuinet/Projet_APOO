@@ -41,14 +41,21 @@ public class Domino extends Piece {
     @Override
     public String toString() { 
         //TODO: faire l'affichage du domino
-        return "[][]";
+        String res = "";
+        res += Main.ANSI_GREEN+"   +--- ---+\n";
+        res += "1. | O | O |\n";
+        res += "   +--- ---+\n"+Main.ANSI_RESET;
+        return res;
     }
 
     @Override
     public String toString(boolean seeAllDispositions) {
-        Position[] p = getPositions();
-        return "";
+        String res = "";
+        res+=Main.ANSI_GREEN+"                       +---+\n"; 
+        res+="   +--- ---+           | O |\n";
+        res+="1. | O | O |        2. +---+\n";
+        res+="   +--- ---+           | O |\n";
+        res+="                       +---+\n"+Main.ANSI_RESET;
+        return res;
     }
-
-
 }
