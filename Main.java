@@ -2,12 +2,24 @@ public class Main {
     
     public static void main(String[] args) { 
         displayGrid();
+        Ecran.afficherln("Voici les pièces dont vous disposez:");
+        // faire l'affichage de toutes les pieces possibles (appel à toString)
+        Ecran.afficherln("Vous désirez poser quelle pièce ? (entrez le numéro de la pièce)");
+        int pieceCoisi = Clavier.saisirInt();
+        Ecran.afficherln("Vous désirez poser la pièce choisie dans quelle disposition ? (entrez le numéro de la pièce)");
+        // faire l'affichage de la piece selectionner dans toutes les dispositions (appel à toString)
+        int pieceDisposition = Clavier.saisirInt();
+        Ecran.afficherln("Vous désirez poser la pièce choisie à quel endroit ? (entrez la lettre de la colonne puis le numéro de la ligne)");
+        char positionPiecePlace = Clavier.saisirChar();
+        // transformer la chaine en position
+        displayGrid(); // l'afficher avec la pièce posée
     }
 
 
 
 
         // AFFICHAGES
+
 
     /**
      * affichage des pièces sur la grille: (O) pour le joueur et (#) pour l'ordinateur
