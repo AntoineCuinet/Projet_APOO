@@ -5,12 +5,14 @@ public class Domino extends Piece {
     public Domino(boolean isComputer) { 
         super.isComputer = isComputer;
         instanceNbr++;
+        assert(instanceNbr == 1);
         super.type = instanceNbr;
     }
 
     public Domino() {
         this(false);
     }
+
     @Override
     public Position[] getPositions(Position.Orientation o) { 
         Position[] arr = new Position[2];
