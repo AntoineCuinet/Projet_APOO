@@ -8,7 +8,7 @@ public abstract class Piece {
     public abstract Position[] getPositions();
     public abstract Piece[] getDispositions();
     public abstract String toString();
-    public abstract String toString(boolean voirDispositions);
+    public abstract String toString(boolean seeAllDispositions);
     public boolean isComputer() {return this.isComputer;}
 
 }

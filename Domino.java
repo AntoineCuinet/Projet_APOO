@@ -11,7 +11,7 @@ public class Domino extends Piece {
     public Domino() {
         this(false);
     }
-
+    @Override
     public Position[] getPositions(Position.Orientation o) { 
         Position[] arr = new Position[2];
         arr[0] = new Position();
@@ -26,10 +26,29 @@ public class Domino extends Piece {
         return arr;
     }
 
+    @Override
+    public Domino[] getDispositions() { 
+        Domino[] d = new Domino[1];
+        d[0] = new Domino();
+        return d;
+    }
+
+    @Override
     public Position[] getPositions() { 
         return getPositions(Position.Orientation.EAST);
     }
     
+    @Override
+    public String toString() { 
+        //TODO: faire l'affichage du domino
+        return "[][]";
+    }
+
+    @Override
+    public String toString(boolean seeAllDispositions) {
+        Position[] p = getPositions();
+        return "";
+    }
 
 
 }
