@@ -6,19 +6,19 @@ public class Main {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_GREEN = "\u001B[32m";
 
+    public static final String IA_NAME = "Yumi";
+    private static boolean isWin = false;
+    private static boolean isLoose = false;
+
     public static void main(String[] args) { 
-        // déclaration des variables 
-        Case [][] Grid = new Case[10][12];
-        for(int i = 0; i<Grid.length; i++){
-            for(int j = 0; j<Grid[0].length; j++){
-                Grid[i][j] = new Case(null, false);
-            }
-        }
-        String nameOrdi = "Yumi";
+
+        Grid grid = new Grid();
+
         int nbPiece = 18;
         int nbDomino = 3;
         int nbTriomino = 6;
         int nbTetromino = 9;
+
 
         // affichage à l'écran
         Ecran.afficher("Saisisez votre pseudo: ");
@@ -26,6 +26,13 @@ public class Main {
         Ecran.sautDeLigne();
         clearScreen();
         Ecran.afficherln("Bonjour " + ANSI_BLUE, nameJoueur, ANSI_RESET +", bienvenu sur notre jeu !");
+
+        Ecran.afficherln("Vous allez jouer contre "+ ANSI_RED, IA_NAME, ANSI_RESET+" (l'ordinateur).");
+
+        Ecran.afficherln(grid.toString());
+
+        Ecran.afficherln("Voici les pièces dont vous disposez:");
+
         Ecran.afficherln("Vous allez jouer contre "+ ANSI_RED, nameOrdi, ANSI_RESET+", notre IA.");
         Ecran.sautDeLigne();
 
@@ -37,6 +44,7 @@ public class Main {
         Ecran.afficherln(ANSI_RED, nameOrdi, ANSI_RESET+" possède les mêmes pièces que vous.");
         Ecran.afficherln("Voici les différentes pièces dont vous disposez:");
         /////////////////////////////////////////////////////////////////////////////////////
+
         // faire l'affichage de toutes les pieces possibles (appel à toString)
 
         Ecran.sautDeLigne();
@@ -55,47 +63,5 @@ public class Main {
         Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET +", vous désirez poser la pièce choisie à quel endroit ? (entrez la lettre de la colonne puis le numéro de la ligne)");
         String positionPiecePlace = Clavier.saisirString();
 
-        /////////////////////////////////////////////////////////////////////////////////////
-        // transformer la chaine en position
-
-        displayGrid(Grid); // l'afficher avec la pièce posée
-    }
-
-    /**
-     * fonction permettant de nettoyer le teminal (utile pour avoir une présentation propore du jeu)
-     */
-    public static void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
-
-
-
-        // AFFICHAGE DE LA GRILLE
-
-    /**
-     * affichage des pièces sur la grille: (O) pour le joueur et (#) pour l'ordinateur
-     * 
-     * @param grid        grille
-     * @param canSeeBoats voir le bateau au point toucher
-     */
-    static void displayGrid(Case [][] Grid) {
-        String res = "";
-        int nbLigne = 0;
-        int k = 9;
-        for (int i = 0; i <Grid.length; i++) {
-            nbLigne += i;
-            res += "   +--- --- --- --- --- --- --- --- --- --- --- ---+\n";
-            res += " " + k + " |";
-            k -= 1;
-            for (int j = 0; j <Grid[0].length; j++) {
-                res += Grid [i][j]. toString(); //  res += " . |";
-                res += "|";
-            }
-            res += "\n";
-        }
-        res += "   +--- --- --- --- --- --- --- --- --- --- --- ---+\n";
-        res += "     A   B   C   D   E   F   G   H   I   J   K   L  \n";
-        Ecran.afficher(res);
     }
 }
