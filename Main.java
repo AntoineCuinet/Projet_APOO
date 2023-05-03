@@ -4,6 +4,8 @@ public class Main {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String YELLOW_BG = "\u001B[43m";
+    public static final String RESET_BG = "\u001B[40m";
 
     public static final String IA_NAME = "Yumi";
     private static boolean isWin = false;
@@ -20,11 +22,11 @@ public class Main {
         int nbTetromino = 9;
 
         // affichage à l'écran
-        Ecran.afficher("Saisisez votre pseudo: ");
+        Ecran.afficher("Saisisez votre pseudo: "+ ANSI_BLUE);
         String nameJoueur = Clavier.saisirString();
         Ecran.sautDeLigne();
         clearScreen();
-        Ecran.afficherln("Bonjour " + ANSI_BLUE, nameJoueur, ANSI_RESET +", bienvenu sur notre jeu !");
+        Ecran.afficherln(ANSI_RESET +"Bonjour " + ANSI_BLUE, nameJoueur, ANSI_RESET +", bienvenu sur notre jeu !");
         Ecran.afficherln("Vous allez jouer contre "+ ANSI_RED, IA_NAME, ANSI_RESET+", notre IA.");
         Ecran.sautDeLigne();
 
@@ -41,10 +43,16 @@ public class Main {
         Ecran.sautDeLigne();
 
         Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET +", c'est à vous de commencer ! ");
-        Ecran.afficher("Vous désirez poser quelle pièce ? (entrez le numéro de la pièce)  ");
-        int pieceCoisi = Clavier.saisirInt();
+        Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
+        int pieceChoisi = Clavier.saisirInt();
+        // vérification de la saisie
+        while(pieceChoisi<1 || pieceChoisi>3){
+            Ecran.afficherln(YELLOW_BG+"/!\\ ", nameJoueur, ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
+            Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
+            pieceChoisi = Clavier.saisirInt();
+        }
         Ecran.afficherln("Voici les dispositions possibles pour cette pièce:");
-        switch(pieceCoisi){
+        switch(pieceChoisi){
             case 1:
                 Ecran.afficher(d.toString(true));
             break;
@@ -59,9 +67,9 @@ public class Main {
         }
         Ecran.sautDeLigne();
 
-        Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET + ", vous désirez poser la pièce choisie dans quelle disposition ? (entrez le numéro de la pièce)  ");
+        Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET + ", vous désirez poser la pièce choisie dans quelle disposition ? Entrez le numéro de la pièce: ");
         int pieceDisposition = Clavier.saisirInt();
-        Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET +", vous désirez poser la pièce choisie à quel endroit ? (entrez la lettre de la colonne puis le numéro de la ligne)  ");
+        Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET +", vous désirez poser la pièce choisie à quel endroit ? Entrez la lettre de la colonne puis le numéro de la ligne: ");
         String positionPiecePlace = Clavier.saisirString();
     }
 
