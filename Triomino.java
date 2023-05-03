@@ -32,20 +32,22 @@ public class Triomino extends Piece {
     public String toString() { 
         //TODO: faire l'affichage du domino
         String res = "";
-        res += Main.ANSI_GREEN+"   +--- ---+\n";
-        res += "1. | O | O |\n";
-        res += "   +--- ---+\n"+Main.ANSI_RESET;
+        res += Main.ANSI_GREEN+"   +--- --- ---+\n";
+        res += "2. | O | O | O |\n";
+        res += "   +--- --- ---+\n"+Main.ANSI_RESET;
         return res;
     }
 
     @Override
     public String toString(boolean seeAllDispositions) {
         String res = "";
-        res+=Main.ANSI_GREEN+"                       +---+\n"; 
-        res+="   +--- ---+           | O |\n";
-        res+="1. | O | O |        2. +---+\n";
-        res+="   +--- ---+           | O |\n";
-        res+="                       +---+\n"+Main.ANSI_RESET;
+        res+=Main.ANSI_GREEN+"                    +---+\n"; 
+        res+="                    | O |     +--- ---+     +--- ---+         +---+     +---+\n";
+        res+="  +--- --- ---+     +---+     | O | O |     | O | O |         | O |     | O |\n";
+        res+="1.| O | O | O |   2.| O |   3.+--- ---+   4.+--- ---+   5.+--- ---+   6.+--- ---+\n";
+        res+="  +--- --- ---+     +---+     | O |             | O |     | O | O |     | O | O |\n";
+        res+="                    | O |     +---+             +---+     +--- ---+     +--- ---+\n";
+        res+="                    +---+\n"+Main.ANSI_RESET;
         return res;
     }
 }

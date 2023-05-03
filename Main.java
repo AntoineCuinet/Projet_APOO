@@ -12,6 +12,7 @@ public class Main {
     public static void main(String[] args) { 
         Grid grid = new Grid();
         Domino d = new Domino();
+        Triomino t = new Triomino();
         int nbPiece = 18;
         int nbDomino = 3;
         int nbTriomino = 6;
@@ -35,14 +36,23 @@ public class Main {
         Ecran.sautDeLigne();
 
         Ecran.afficherln("Voici les différentes pièces dont vous disposez:");
-        Ecran.afficher(d.toString());
+        Ecran.afficher(d.toString(), t.toString());
         Ecran.sautDeLigne();
 
         Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET +", c'est à vous de commencer ! ");
         Ecran.afficher("Vous désirez poser quelle pièce ? (entrez le numéro de la pièce)  ");
         int pieceCoisi = Clavier.saisirInt();
         Ecran.afficherln("Voici les dispositions possibles pour cette pièce:");
-        Ecran.afficher(d.toString(true));
+        switch(pieceCoisi){
+            case 1:
+                Ecran.afficher(d.toString(true));
+            break;
+            case 2:
+                Ecran.afficher(t.toString(true));
+            break;
+            default:
+            Ecran.afficher("Erreur dans le choix");
+        }
         Ecran.sautDeLigne();
 
         Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET + ", vous désirez poser la pièce choisie dans quelle disposition ? (entrez le numéro de la pièce)  ");
