@@ -22,8 +22,13 @@ public class Position {
     public void setY(int y) {this.y = y;}
 
     public void add(Position p) { 
-        this.x += p.x;
-        this.y += p.y;
+        this.x += p.getX();
+        this.y += p.getY();
+    }
+
+    public void multiply(Position vect) { 
+        this.x *= vect.getX();
+        this.y *= vect.getY();
     }
 
     public static Position add(Position p1, Position p2) { 
