@@ -1,12 +1,10 @@
 public class Main { 
-    // déclaration des couleurs (pour la créativité)
+    // déclaration des couleurs utilisées pour l'affichage (pour la créativité)
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String YELLOW_BG = "\u001B[43m";
-    public static final String BLUE_BG = "\u001B[44m";
-    public static final String BLACK_BG = "\u001B[40m";
+    public static final String ANSI_GREEN = "\u001B[32m";
 
     public static void main(String[] args) { 
         // déclaration des variables 
@@ -26,7 +24,7 @@ public class Main {
         Ecran.afficher("Saisisez votre pseudo: ");
         String nameJoueur = Clavier.saisirString();
         Ecran.sautDeLigne();
-        // Runtime.getRuntime().exec("clear");
+        clearScreen();
         Ecran.afficherln("Bonjour " + ANSI_BLUE, nameJoueur, ANSI_RESET +", bienvenu sur notre jeu !");
         Ecran.afficherln("Vous allez jouer contre "+ ANSI_RED, nameOrdi, ANSI_RESET+", notre IA.");
         Ecran.sautDeLigne();
@@ -63,10 +61,17 @@ public class Main {
         displayGrid(Grid); // l'afficher avec la pièce posée
     }
 
+    /**
+     * fonction permettant de nettoyer le teminal (utile pour avoir une présentation propore du jeu)
+     */
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
 
 
-        // AFFICHAGES
 
+        // AFFICHAGE DE LA GRILLE
 
     /**
      * affichage des pièces sur la grille: (O) pour le joueur et (#) pour l'ordinateur
