@@ -1,5 +1,5 @@
 public class Main { 
-    
+    static Case [][] Grid = new Case[12][10];
     public static void main(String[] args) { 
         displayGrid();
         Ecran.afficherln("Voici les pièces dont vous disposez:");
@@ -17,7 +17,6 @@ public class Main {
 
 
 
-
         // AFFICHAGES
 
 
@@ -28,24 +27,17 @@ public class Main {
      * @param canSeeBoats voir le bateau au point toucher
      */
     static void displayGrid() {
-        char pj = 'O';
-        char po = '#';
-        char v = '.';
         String res = "";
         int nbLigne = 0;
         int k = 9;
-        for (int i = 0; i <= 9; i++) {
+        for (int i = 0; i <Grid.length; i++) {
             nbLigne += i;
             res += "   +--- --- --- --- --- --- --- --- --- --- --- ---+ \n";
             res += " " + k + " |";
             k -= 1;
-            for (int j = 0; j <= 11; j++) {
-            //  if () //joueur pose une case
-            //      res += " " + pj +" |";
-            //  else if () //ordinateur pose une case
-            //      res += " " + po +" |"; 
-            //  else //pas de case de poser pose une case
-                    res += " " + v +" |";
+            for (int j = 0; j <Grid[0].length; j++) {
+                res += Grid [i][j]. toString();
+                    // res += " " + v +" |";
             }
             res += "\n";
         }

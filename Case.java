@@ -1,5 +1,6 @@
 public class Case {
     private Piece p;
+    boolean isComputer = false;
 
     public Case() {
         this.p = null;
@@ -8,6 +9,8 @@ public class Case {
     public Case(Piece p) { 
         this.p = p;
     }
+
+    public Case(Piece p, boolean isComputer )
 
     public Piece getPiece() { 
         return this.p;
@@ -18,7 +21,7 @@ public class Case {
     }
 
     public String toString() { 
-        if (this.p == null) {return " ";} 
-        else return "O";
+        if (this.p == null) {return " . |";} 
+        else return " O |";
     }
 }
