@@ -10,7 +10,10 @@ public class Case {
         this.p = p;
     }
 
-    public Case(Piece p, boolean isComputer )
+    public Case(Piece p, boolean isComputer) {
+        this.p = p;
+        this.isComputer = isComputer;
+    }
 
     public Piece getPiece() { 
         return this.p;
@@ -21,7 +24,7 @@ public class Case {
     }
 
     public String toString() { 
-        if (this.p == null) {return " . |";} 
-        else return " O |";
+        if (this.p == null) {return " . ";} 
+        else return p.isComputer() ?  Main.ANSI_BLUE+" O "+Main.ANSI_RESET : Main.ANSI_RED + "0" + Main.ANSI_RESET;
     }
 }
