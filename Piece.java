@@ -1,8 +1,8 @@
 public abstract class Piece {
     
 
-    private int type;
-    private boolean isComputer = false;
+    protected int type;
+    protected boolean isComputer = false;
 
     public abstract Position[] getPositions(Position.Orientation o);
     public abstract Position[] getPositions();
