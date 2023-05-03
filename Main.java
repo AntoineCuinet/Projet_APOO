@@ -27,21 +27,15 @@ public class Main {
         clearScreen();
         Ecran.afficherln("Bonjour " + ANSI_BLUE, nameJoueur, ANSI_RESET +", bienvenu sur notre jeu !");
 
-        Ecran.afficherln("Vous allez jouer contre "+ ANSI_RED, IA_NAME, ANSI_RESET+" (l'ordinateur).");
-
-        Ecran.afficherln(grid.toString());
-
-        Ecran.afficherln("Voici les pièces dont vous disposez:");
-
-        Ecran.afficherln("Vous allez jouer contre "+ ANSI_RED, nameOrdi, ANSI_RESET+", notre IA.");
+        Ecran.afficherln("Vous allez jouer contre "+ ANSI_RED, IA_NAME, ANSI_RESET+", notre IA.");
         Ecran.sautDeLigne();
 
         Ecran.afficherln("Voici la grille de jeu:");
-        displayGrid(Grid);
+        Ecran.afficher(grid.toString());
         Ecran.sautDeLigne();
 
         Ecran.afficherln(ANSI_BLUE, nameJoueur, ANSI_RESET +", vous disposez de ",nbPiece ," pièces, dont ", nbDomino, " dominos(2cases), ", nbTriomino," triominos(3cases) et de ", nbTetromino, " tétrominos(4cases)."); 
-        Ecran.afficherln(ANSI_RED, nameOrdi, ANSI_RESET+" possède les mêmes pièces que vous.");
+        Ecran.afficherln(ANSI_RED, IA_NAME, ANSI_RESET+" possède les mêmes pièces que vous.");
         Ecran.afficherln("Voici les différentes pièces dont vous disposez:");
         /////////////////////////////////////////////////////////////////////////////////////
 
@@ -63,5 +57,15 @@ public class Main {
         Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET +", vous désirez poser la pièce choisie à quel endroit ? (entrez la lettre de la colonne puis le numéro de la ligne)");
         String positionPiecePlace = Clavier.saisirString();
 
+    }
+
+    /**
+     * fonction permettant de nettoyer le terminal (utile pour avoir une présentation propre du jeu)
+     */
+    public static void clearScreen() {
+        for(int i=0; i<10; i++){
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+        } 
     }
 }
