@@ -1,3 +1,10 @@
+/* Gaspard QUENTIN & Antoine CUINET
+ *
+ * groupe TP I2-CMI
+ * Université de Franche-Comte UFR-ST
+ *
+ * Tetromino.java
+*/
 public class Tetromino extends Piece { 
     
     @Override

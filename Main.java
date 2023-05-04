@@ -1,3 +1,11 @@
+/* Gaspard QUENTIN & Antoine CUINET
+ *
+ * groupe TP I2-CMI
+ * Université de Franche-Comte UFR-ST
+ *
+ * Main.java
+*/
+
 public class Main { 
     // déclaration des couleurs utilisées pour l'affichage (pour la créativité)
     public static final String ANSI_RESET = "\u001B[0m";
@@ -131,10 +139,8 @@ public class Main {
     public static String displayPieces(Piece[] arr, Type t) { 
         String res = "";
         for (Piece p: arr) { 
-            if (p!=null){
-                if (isPieceOfType(p, t)) { 
-                    res += p.toString() + "\t";
-                }
+            if (p!=null && isPieceOfType(p, t)){
+                res += p.toString() + "\t";
             }
         }
         return res;

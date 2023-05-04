@@ -1,3 +1,10 @@
+/* Gaspard QUENTIN & Antoine CUINET
+ *
+ * groupe TP I2-CMI
+ * Université de Franche-Comte UFR-ST
+ *
+ * Triomino.java
+*/
 public class Triomino extends Piece { 
     
     private static int instanceNbr = 0;

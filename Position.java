@@ -1,3 +1,10 @@
+/* Gaspard QUENTIN & Antoine CUINET
+ *
+ * groupe TP I2-CMI
+ * Université de Franche-Comte UFR-ST
+ *
+ * Position.java
+*/
 public class Position {
     public enum Orientation { 
         EAST, WEST, NORTH, SOUTH

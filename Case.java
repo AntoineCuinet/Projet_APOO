@@ -1,3 +1,10 @@
+/* Gaspard QUENTIN & Antoine CUINET
+ *
+ * groupe TP I2-CMI
+ * Université de Franche-Comte UFR-ST
+ *
+ * Case.java
+*/
 public class Case {
     private Piece p;
     boolean isComputer = false;

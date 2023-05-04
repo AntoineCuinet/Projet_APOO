@@ -1,3 +1,10 @@
+/* Gaspard QUENTIN & Antoine CUINET
+ *
+ * groupe TP I2-CMI
+ * Université de Franche-Comte UFR-ST
+ *
+ * Domino.java
+*/
 public class Domino extends Piece { 
     
     private static int instanceNbr = 0;

@@ -1,3 +1,10 @@
+/* Gaspard QUENTIN & Antoine CUINET
+ *
+ * groupe TP I2-CMI
+ * Université de Franche-Comte UFR-ST
+ *
+ * Grid.java
+*/
 public class Grid { 
     
     final static int SIZE_X = 12;
@@ -46,6 +53,7 @@ public class Grid {
         }
         return res;
     }
+
 
     /**
      * Méthode placeant une pièce sur la grille.
