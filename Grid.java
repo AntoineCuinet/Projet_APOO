@@ -14,6 +14,54 @@ public class Grid {
         }
     }
 
+    public Case getCaseAt(Position p) { 
+        if (isInGrid(p)){ 
+            return this.grid[p.getY()][p.getX()];
+        }
+        return null;
+    }
+
+    /**
+     * Méthode vérifiant si une position se trouve sur la grille.
+     * @param p une Position 
+     * @return vrai si la position est sur la grille, faux sinon.
+    */
+    public boolean isInGrid(Position p) { 
+        return (p.getX() >= 0 && p.getX() < SIZE_X) &&
+            (p.getY() >= 0 && p.getY() < SIZE_Y);
+    }
+
+    /**
+     * Méthode vérifiant si une pièce orientée placée à partir d'un point est sur la grille.
+     * @param p la pièce
+     * @param o l'orientation de la pièce
+     * @param origin le point à partir duquel on souhaite poser la pièce
+     * @return vrai si la pièce est posable (elle est dans la grille), faux sinon.
+    */
+    public boolean isInGrid(Piece p, Position.Orientation o, Position origin) { 
+        boolean res = true;
+        for (Position it: p.getPositions(o)) { 
+            it.add(origin);
+            res &= isInGrid(it);
+        }
+        return res;
+    }
+
+    /**
+     * Méthode placeant une pièce sur la grille.
+     * /!\ La saisie est supposée valide /!\
+     * @param p une pièce (supposée posable)
+     * @param o l'orientation de la pièce
+     * @param origin le point à partir duquel on souhaite poser la pièce
+    */
+    public void placePiece(Piece p, Position.Orientation o, Position origin) { 
+        for (Position it: p.getPositions(o)) { 
+            it.add(origin);
+            getCaseAt(it).setPiece(p);
+            getCaseAt(it).setIsComputer(p.isComputer());
+        }
+    }
+
     /**
      * affichage des pièces sur la grille: (O) pour le joueur et (#) pour l'ordinateur
      * 

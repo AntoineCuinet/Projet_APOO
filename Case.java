@@ -22,6 +22,10 @@ public class Case {
     public void setPiece(Piece nouvellePiece) { 
         this.p = nouvellePiece;
     }
+    
+    public void setIsComputer(boolean isComputer) { 
+        this.isComputer = isComputer;
+    }
 
     public String toString() { 
         if (this.p == null) {return " . ";} 
