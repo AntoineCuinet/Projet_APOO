@@ -71,6 +71,30 @@ public class Grid {
     }
 
     /**
+     * Méthode vérifiant si une pièce que l'on souhaite poser (à partir d'un point et avec une orientation)
+     * est placeable, i.e. si la pièce est dans la grille et qu'une pièce n'est pas déjà posée.
+     * @param p
+     * @param o
+     * @param origin
+     * @return
+    */
+    public boolean isPiecePlaceable(Piece p, Position.Orientation o, Position origin) { 
+        if (!isInGrid(p, o, origin)) return false;
+        for (Position it: p.getPositions(o)) { 
+            it.add(origin);
+            if (getCaseAt(it).getPiece() != null) return false;
+        }
+        return true;
+    }
+
+    public boolean isPiecePlaceableInAnyPosition(Piece p, Position origin) { 
+        return isPiecePlaceable(p, Position.Orientation.EAST, origin) ||
+            isPiecePlaceable(p, Position.Orientation.NORTH, origin) ||
+            isPiecePlaceable(p, Position.Orientation.SOUTH, origin) || 
+            isPiecePlaceable(p, Position.Orientation.WEST, origin);
+    }
+
+    /**
      * affichage des pièces sur la grille: (O) pour le joueur et (#) pour l'ordinateur
      * 
      * @param grid        grille

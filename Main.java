@@ -130,6 +130,19 @@ public class Main {
         return res;
     }
 
+    public static boolean isLoose(Piece[] pieces, Grid grid) { 
+        boolean res = true;
+        for (int i = 0; i<Grid.SIZE_Y; i++) { 
+            for (int j=0; j<Grid.SIZE_Y; j++) { 
+                Position origin = new Position(i, j);
+                for (Piece p: pieces) { 
+                    res &= !grid.isPiecePlaceableInAnyPosition(p, origin);
+                }
+            }
+        }
+        return res;
+    }
+
     private static boolean isPieceOfType(Piece p, Type t) { 
         return (p instanceof Domino && t == Type.Domino) || 
             (p instanceof Triomino && t == Type.Triomino) ||
