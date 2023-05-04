@@ -11,6 +11,7 @@ public class Main {
     private static boolean isWin = false;
     private static boolean isLoose = false;
 
+
     public static void main(String[] args) { 
         Grid grid = new Grid();
         Domino d = new Domino();

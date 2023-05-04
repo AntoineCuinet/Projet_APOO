@@ -14,13 +14,14 @@ public class Tetromino extends Piece {
         }
         return arr;
     }
-
+    /*
     @Override
     public Tetromino[] getDispositions() { 
         Tetromino[] te = new Tetromino[1];
         te[0] = new Tetromino();
         return te;
     }
+    */
 
     @Override
     public Position[] getPositions() { 
