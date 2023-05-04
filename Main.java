@@ -11,16 +11,18 @@ public class Main {
     private static boolean isWin = false;
     private static boolean isLoose = false;
 
+    private static final int NB_PIECE = 18;
+    private static final int NB_DOMINO = 3;
+    private static final int NB_TRIOMINO = 6;
+    private static final int NB_TETROMINO = 9;
+
+    public enum Type {Domino, Triomino, Tetromino};
 
     public static void main(String[] args) { 
         Grid grid = new Grid();
         Domino d = new Domino();
         Triomino t = new Triomino();
         Tetromino te = new Tetromino();
-        int nbPiece = 18;
-        int nbDomino = 3;
-        int nbTriomino = 6;
-        int nbTetromino = 9;
         int trioI = 3;
         int trioT = 3;
         int tetroI = 2;
@@ -30,11 +32,11 @@ public class Main {
         int tetroT = 2;
         int tetroS = 1;
         int tetroZ = 1;
-        Piece[] piece= new Piece[18];
+        Piece[] piece= new Piece[NB_PIECE];
 
-        for (int i=0; i<18; i++) { 
-            if (i<nbDomino) piece[i] = new Domino();
-            else if (i<nbTriomino+nbDomino) piece[i] = new Triomino();
+        for (int i=0; i<piece.length; i++) { 
+            if (i<NB_DOMINO) piece[i] = new Domino();
+            else if (i<NB_TRIOMINO+NB_DOMINO) piece[i] = new Triomino();
             else piece[i] = new Tetromino(); 
         }
 
@@ -52,7 +54,7 @@ public class Main {
         Ecran.afficherln(grid.toString());
         Ecran.sautDeLigne();
 
-        Ecran.afficherln(ANSI_BLUE, nameJoueur, ANSI_RESET +", vous disposez de ",nbPiece ," pièces, dont ", nbDomino, " dominos(2cases), ", nbTriomino," triominos(3cases) posable en 2 positions, et de ", nbTetromino, " tétrominos(4cases) posable en 7 positions."); 
+        Ecran.afficherln(ANSI_BLUE, nameJoueur, ANSI_RESET +", vous disposez de ",NB_PIECE ," pièces, dont ", NB_DOMINO, " dominos(2cases), ", NB_TRIOMINO," triominos(3cases) posable en 2 positions, et de ", NB_TETROMINO, " tétrominos(4cases) posable en 7 positions."); 
         Ecran.afficherln(ANSI_RED, IA_NAME, ANSI_RESET+" possède les mêmes pièces que vous.");
         Ecran.sautDeLigne();
 
@@ -61,11 +63,11 @@ public class Main {
         Ecran.sautDeLigne();
 
         Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET +", c'est à vous de commencer ! ");
-        Ecran.afficherln("Il vous reste ", nbDomino, " dominos, ", nbTriomino," triominos et ", nbTetromino, " tétrominos.");
+        Ecran.afficherln("Il vous reste ", NB_DOMINO, " dominos, ", NB_TRIOMINO," triominos et ", NB_TETROMINO, " tétrominos.");
         Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
         int pieceChoisi = Clavier.saisirInt();
         // vérification de la saisie
-        while(pieceChoisi<1 || pieceChoisi>3 || (nbDomino==0 && pieceChoisi==1) || (nbTriomino==0 && pieceChoisi==2) || (nbTetromino==0 && pieceChoisi==3)){
+        while(pieceChoisi<1 || pieceChoisi>3 || (NB_DOMINO==0 && pieceChoisi==1) || (NB_TRIOMINO==0 && pieceChoisi==2) || (NB_TETROMINO==0 && pieceChoisi==3)){
             Ecran.afficherln(YELLOW_BG+"/!\\ ", nameJoueur, ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
             Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
             pieceChoisi = Clavier.saisirInt();
@@ -120,8 +122,22 @@ public class Main {
         return res;
     }
 
-    // public static String displayPieces(Piece[] arr, int type) { 
+    private static boolean isPieceOfType(Piece p, Type t) { 
+        return (p instanceof Domino && t == Type.Domino) || 
+            (p instanceof Triomino && t == Type.Triomino) ||
+            (p instanceof Tetromino && t == Type.Tetromino);
+    }
 
-    // }
+    public static String displayPieces(Piece[] arr, Type t) { 
+        String res = "";
+        for (Piece p: arr) { 
+            if (p!=null){
+                if (isPieceOfType(p, t)) { 
+                    res += p.toString() + "\t";
+                }
+            }
+        }
+        return res;
+    }
 }
 
