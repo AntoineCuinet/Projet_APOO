@@ -11,6 +11,7 @@ public class Main {
     private static boolean isWin = false;
     private static boolean isLoose = false;
 
+
     public static void main(String[] args) { 
         Grid grid = new Grid();
         Domino d = new Domino();
@@ -108,6 +109,7 @@ public class Main {
         } 
     }
 
+
     public static String displayPieces(Piece[] arr) { 
         String res = "";
         for (Piece p: arr) { 
@@ -122,3 +124,4 @@ public class Main {
 
     // }
 }
+

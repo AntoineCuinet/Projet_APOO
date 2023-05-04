@@ -31,6 +31,10 @@ public class Position {
         this.y *= vect.getY();
     }
 
+    public static Position multiply(Position v1, Position v2) { 
+        return new Position(v1.getX()*v2.getX(), v1.getY()*v2.getY());
+    }
+
     public static Position add(Position p1, Position p2) { 
         return new Position(p1.getX() + p2.getX(), p1.getY() + p2.getY());
     }

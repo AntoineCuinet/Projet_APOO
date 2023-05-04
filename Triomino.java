@@ -1,30 +1,78 @@
 public class Triomino extends Piece { 
     
+    private static int instanceNbr = 0;
+    private static int instanceNbrPC = 0;
+
+    public Triomino(boolean isComputer) { 
+        super.isComputer = isComputer;
+        if(!isComputer) instanceNbr++;
+        else instanceNbrPC++;
+        assert (instanceNbr <= 6 && instanceNbrPC <= 6);
+        if (instanceNbr > 2) super.type = (instanceNbr % 2 == 0) ? 2: 1;
+        else super.type = instanceNbr;
+        if (instanceNbrPC > 2) super.type = (instanceNbrPC % 2 == 0) ? 2: 1;
+        else super.type = instanceNbrPC;
+    }
+
+    public Triomino() {this(false);}
+
     @Override
     public Position[] getPositions(Position.Orientation o) { 
-        Position[] arr = new Position[2];
+        Position[] arr = new Position[3];
         arr[0] = new Position();
-        switch (o) {
-            case NORTH : { arr[1] = new Position(0, -1);}
-            case SOUTH: {arr[1] = new Position(0, 1);}
-            case WEST: {arr[1] = new Position(-1, 0);}
-            default : {
-                arr[1] = new Position(1, 0);
-            }
+        switch (super.type) { 
+            case 1:
+                switch(o) { 
+                    case NORTH, SOUTH : { 
+                        arr[1] = new Position(1, 0);
+                        arr[2] = new Position(2, 0);
+                        break;
+                    }
+                    default: { 
+                        arr[1] = new Position(0, 1);
+                        arr[2] = new Position(0, 2);
+                        break;
+                    }
+                }
+                break;
+            default:
+                Position[] temp = getPositions();
+                Position rotationVector;
+                switch(o) {
+                    case EAST: {rotationVector = new Position(1, 1);break;}
+                    case SOUTH: {rotationVector = new Position(-1, 1);break;}
+                    case WEST: {rotationVector = new Position(-1, -1); break;}
+                    default: {rotationVector = new Position(1, -1); break;}
+                }
+                for (int i=0; i<arr.length; i++) { 
+                    arr[i] = Position.multiply(temp[i], rotationVector);
+                }
+                break;
         }
         return arr;
     }
 
+    /*
     @Override
     public Domino[] getDispositions() { 
         Domino[] d = new Domino[1];
         d[0] = new Domino();
         return d;
     }
+    */
 
     @Override
     public Position[] getPositions() { 
-        return getPositions(Position.Orientation.EAST);
+        switch(super.type) { 
+            case 1: return getPositions(Position.Orientation.EAST);
+            default: { 
+                Position[] arr = new Position[3];
+                arr[0] = new Position();
+                arr[1] = new Position(0, 1);
+                arr[2] = new Position(1, 0);
+                return arr;
+            }
+        }
     }
     
 
@@ -51,6 +99,7 @@ public class Triomino extends Piece {
         res+="                    +---+\n"+Main.ANSI_RESET;
         return res;
     }
+
     */
 
     @Override

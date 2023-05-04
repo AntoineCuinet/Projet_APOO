@@ -1,12 +1,12 @@
 public class Domino extends Piece { 
     
-    static int instanceNbr = 0;
+    private static int instanceNbr = 0;
 
     public Domino(boolean isComputer) { 
         super.isComputer = isComputer;
         instanceNbr++;
-        assert(instanceNbr == 1);
-        super.type = instanceNbr;
+        assert instanceNbr <= 3;
+        super.type = instanceNbr > 1 ? 1: instanceNbr;
     }
 
     public Domino() {
@@ -18,22 +18,19 @@ public class Domino extends Piece {
         Position[] arr = new Position[2];
         arr[0] = new Position();
         switch (o) {
-            case NORTH : { arr[1] = new Position(0, -1);}
-            case SOUTH: {arr[1] = new Position(0, 1);}
-            case WEST: {arr[1] = new Position(-1, 0);}
-            default : {
-                arr[1] = new Position(1, 0);
-            }
+            case NORTH, SOUTH : { arr[1] = new Position(0, 1); break;}
+            default : {arr[1] = new Position(1, 0); break;}
         }
         return arr;
     }
-
+    /*
     @Override
     public Domino[] getDispositions() { 
         Domino[] d = new Domino[1];
         d[0] = new Domino();
         return d;
     }
+    */
 
     @Override
     public Position[] getPositions() { 
