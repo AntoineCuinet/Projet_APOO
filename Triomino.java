@@ -29,7 +29,7 @@ public class Triomino extends Piece {
     
 
     @Override
-    public String toString() { 
+    public String toString(boolean isUnique) { 
         //TODO: faire l'affichage du domino
         String res = "";
         res += Main.ANSI_GREEN+"   +--- --- ---+\n";
@@ -38,6 +38,7 @@ public class Triomino extends Piece {
         return res;
     }
 
+    /* 
     @Override
     public String toString(boolean seeAllDispositions) {
         String res = "";
@@ -48,6 +49,35 @@ public class Triomino extends Piece {
         res+="  +--- --- ---+     +---+     | O |             | O |     | O | O |     | O | O |\n";
         res+="                    | O |     +---+             +---+     +--- ---+     +--- ---+\n";
         res+="                    +---+\n"+Main.ANSI_RESET;
+        return res;
+    }
+    */
+
+    @Override
+    public String toString(){
+        String res = "";
+        switch(super.type){
+            case 1:
+                res+=Main.ANSI_GREEN+"                    +---+\n"; 
+                res+="                    | O |\n";
+                res+="  +--- --- ---+     +---+\n";
+                res+="1.| O | O | O |   2.| O |\n";
+                res+="  +--- --- ---+     +---+\n";
+                res+="                    | O |\n";
+                res+="                    +---+\n"+Main.ANSI_RESET;
+            break;
+            case 2:
+                res+=Main.ANSI_GREEN+"\n"; 
+                res+="   +--- ---+     +--- ---+         +---+     +---+\n";
+                res+="   | O | O |     | O | O |         | O |     | O |\n";
+                res+=" 3.+--- ---+   4.+--- ---+   5.+--- ---+   6.+--- ---+\n";
+                res+="   | O |             | O |     | O | O |     | O | O |\n";
+                res+="   +---+             +---+     +--- ---+     +--- ---+\n";
+                res+="\n"+Main.ANSI_RESET;
+            break;
+            default:
+                res+="";
+        }
         return res;
     }
 }
