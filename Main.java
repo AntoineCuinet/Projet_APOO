@@ -21,6 +21,23 @@ public class Main {
         int nbDomino = 3;
         int nbTriomino = 6;
         int nbTetromino = 9;
+        int trioI = 3;
+        int trioT = 3;
+        int tetroI = 2;
+        int tetroJ = 1;
+        int tetroL = 1;
+        int tetro0 = 1;
+        int tetroT = 2;
+        int tetroS = 1;
+        int tetroZ = 1;
+        Piece[] piece= new Piece[18];
+
+        for (int i=0; i<18; i++) { 
+            if (i<nbDomino) piece[i] = new Domino();
+            else if (i<nbTriomino+nbDomino) piece[i] = new Triomino();
+            else piece[i] = new Tetromino(); 
+        }
+
 
         // affichage à l'écran
         Ecran.afficher("Saisisez votre pseudo: "+ ANSI_BLUE);
@@ -35,7 +52,7 @@ public class Main {
         Ecran.afficherln(grid.toString());
         Ecran.sautDeLigne();
 
-        Ecran.afficherln(ANSI_BLUE, nameJoueur, ANSI_RESET +", vous disposez de ",nbPiece ," pièces, dont ", nbDomino, " dominos(2cases), ", nbTriomino," triominos(3cases) et de ", nbTetromino, " tétrominos(4cases)."); 
+        Ecran.afficherln(ANSI_BLUE, nameJoueur, ANSI_RESET +", vous disposez de ",nbPiece ," pièces, dont ", nbDomino, " dominos(2cases), ", nbTriomino," triominos(3cases) posable en 2 positions, et de ", nbTetromino, " tétrominos(4cases) posable en 7 positions."); 
         Ecran.afficherln(ANSI_RED, IA_NAME, ANSI_RESET+" possède les mêmes pièces que vous.");
         Ecran.sautDeLigne();
 
@@ -44,14 +61,17 @@ public class Main {
         Ecran.sautDeLigne();
 
         Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET +", c'est à vous de commencer ! ");
+        Ecran.afficherln("Il vous reste ", nbDomino, " dominos, ", nbTriomino," triominos et ", nbTetromino, " tétrominos.");
         Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
         int pieceChoisi = Clavier.saisirInt();
         // vérification de la saisie
-        while(pieceChoisi<1 || pieceChoisi>3){
+        while(pieceChoisi<1 || pieceChoisi>3 || (nbDomino==0 && pieceChoisi==1) || (nbTriomino==0 && pieceChoisi==2) || (nbTetromino==0 && pieceChoisi==3)){
             Ecran.afficherln(YELLOW_BG+"/!\\ ", nameJoueur, ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
             Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
             pieceChoisi = Clavier.saisirInt();
         }
+
+        clearScreen();
         Ecran.afficherln("Voici les dispositions possibles pour cette pièce:");
         switch(pieceChoisi){
             case 1:
@@ -64,14 +84,19 @@ public class Main {
                 Ecran.afficher(te.toString(true));
             break;
             default:
-            Ecran.afficher("Erreur dans le choix");
+                Ecran.afficher("Erreur dans le choix");
         }
         Ecran.sautDeLigne();
 
         Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET + ", vous désirez poser la pièce choisie dans quelle disposition ? Entrez le numéro de la pièce: ");
         int pieceDisposition = Clavier.saisirInt();
+
+        clearScreen();
         Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET +", vous désirez poser la pièce choisie à quel endroit ? Entrez la lettre de la colonne puis le numéro de la ligne: ");
         String positionPiecePlace = Clavier.saisirString();
+
+        clearScreen();
+        Ecran.afficherln(grid.toString());
     }
 
     /**
@@ -83,4 +108,20 @@ public class Main {
             System.out.flush();
         } 
     }
+
+
+    public static String displayPieces(Piece[] arr) { 
+        String res = "";
+        for (Piece p: arr) { 
+            if (p != null) { 
+                res += p.toString() + "\t";
+            }
+        }
+        return res;
+    }
+
+    // public static String displayPieces(Piece[] arr, int type) { 
+
+    // }
 }
+
