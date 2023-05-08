@@ -46,7 +46,6 @@ public class Domino extends Piece {
     
     @Override
     public String toString() { 
-        //TODO: faire l'affichage du domino
         String res = "";
         res += Main.ANSI_GREEN+"   +--- ---+\n";
         res += "1. | O | O |\n";

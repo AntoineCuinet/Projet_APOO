@@ -85,7 +85,6 @@ public class Triomino extends Piece {
 
     @Override
     public String toString(boolean isUnique) { 
-        //TODO: faire l'affichage du domino
         String res = "";
         res += Main.ANSI_GREEN+"   +--- --- ---+\n";
         res += "2. | O | O | O |\n";

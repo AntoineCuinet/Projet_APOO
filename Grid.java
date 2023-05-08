@@ -102,10 +102,8 @@ public class Grid {
     */ 
      public String toString() {
         String res = "";
-        int nbLigne = 0;
         int k = 9;
         for (int i = 0; i <grid.length; i++) {
-            nbLigne += i;
             res += "   +--- --- --- --- --- --- --- --- --- --- --- ---+\n";
             res += " " + k + " |";
             k -= 1;
@@ -120,4 +118,3 @@ public class Grid {
         return res;
     }
 }
-

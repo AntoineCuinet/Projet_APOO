@@ -40,7 +40,7 @@ public class Main {
         int tetroT = 2;
         int tetroS = 1;
         int tetroZ = 1;
-        Piece[] piece= new Piece[NB_PIECE];
+        Piece[] piece = new Piece[NB_PIECE];
 
         for (int i=0; i<piece.length; i++) { 
             if (i<NB_DOMINO) piece[i] = new Domino();
@@ -67,7 +67,7 @@ public class Main {
         Ecran.sautDeLigne();
 
         Ecran.afficherln("Voici les différentes pièces dont vous disposez:");
-        Ecran.afficher(d.toString(), t.toString(), te.toString());
+        Ecran.afficher(d.toString(), t.toString(true), te.toString());
         Ecran.sautDeLigne();
 
         Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET +", c'est à vous de commencer ! ");
@@ -88,7 +88,7 @@ public class Main {
                 Ecran.afficher(d.toString(true));
             break;
             case 2:
-                Ecran.afficher(t.toString(true));
+                Ecran.afficher(t.toString());
             break;
             case 3:
                 Ecran.afficher(te.toString(true));
