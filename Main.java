@@ -116,7 +116,7 @@ public class Main {
         // choix entre 2 formes si triomino
         // choix entre 7 formes si tetromino
         clearScreen();
-        int formePieceChoisi;
+        int formePieceChoisi = 0;
         if(pieceChoisi == 3){
             // afficher les 7 formes de tetromino
             Ecran.afficher("Choisisez l'une des 7 formes que vous souhaitez poser. Il vous reste "+ tetroI +" Tetromino(s) de forme I, "+ tetroT +" Tetromino(s) de forme T, "+ tetro0 +" Tetromino(s) de forme 0, "+ tetroJ +" Tetromino(s) de forme J, "+ tetroL +" Tetromino(s) de forme L, "+ tetroS +" Tetromino(s) de forme S, "+ tetroZ +" Tetromino(s) de forme Z.\nEntrez le numéro de la pièce: ");
