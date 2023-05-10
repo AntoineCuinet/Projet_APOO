@@ -15,8 +15,8 @@ public class Main {
     public static final String YELLOW_BG = "\u001B[43m";
     public static final String RESET_BG = "\u001B[40m";
 
-    public static final String IA_NAME = "Yumi";
-    public static String nameJoueur = "";
+    public static final String IA_NAME = ANSI_RED + "Yumi" + ANSI_RESET;
+    public static String Player_Name = "";
     private static boolean isWin = false;
     private static boolean isLoose = false;
 
@@ -52,20 +52,59 @@ public class Main {
 
         // affichage à l'écran
         beginDisplay(grid);
+        choicePiecePlayer(grid, d, t, te, piece);
+        clearScreen();
+        Ecran.afficherln(grid.toString());
+    }
 
 
 
+
+    /**
+     * Fonction qui affiche à l'écran le début du jeu
+     * @param grid
+     */
+    public static void beginDisplay(Grid grid){
+        clearScreen();
+        Ecran.afficher("Saisisez votre pseudo: "+ ANSI_BLUE);
+        Player_Name += Clavier.saisirString();
+        Ecran.sautDeLigne();
+        clearScreen();
+        Ecran.afficherln(ANSI_RESET +"Bonjour " + nomJoueur() +", bienvenu sur notre jeu !");
+        Ecran.afficherln("Vous allez jouer contre "+ IA_NAME +", notre IA.");
+        Ecran.sautDeLigne();
+
+        Ecran.afficherln(nomJoueur() +", vous disposez de ",NB_PIECE ," pièces, dont ", NB_DOMINO, " dominos(2cases), ", NB_TRIOMINO," triominos(3cases) posable en 2 positions, et de ", NB_TETROMINO, " tétrominos(4cases) posable en 7 positions."); 
+        Ecran.afficherln(IA_NAME +" possède les mêmes pièces que vous.");
+        Ecran.sautDeLigne();
+
+        Ecran.afficherln("Dans ce mode de jeu, vous allez jouer tour à tour contre "+ IA_NAME +" sur une grille de 12 cases par 10.\nLa première personne ne pouvant plus poser de pièce à perdue.");
+        Ecran.sautDeLigne();
+    }
+
+
+
+
+    /**
+     * Fonction permet d'afficher la saisie et le placement d'une pièce par la joueur
+     * @param grid
+     * @param d
+     * @param t
+     * @param te
+     * @param piece
+     */
+    public static void choicePiecePlayer(Grid grid, Domino d, Triomino t, Tetromino te, Piece[] piece){
         Ecran.afficherln("Voici les différentes pièces dont vous disposez:");
         Ecran.afficher(d.toString(), t.toString(true), te.toString());
         Ecran.sautDeLigne();
 
-        Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET +", c'est à vous de commencer ! ");
+        Ecran.afficher(nomJoueur() +", c'est à vous de jouer ! ");
         Ecran.afficherln("Il vous reste ", NB_DOMINO, " dominos, ", NB_TRIOMINO," triominos et ", NB_TETROMINO, " tétrominos.");
         Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
         int pieceChoisi = Clavier.saisirInt();
         // vérification de la saisie
         while(pieceChoisi<1 || pieceChoisi>3 || (NB_DOMINO==0 && pieceChoisi==1) || (NB_TRIOMINO==0 && pieceChoisi==2) || (NB_TETROMINO==0 && pieceChoisi==3)){
-            Ecran.afficherln(YELLOW_BG+"/!\\ ", nameJoueur, ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
+            Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
             Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
             pieceChoisi = Clavier.saisirInt();
         }
@@ -75,14 +114,14 @@ public class Main {
         Ecran.afficherln("Voici les dispositions possibles pour cette pièce:");
         switch(pieceChoisi){
             case 1:
-                // Ecran.afficher(displayPieces(piece, Type.Domino));
+                Ecran.afficher(displayPieces(piece, Type.Domino));
             break;
             case 2:
-                // Ecran.afficher(displayPieces(piece, Type.Triomino));
+                Ecran.afficher(displayPieces(piece, Type.Triomino));
                 pieceSelected = 3;
             break;
             case 3:
-                // Ecran.afficher(displayPieces(piece, Type.Tetromino));
+                Ecran.afficher(displayPieces(piece, Type.Tetromino));
                 pieceSelected = 9;
             break;
             default:
@@ -90,7 +129,7 @@ public class Main {
         }
         Ecran.sautDeLigne();
 
-        Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET + ", vous désirez poser la pièce choisie dans quelle disposition ? Entrez le numéro de la pièce: ");
+        Ecran.afficher(nomJoueur() + ", vous désirez poser la pièce choisie dans quelle disposition ? Entrez le numéro de la pièce: ");
         int pieceDisposition = Clavier.saisirInt();
         Position.Orientation orientationChoisie;
         switch(pieceDisposition){
@@ -108,8 +147,9 @@ public class Main {
         }
 
         clearScreen();
+        Ecran.afficherln("Voici la grille de jeu: ");
         Ecran.afficherln(grid.toString());
-        Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET +", vous désirez poser la pièce choisie à quel endroit ? Entrez la lettre de la colonne puis le numéro de la ligne: ");
+        Ecran.afficher(nomJoueur() +", vous désirez poser la pièce choisie à quel endroit ? Entrez la lettre de la colonne puis le numéro de la ligne: ");
         String positionPiecePlace = Clavier.saisirString();
         int placeColonne = (int) positionPiecePlace.charAt(0) - 'A';
         int placeLigne = Character.getNumericValue(positionPiecePlace.charAt(1));
@@ -117,51 +157,15 @@ public class Main {
         if (grid.isPiecePlaceable(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne))){
             grid.placePiece(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne));
         }
-
-        clearScreen();
-        Ecran.afficherln(grid.toString());
     }
 
 
 
-    /**
-     * Fonction qui affiche à l'écran le début du jeu
-     * @param grid
-     */
-    public static void beginDisplay(Grid grid){
-        clearScreen();
-        Ecran.afficher("Saisisez votre pseudo: "+ ANSI_BLUE);
-        nameJoueur += Clavier.saisirString();
-        Ecran.sautDeLigne();
-        clearScreen();
-        Ecran.afficherln(ANSI_RESET +"Bonjour " + nomJoueur() +", bienvenu sur notre jeu !");
-        Ecran.afficherln("Vous allez jouer contre "+ nomIA() +", notre IA.");
-        Ecran.sautDeLigne();
-
-        Ecran.afficherln(ANSI_BLUE, nameJoueur, ANSI_RESET +", vous disposez de ",NB_PIECE ," pièces, dont ", NB_DOMINO, " dominos(2cases), ", NB_TRIOMINO," triominos(3cases) posable en 2 positions, et de ", NB_TETROMINO, " tétrominos(4cases) posable en 7 positions."); 
-        Ecran.afficherln(ANSI_RED, IA_NAME, ANSI_RESET+" possède les mêmes pièces que vous.");
-        Ecran.sautDeLigne();
-
-        Ecran.afficherln("Voici la grille de jeu:");
-        Ecran.afficherln(grid.toString());
-        Ecran.sautDeLigne();
-
-        Ecran.afficherln("Dans ce mode de jeu, vous allez jouer tour à tour contre "+ ANSI_RED, IA_NAME, ANSI_RESET+". \n La première personne ne pouvant plus poser de pièce à perdue.");
-        Ecran.sautDeLigne();
-    }
-
-
-
-
-
-    public static String nomIA(){
-        return ANSI_BLUE + nameJoueur + ANSI_RESET;
-    }
 
     public static String nomJoueur(){
-        return ANSI_BLUE + nameJoueur + ANSI_RESET;
+        return ANSI_BLUE + Player_Name + ANSI_RESET;
     }
-    
+
 
 
     /**
