@@ -37,7 +37,7 @@ public class Tetromino extends Piece {
     
 
     @Override
-    public String toString() { 
+    public String toString(int index) { 
         //TODO: faire l'affichage du domino
         String res = "";
         res += Main.ANSI_GREEN+"   +--- --- --- ---+\n";
