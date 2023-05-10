@@ -45,7 +45,7 @@ public class Domino extends Piece {
     }
     
     @Override
-    public String toString(int index) { 
+    public String toString(boolean isUnique) { 
         String res = "";
         res += Main.ANSI_GREEN+"   +--- ---+\n";
         res += "1. | O | O |\n";
@@ -54,7 +54,7 @@ public class Domino extends Piece {
     }
 
     @Override
-    public String toString(boolean seeAllDispositions) {
+    public String toString(int index) {
         String res = "";
         res+=Main.ANSI_GREEN+"                       +---+\n"; 
         res+="   +--- ---+           | O |\n";

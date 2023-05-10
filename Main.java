@@ -24,6 +24,15 @@ public class Main {
     private static int NB_DOMINO = 3;
     private static int NB_TRIOMINO = 6;
     private static int NB_TETROMINO = 9;
+    private static int trioI = 3;
+    private static int trioT = 3;
+    private static int tetroI = 2;
+    private static int tetroJ = 1;
+    private static int tetroL = 1;
+    private static int tetro0 = 1;
+    private static int tetroT = 2;
+    private static int tetroS = 1;
+    private static int tetroZ = 1;
 
     public enum Type {Domino, Triomino, Tetromino};
 
@@ -32,15 +41,7 @@ public class Main {
         Domino d = new Domino();
         Triomino t = new Triomino();
         Tetromino te = new Tetromino();
-        int trioI = 3;
-        int trioT = 3;
-        int tetroI = 2;
-        int tetroJ = 1;
-        int tetroL = 1;
-        int tetro0 = 1;
-        int tetroT = 2;
-        int tetroS = 1;
-        int tetroZ = 1;
+
         // Initialisation tableau de pièces
         Piece[] piece = new Piece[NB_PIECE];
         for (int i=0; i<piece.length; i++) { 
@@ -95,7 +96,7 @@ public class Main {
      */
     public static void choicePiecePlayer(Grid grid, Domino d, Triomino t, Tetromino te, Piece[] piece){
         Ecran.afficherln("Voici les différentes pièces dont vous disposez:");
-        Ecran.afficher(d.toString(), t.toString(true), te.toString());
+        Ecran.afficher(d.toString(true), t.toString(true), te.toString(true));
         Ecran.sautDeLigne();
 
         Ecran.afficher(nomJoueur() +", c'est à vous de jouer ! ");
@@ -109,16 +110,40 @@ public class Main {
             pieceChoisi = Clavier.saisirInt();
         }
 
+
+        // choix de la forme à faire 
+        // pas de choix si domino
+        // choix entre 2 formes si triomino
+        // choix entre 7 formes si tetromino
         clearScreen();
+        int formePieceChoisi;
+        if(pieceChoisi == 3){
+            // afficher les 7 formes de tetromino
+            Ecran.afficher("Choisisez l'une des 7 formes que vous souhaitez poser. Il vous reste "+ tetroI +" Tetromino(s) de forme I, "+ tetroT +" Tetromino(s) de forme T, "+ tetro0 +" Tetromino(s) de forme 0, "+ tetroJ +" Tetromino(s) de forme J, "+ tetroL +" Tetromino(s) de forme L, "+ tetroS +" Tetromino(s) de forme S, "+ tetroZ +" Tetromino(s) de forme Z.\nEntrez le numéro de la pièce: ");
+            formePieceChoisi = Clavier.saisirInt();
+            // vérif à faire en fonction su nombre donné et de si il reste ou non des pièces de ce type
+        } else if(pieceChoisi == 2){
+            // afficher les 2 forme de triomino 
+            Ecran.afficher("Choisisez l'une des 2 formes que vous souhaitez poser. Il vous reste "+ trioI +" Triomino(s) de forme I et "+ trioT +" Triomino(s) de forme T.\nEntrez le numéro de la pièce: ");
+            formePieceChoisi = Clavier.saisirInt();
+            // vérif à faire en fonction su nombre donné et de si il reste ou non des pièces de ce type
+        }
+
+
+        clearScreen(); // choix dans l'orientation 
         int pieceSelected = 0;
         Ecran.afficherln("Voici les dispositions possibles pour cette pièce:");
         switch(pieceChoisi){
             case 1:
-                Ecran.afficher(displayPieces(piece, Type.Domino));
+               Ecran.afficher(displayPieces(piece, Type.Domino));
             break;
             case 2:
-                Ecran.afficher(displayPieces(piece, Type.Triomino));
-                pieceSelected = 3;
+                switch(formePieceChoisi){  // complété les switch 2 et 3
+                    case 1:
+                        Ecran.afficher(displayPieces(piece, Type.Triomino));
+                        pieceSelected = 3;
+                    break;
+                }
             break;
             case 3:
                 Ecran.afficher(displayPieces(piece, Type.Tetromino));
