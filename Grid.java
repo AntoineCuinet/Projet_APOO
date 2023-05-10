@@ -8,7 +8,7 @@
 public class Grid { 
     
     final static int SIZE_X = 12;
-    final static int SIZE_Y = 10;
+    final static int SIZE_Y = 10; 
     
     private Case[][] grid;
 

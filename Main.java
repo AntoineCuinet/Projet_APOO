@@ -20,9 +20,9 @@ public class Main {
     private static boolean isLoose = false;
 
     private static final int NB_PIECE = 18;
-    private static final int NB_DOMINO = 3;
-    private static final int NB_TRIOMINO = 6;
-    private static final int NB_TETROMINO = 9;
+    private static int NB_DOMINO = 3;
+    private static int NB_TRIOMINO = 6;
+    private static int NB_TETROMINO = 9;
 
     public enum Type {Domino, Triomino, Tetromino};
 
@@ -82,16 +82,19 @@ public class Main {
         }
 
         clearScreen();
+        int pieceSelected = 0;
         Ecran.afficherln("Voici les dispositions possibles pour cette pièce:");
         switch(pieceChoisi){
             case 1:
-                Ecran.afficher(d.toString(true));
+                Ecran.afficher(displayPieces(piece, Type.Domino));
             break;
             case 2:
-                Ecran.afficher(t.toString());
+                Ecran.afficher(displayPieces(piece, Type.Triomino));
+                pieceSelected = 3;
             break;
             case 3:
-                Ecran.afficher(te.toString(true));
+                Ecran.afficher(displayPieces(piece, Type.Tetromino));
+                pieceSelected = 9;
             break;
             default:
                 Ecran.afficher("Erreur dans le choix");
@@ -100,14 +103,37 @@ public class Main {
 
         Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET + ", vous désirez poser la pièce choisie dans quelle disposition ? Entrez le numéro de la pièce: ");
         int pieceDisposition = Clavier.saisirInt();
+        Position.Orientation orientationChoisie;
+        switch(pieceDisposition){
+            case 1:
+                orientationChoisie = Position.Orientation.NORTH;
+            break;
+            case 2:
+                orientationChoisie = Position.Orientation.EAST;
+            break;
+            case 3:
+                orientationChoisie = Position.Orientation.SOUTH;
+            break;
+            default:
+                orientationChoisie = Position.Orientation.WEST;
+        }
 
         clearScreen();
+        Ecran.afficherln(grid.toString());
         Ecran.afficher(ANSI_BLUE, nameJoueur, ANSI_RESET +", vous désirez poser la pièce choisie à quel endroit ? Entrez la lettre de la colonne puis le numéro de la ligne: ");
         String positionPiecePlace = Clavier.saisirString();
+        int placeColonne = (int) positionPiecePlace.charAt(0) - 'A';
+        int placeLigne = Character.getNumericValue(positionPiecePlace.charAt(1));
+
+        if (grid.isPiecePlaceable(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne))){
+            grid.placePiece(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne));
+        }
 
         clearScreen();
         Ecran.afficherln(grid.toString());
     }
+
+
 
     /**
      * fonction permettant de nettoyer le terminal (utile pour avoir une présentation propre du jeu)
@@ -159,4 +185,3 @@ public class Main {
         return res;
     }
 }
-

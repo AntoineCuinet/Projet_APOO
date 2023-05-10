@@ -15,10 +15,16 @@ public class Triomino extends Piece {
         if(!isComputer) instanceNbr++;
         else instanceNbrPC++;
         assert (instanceNbr <= 6 && instanceNbrPC <= 6);
-        if (instanceNbr > 2) super.type = (instanceNbr % 2 == 0) ? 2: 1;
-        else super.type = instanceNbr;
-        if (instanceNbrPC > 2) super.type = (instanceNbrPC % 2 == 0) ? 2: 1;
-        else super.type = instanceNbrPC;
+        if (instanceNbr > 2) {
+            super.type = ( (instanceNbr%2) == 0) ? 2: 1;
+            if (instanceNbr%2==0) super.type = 2;
+            else super.type = 1;
+        }
+        else {
+            super.type = instanceNbr;
+        }
+        if (instanceNbrPC > 2) super.type = ( (instanceNbrPC % 2) == 0) ? 2: 1;
+        else if (isComputer) super.type = instanceNbrPC;
     }
 
     public Triomino() {this(false);}
@@ -84,7 +90,7 @@ public class Triomino extends Piece {
     
 
     @Override
-    public String toString(boolean isUnique) { 
+    public String toString(boolean isUnique) {  
         String res = "";
         res += Main.ANSI_GREEN+"   +--- --- ---+\n";
         res += "2. | O | O | O |\n";
@@ -109,10 +115,11 @@ public class Triomino extends Piece {
     */
 
     @Override
-    public String toString(){
+    public String toString(int index){
         String res = "";
-        switch(super.type){
-            case 1:
+        index -= 2;
+        switch(index){
+                case 1:
                 res+=Main.ANSI_GREEN+"                    +---+\n"; 
                 res+="                    | O |\n";
                 res+="  +--- --- ---+     +---+\n";
