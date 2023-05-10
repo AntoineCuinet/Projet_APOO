@@ -16,6 +16,7 @@ public class Main {
     public static final String RESET_BG = "\u001B[40m";
 
     public static final String IA_NAME = "Yumi";
+    public static String nameJoueur = "";
     private static boolean isWin = false;
     private static boolean isLoose = false;
 
@@ -40,8 +41,8 @@ public class Main {
         int tetroT = 2;
         int tetroS = 1;
         int tetroZ = 1;
+        // Initialisation tableau de pièces
         Piece[] piece = new Piece[NB_PIECE];
-
         for (int i=0; i<piece.length; i++) { 
             if (i<NB_DOMINO) piece[i] = new Domino();
             else if (i<NB_TRIOMINO+NB_DOMINO) piece[i] = new Triomino();
@@ -50,21 +51,9 @@ public class Main {
 
 
         // affichage à l'écran
-        Ecran.afficher("Saisisez votre pseudo: "+ ANSI_BLUE);
-        String nameJoueur = Clavier.saisirString();
-        Ecran.sautDeLigne();
-        clearScreen();
-        Ecran.afficherln(ANSI_RESET +"Bonjour " + ANSI_BLUE, nameJoueur, ANSI_RESET +", bienvenu sur notre jeu !");
-        Ecran.afficherln("Vous allez jouer contre "+ ANSI_RED, IA_NAME, ANSI_RESET+", notre IA.");
-        Ecran.sautDeLigne();
+        beginDisplay(grid);
 
-        Ecran.afficherln("Voici la grille de jeu:");
-        Ecran.afficherln(grid.toString());
-        Ecran.sautDeLigne();
 
-        Ecran.afficherln(ANSI_BLUE, nameJoueur, ANSI_RESET +", vous disposez de ",NB_PIECE ," pièces, dont ", NB_DOMINO, " dominos(2cases), ", NB_TRIOMINO," triominos(3cases) posable en 2 positions, et de ", NB_TETROMINO, " tétrominos(4cases) posable en 7 positions."); 
-        Ecran.afficherln(ANSI_RED, IA_NAME, ANSI_RESET+" possède les mêmes pièces que vous.");
-        Ecran.sautDeLigne();
 
         Ecran.afficherln("Voici les différentes pièces dont vous disposez:");
         Ecran.afficher(d.toString(), t.toString(true), te.toString());
@@ -86,14 +75,14 @@ public class Main {
         Ecran.afficherln("Voici les dispositions possibles pour cette pièce:");
         switch(pieceChoisi){
             case 1:
-                Ecran.afficher(displayPieces(piece, Type.Domino));
+                // Ecran.afficher(displayPieces(piece, Type.Domino));
             break;
             case 2:
-                Ecran.afficher(displayPieces(piece, Type.Triomino));
+                // Ecran.afficher(displayPieces(piece, Type.Triomino));
                 pieceSelected = 3;
             break;
             case 3:
-                Ecran.afficher(displayPieces(piece, Type.Tetromino));
+                // Ecran.afficher(displayPieces(piece, Type.Tetromino));
                 pieceSelected = 9;
             break;
             default:
@@ -133,6 +122,46 @@ public class Main {
         Ecran.afficherln(grid.toString());
     }
 
+
+
+    /**
+     * Fonction qui affiche à l'écran le début du jeu
+     * @param grid
+     */
+    public static void beginDisplay(Grid grid){
+        clearScreen();
+        Ecran.afficher("Saisisez votre pseudo: "+ ANSI_BLUE);
+        nameJoueur += Clavier.saisirString();
+        Ecran.sautDeLigne();
+        clearScreen();
+        Ecran.afficherln(ANSI_RESET +"Bonjour " + nomJoueur() +", bienvenu sur notre jeu !");
+        Ecran.afficherln("Vous allez jouer contre "+ nomIA() +", notre IA.");
+        Ecran.sautDeLigne();
+
+        Ecran.afficherln(ANSI_BLUE, nameJoueur, ANSI_RESET +", vous disposez de ",NB_PIECE ," pièces, dont ", NB_DOMINO, " dominos(2cases), ", NB_TRIOMINO," triominos(3cases) posable en 2 positions, et de ", NB_TETROMINO, " tétrominos(4cases) posable en 7 positions."); 
+        Ecran.afficherln(ANSI_RED, IA_NAME, ANSI_RESET+" possède les mêmes pièces que vous.");
+        Ecran.sautDeLigne();
+
+        Ecran.afficherln("Voici la grille de jeu:");
+        Ecran.afficherln(grid.toString());
+        Ecran.sautDeLigne();
+
+        Ecran.afficherln("Dans ce mode de jeu, vous allez jouer tour à tour contre "+ ANSI_RED, IA_NAME, ANSI_RESET+". \n La première personne ne pouvant plus poser de pièce à perdue.");
+        Ecran.sautDeLigne();
+    }
+
+
+
+
+
+    public static String nomIA(){
+        return ANSI_BLUE + nameJoueur + ANSI_RESET;
+    }
+
+    public static String nomJoueur(){
+        return ANSI_BLUE + nameJoueur + ANSI_RESET;
+    }
+    
 
 
     /**
