@@ -27,6 +27,8 @@ public class Case {
     }
 
     public void setPiece(Piece nouvellePiece) { 
+        System.out.println("here");
+        // if (nouvellePiece != null) System.out.println(nouvellePiece.isComputer());
         this.p = nouvellePiece;
     }
     
@@ -36,6 +38,6 @@ public class Case {
 
     public String toString() { 
         if (this.p == null) {return " . ";} 
-        else return p.isComputer() ?  Main.ANSI_BLUE+" O "+Main.ANSI_RESET : Main.ANSI_RED + " # " + Main.ANSI_RESET;
+        else return p.isComputer() ?  Main.ANSI_RED + " # " + Main.ANSI_RESET : Main.ANSI_BLUE+" O "+Main.ANSI_RESET;
     }
 }

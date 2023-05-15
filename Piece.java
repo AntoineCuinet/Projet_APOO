@@ -9,7 +9,7 @@ public abstract class Piece {
     
 
     protected int type;
-    protected boolean isComputer = false;
+    protected boolean isComputer;
 
     public abstract Position[] getPositions(Position.Orientation o);
     public abstract Position[] getPositions();

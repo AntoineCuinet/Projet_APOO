@@ -30,6 +30,15 @@ public class Tetromino extends Piece {
     }
     */
 
+    public Tetromino(boolean isComputer) { 
+
+        super.isComputer = isComputer;
+    }
+
+    public Tetromino() { 
+        this(false);
+    }
+
     @Override
     public Position[] getPositions() { 
         return getPositions(Position.Orientation.EAST);

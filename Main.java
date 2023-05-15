@@ -15,7 +15,6 @@ public class Main {
     public static final String YELLOW_BG = "\u001B[43m";
     public static final String RESET_BG = "\u001B[40m";
 
-    public static final String IA_NAME = ANSI_RED + "Yumi" + ANSI_RESET;
     public static String Player_Name = "";
     private static boolean isWin = false;
     private static boolean isLoose = false;
@@ -41,6 +40,7 @@ public class Main {
         Domino d = new Domino();
         Triomino t = new Triomino();
         Tetromino te = new Tetromino();
+        Computer c = new Computer(grid);
 
         // Initialisation tableau de pièces
         Piece[] piece = new Piece[NB_PIECE];
@@ -50,12 +50,19 @@ public class Main {
             else piece[i] = new Tetromino(); 
         }
 
-
-        // affichage à l'écran
+        // affichage début du jeu 
         beginDisplay(grid);
-        choicePiecePlayer(grid, d, t, te, piece);
-        clearScreen();
-        Ecran.afficherln(grid.toString());
+        // boucle de jeu 
+        while(!isWin || !isLoose){
+            isLoose(piece, grid);
+            // affichage à l'écran du tour du joueur
+            choicePiecePlayer(grid, d, t, te, piece);
+            clearScreen();
+            Ecran.afficherln(grid.toString());
+            c.choicePieceComputer(grid, d, t, te, piece);
+            Ecran.afficherln(grid.toString());
+            // affichage à l'écran du tour de l'ordinateur
+        } 
     }
 
 
@@ -72,14 +79,14 @@ public class Main {
         Ecran.sautDeLigne();
         clearScreen();
         Ecran.afficherln(ANSI_RESET +"Bonjour " + nomJoueur() +", bienvenu sur notre jeu !");
-        Ecran.afficherln("Vous allez jouer contre "+ IA_NAME +", notre IA.");
+        Ecran.afficherln("Vous allez jouer contre "+ Computer.IA_NAME +", notre IA.");
         Ecran.sautDeLigne();
 
         Ecran.afficherln(nomJoueur() +", vous disposez de ",NB_PIECE ," pièces, dont ", NB_DOMINO, " dominos(2cases), ", NB_TRIOMINO," triominos(3cases) posable en 2 positions, et de ", NB_TETROMINO, " tétrominos(4cases) posable en 7 positions."); 
-        Ecran.afficherln(IA_NAME +" possède les mêmes pièces que vous.");
+        Ecran.afficherln(Computer.IA_NAME +" possède les mêmes pièces que vous.");
         Ecran.sautDeLigne();
 
-        Ecran.afficherln("Dans ce mode de jeu, vous allez jouer tour à tour contre "+ IA_NAME +" sur une grille de 12 cases par 10.\nLa première personne ne pouvant plus poser de pièce à perdue.");
+        Ecran.afficherln("Dans ce mode de jeu, vous allez jouer tour à tour contre "+ Computer.IA_NAME +" sur une grille de 12 cases par 10.\nLa première personne ne pouvant plus poser de pièce à perdue.");
         Ecran.sautDeLigne();
     }
 
