@@ -118,12 +118,14 @@ public class Main {
         clearScreen();
         int formePieceChoisi = 0;
         if(pieceChoisi == 3){
-            // afficher les 7 formes de tetromino
+            Ecran.afficher(displayPieces(piece, Type.Tetromino)); // afficher les 7 formes de tetromino
+            Ecran.sautDeLigne();
             Ecran.afficher("Choisisez l'une des 7 formes que vous souhaitez poser. Il vous reste "+ tetroI +" Tetromino(s) de forme I, "+ tetroT +" Tetromino(s) de forme T, "+ tetro0 +" Tetromino(s) de forme 0, "+ tetroJ +" Tetromino(s) de forme J, "+ tetroL +" Tetromino(s) de forme L, "+ tetroS +" Tetromino(s) de forme S, "+ tetroZ +" Tetromino(s) de forme Z.\nEntrez le numéro de la pièce: ");
             formePieceChoisi = Clavier.saisirInt();
             // vérif à faire en fonction su nombre donné et de si il reste ou non des pièces de ce type
         } else if(pieceChoisi == 2){
-            // afficher les 2 forme de triomino 
+            Ecran.afficher(displayPieces(piece, Type.Triomino)); // afficher les 2 forme de triomino 
+            Ecran.sautDeLigne();
             Ecran.afficher("Choisisez l'une des 2 formes que vous souhaitez poser. Il vous reste "+ trioI +" Triomino(s) de forme I et "+ trioT +" Triomino(s) de forme T.\nEntrez le numéro de la pièce: ");
             formePieceChoisi = Clavier.saisirInt();
             // vérif à faire en fonction su nombre donné et de si il reste ou non des pièces de ce type
@@ -138,16 +140,48 @@ public class Main {
                Ecran.afficher(displayPieces(piece, Type.Domino));
             break;
             case 2:
-                switch(formePieceChoisi){  // complété les switch 2 et 3
+                switch(formePieceChoisi){
                     case 1:
                         Ecran.afficher(displayPieces(piece, Type.Triomino));
                         pieceSelected = 3;
                     break;
+                    case 2:
+                        Ecran.afficher(displayPieces(piece, Type.Triomino));
+                        pieceSelected = 4;
+                    break;
                 }
             break;
             case 3:
-                Ecran.afficher(displayPieces(piece, Type.Tetromino));
-                pieceSelected = 9;
+                switch(formePieceChoisi){ 
+                    case 1:
+                        Ecran.afficher(displayPieces(piece, Type.Tetromino));
+                        pieceSelected = 9;
+                    break;
+                    case 2:
+                        Ecran.afficher(displayPieces(piece, Type.Tetromino));
+                        pieceSelected = 9;
+                    break;
+                    case 3:
+                        Ecran.afficher(displayPieces(piece, Type.Tetromino));
+                        pieceSelected = 9;
+                    break;
+                    case 4:
+                        Ecran.afficher(displayPieces(piece, Type.Tetromino));
+                        pieceSelected = 9;
+                    break;
+                    case 5:
+                        Ecran.afficher(displayPieces(piece, Type.Tetromino));
+                        pieceSelected = 9;
+                    break;
+                    case 6:
+                        Ecran.afficher(displayPieces(piece, Type.Tetromino));
+                        pieceSelected = 9;
+                    break;
+                    case 7:
+                        Ecran.afficher(displayPieces(piece, Type.Tetromino));
+                        pieceSelected = 9;
+                    break;
+                }
             break;
             default:
                 Ecran.afficher("Erreur dans le choix");
@@ -179,9 +213,17 @@ public class Main {
         int placeColonne = (int) positionPiecePlace.charAt(0) - 'A';
         int placeLigne = Character.getNumericValue(positionPiecePlace.charAt(1));
 
-        if (grid.isPiecePlaceable(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne))){
-            grid.placePiece(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne));
-        }
+        while (!grid.isPiecePlaceable(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne))){
+            clearScreen();
+            Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
+            Ecran.afficherln("Voici la grille de jeu: ");
+            Ecran.afficherln(grid.toString());
+            Ecran.afficher(nomJoueur() +", vous désirez poser la pièce choisie à quel endroit ? Entrez la lettre de la colonne puis le numéro de la ligne: ");
+            positionPiecePlace = Clavier.saisirString();
+            placeColonne = (int) positionPiecePlace.charAt(0) - 'A';
+            placeLigne = Character.getNumericValue(positionPiecePlace.charAt(1));
+        } 
+        grid.placePiece(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne));
     }
 
 
@@ -214,6 +256,16 @@ public class Main {
         return res;
     }
 
+    public static String displayPieces(Piece[] arr, Type t) { 
+        String res = "";
+        for (int i=0; i<arr.length; i++) { 
+            if (arr[i]!=null && isPieceOfType(arr[i], t)){
+                res += arr[i].toString(i) + "\t";
+            }
+        }
+        return res;
+    }
+
     public static boolean isLoose(Piece[] pieces, Grid grid) { 
         boolean res = true;
         for (int i = 0; i<Grid.SIZE_Y; i++) { 
@@ -231,15 +283,5 @@ public class Main {
         return (p instanceof Domino && t == Type.Domino) || 
             (p instanceof Triomino && t == Type.Triomino) ||
             (p instanceof Tetromino && t == Type.Tetromino);
-    }
-
-    public static String displayPieces(Piece[] arr, Type t) { 
-        String res = "";
-        for (Piece p: arr) { 
-            if (p!=null && isPieceOfType(p, t)){
-                res += p.toString() + "\t";
-            }
-        }
-        return res;
     }
 }

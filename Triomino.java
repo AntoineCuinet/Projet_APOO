@@ -120,6 +120,7 @@ public class Triomino extends Piece {
         index -= 2;
         switch(index){
                 case 1:
+                res += "\n";
                 res+=Main.ANSI_GREEN+"                    +---+\n"; 
                 res+="                    | O |\n";
                 res+="  +--- --- ---+     +---+\n";
@@ -127,8 +128,10 @@ public class Triomino extends Piece {
                 res+="  +--- --- ---+     +---+\n";
                 res+="                    | O |\n";
                 res+="                    +---+\n"+Main.ANSI_RESET;
+                res += "\n";
             break;
             case 2:
+                res += "\n";
                 res+=Main.ANSI_GREEN+"\n"; 
                 res+="   +--- ---+     +--- ---+         +---+     +---+\n";
                 res+="   | O | O |     | O | O |         | O |     | O |\n";
@@ -136,6 +139,7 @@ public class Triomino extends Piece {
                 res+="   | O |             | O |     | O | O |     | O | O |\n";
                 res+="   +---+             +---+     +--- ---+     +--- ---+\n";
                 res+="\n"+Main.ANSI_RESET;
+                res += "\n";
             break;
             default:
                 res+="";

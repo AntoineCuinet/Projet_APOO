@@ -23,7 +23,7 @@ public class Grid {
 
     public Case getCaseAt(Position p) { 
         if (isInGrid(p)){ 
-            return this.grid[p.getY()][p.getX()];
+            return this.grid[9-p.getY()][p.getX()];
         }
         return null;
     }
