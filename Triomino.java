@@ -120,8 +120,8 @@ public class Triomino extends Piece {
         res += Main.ANSI_GREEN+"                     +--- ---+\n";
         res += "   +--- --- ---+     | O | O |\n";
         res += "1. | O | O | O |   2.+--- ---+\n";
-        res += "   +--- --- ---+     | O |    \n"+Main.ANSI_RESET;
-        res += "                      +---+   \n";
+        res += "   +--- --- ---+     | O |    \n";
+        res += "                     +---+   \n"+Main.ANSI_RESET;
         return res;
     }
 

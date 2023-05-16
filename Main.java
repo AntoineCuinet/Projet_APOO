@@ -125,13 +125,13 @@ public class Main {
         clearScreen();
         int formePieceChoisi = 0;
         if(pieceChoisi == 3){
-            Ecran.afficher(displayPieces(piece, Type.Tetromino)); // afficher les 7 formes de tetromino
+            Ecran.afficher(te.toString()); // afficher les 7 formes de tetromino
             Ecran.sautDeLigne();
             Ecran.afficher("Choisisez l'une des 7 formes que vous souhaitez poser. Il vous reste "+ tetroI +" Tetromino(s) de forme I, "+ tetroT +" Tetromino(s) de forme T, "+ tetro0 +" Tetromino(s) de forme 0, "+ tetroJ +" Tetromino(s) de forme J, "+ tetroL +" Tetromino(s) de forme L, "+ tetroS +" Tetromino(s) de forme S, "+ tetroZ +" Tetromino(s) de forme Z.\nEntrez le numéro de la pièce: ");
             formePieceChoisi = Clavier.saisirInt();
             // vérif à faire en fonction su nombre donné et de si il reste ou non des pièces de ce type
         } else if(pieceChoisi == 2){
-            Ecran.afficher(displayPieces(piece, Type.Triomino)); // afficher les 2 forme de triomino 
+            Ecran.afficher(t.toString()); // afficher les 2 forme de triomino 
             Ecran.sautDeLigne();
             Ecran.afficher("Choisisez l'une des 2 formes que vous souhaitez poser. Il vous reste "+ trioI +" Triomino(s) de forme I et "+ trioT +" Triomino(s) de forme T.\nEntrez le numéro de la pièce: ");
             formePieceChoisi = Clavier.saisirInt();
