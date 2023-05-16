@@ -144,7 +144,7 @@ public class Main {
         Ecran.afficherln("Voici les dispositions possibles pour cette pièce:");
         switch(pieceChoisi){
             case 1:
-               Ecran.afficher(displayPieces(piece, Type.Domino));
+               Ecran.afficher(d.toString(pieceSelected));
             break;
             case 2:
                 switch(formePieceChoisi){

@@ -61,23 +61,13 @@ public class Domino extends Piece {
     @Override
     public String toString(int index) {
         String res = "";
-        switch(index){
-            case 1:
-                res += "\n";
-                res += Main.ANSI_GREEN+"   +--- ---+\n";
-                res += "1. | • |   |\n";
-                res += "   +--- ---+\n"+Main.ANSI_RESET;
-                res += "\n";
-        break;
-            case 2:
-                res += "\n";
-                res+=Main.ANSI_GREEN+"   +---+\n"; 
-                res+="   |   |\n";
-                res+="2. +---+\n";
-                res+="   | • |\n";
-                res+="   +---+\n"+Main.ANSI_RESET;
-                res += "\n";
-        }
+        res += "\n";
+        res += Main.ANSI_GREEN+ "                    +---+\n";
+        res += "   +--- ---+        |   |\n";
+        res += "1. | • |   |     2. +---+\n";
+        res += "   +--- ---+        | • |\n";
+        res += "                    +---+\n";
+        res += "\n"+Main.ANSI_RESET;
         return res;
-    }
+    } 
 }
