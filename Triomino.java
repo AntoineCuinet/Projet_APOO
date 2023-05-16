@@ -133,11 +133,11 @@ public class Triomino extends Piece {
                 case 1:
                 res += "\n";
                 res+=Main.ANSI_GREEN+"                    +---+\n"; 
-                res+="                    | O |\n";
+                res+="                    |   |\n";
                 res+="  +--- --- ---+     +---+\n";
-                res+="1.| O | O | O |   2.| O |\n";
+                res+="1.| • |   |   |   2.|   |\n";
                 res+="  +--- --- ---+     +---+\n";
-                res+="                    | O |\n";
+                res+="                    | • |\n";
                 res+="                    +---+\n"+Main.ANSI_RESET;
                 res += "\n";
             break;
@@ -145,9 +145,9 @@ public class Triomino extends Piece {
                 res += "\n";
                 res+=Main.ANSI_GREEN+"\n"; 
                 res+="   +--- ---+     +--- ---+         +---+     +---+\n";
-                res+="   | O | O |     | O | O |         | O |     | O |\n";
+                res+="   | • |   |     |   | • |         |   |     |   |\n";
                 res+=" 1.+--- ---+   2.+--- ---+   3.+--- ---+   4.+--- ---+\n";
-                res+="   | O |             | O |     | O | O |     | O | O |\n";
+                res+="   |   |             |   |     |   | • |     | • |   |\n";
                 res+="   +---+             +---+     +--- ---+     +--- ---+\n";
                 res+="\n"+Main.ANSI_RESET;
                 res += "\n";
