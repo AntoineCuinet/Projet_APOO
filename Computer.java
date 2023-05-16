@@ -1,6 +1,6 @@
 public class Computer {
     
-    Piece[] pieceComputeur;
+    Piece[] pieceComputer;
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String IA_NAME = ANSI_RED + "Yumi" + ANSI_RESET;
@@ -25,16 +25,16 @@ public class Computer {
         Tetromino te = new Tetromino();
 
         // Initialisation tableau de pièces
-        pieceComputeur = new Piece[NB_PIECE];
-        for (int i=0; i<pieceComputeur.length; i++) { 
-            if (i<NB_DOMINO) pieceComputeur[i] = new Domino(true);
-            else if (i<NB_TRIOMINO+NB_DOMINO) pieceComputeur[i] = new Triomino(true);
-            else pieceComputeur[i] = new Tetromino(true); 
+        pieceComputer = new Piece[NB_PIECE];
+        for (int i=0; i<pieceComputer.length; i++) { 
+            if (i<NB_DOMINO) pieceComputer[i] = new Domino(true);
+            else if (i<NB_TRIOMINO+NB_DOMINO) pieceComputer[i] = new Triomino(true);
+            else pieceComputer[i] = new Tetromino(true); 
         }
     }
 
 
-    public void choicePieceComputer(Grid grid, Domino d, Triomino t, Tetromino te, Piece[] piece){
+    public void choicePieceComputer(Grid grid, Domino d, Triomino t, Tetromino te){
         int pieceChoisi = (int) (Math.random()*3);
         // vérification de la saisie
         while(pieceChoisi<1 || pieceChoisi>3 || (NB_DOMINO==0 && pieceChoisi==1) || (NB_TRIOMINO==0 && pieceChoisi==2) || (NB_TETROMINO==0 && pieceChoisi==3)){
@@ -73,11 +73,11 @@ public class Computer {
         int placeColonne = (int) (Math.random()*11);
         int placeLigne = (int) (Math.random()*9);
 
-        while (!grid.isPiecePlaceable(piece[pieceChoisi], orientationChoisie, new Position(placeColonne, placeLigne))){
+        while (!grid.isPiecePlaceable(pieceComputer[pieceChoisi], orientationChoisie, new Position(placeColonne, placeLigne))){
             placeColonne = (int) Math.random()*11;
             placeLigne = (int) Math.random()*9;
         } 
-        grid.placePiece(piece[pieceChoisi], orientationChoisie, new Position(placeColonne, placeLigne));
+        grid.placePiece(pieceComputer[pieceChoisi], orientationChoisie, new Position(placeColonne, placeLigne));
 
         String pieceJouer = "";
         switch(pieceChoisi){

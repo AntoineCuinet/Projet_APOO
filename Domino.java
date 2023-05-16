@@ -9,11 +9,18 @@ public class Domino extends Piece {
     
     private static int instanceNbr = 0;
 
-    public Domino(boolean isComputer) { 
+    public Domino(boolean isComputer) {
         super.isComputer = isComputer;
+        System.out.println("HERE: " + super.isComputer);
         instanceNbr++;
         assert instanceNbr <= 3;
         super.type = instanceNbr > 1 ? 1: instanceNbr;
+    }
+
+    @Override
+    public boolean isComputer() { 
+        System.out.println("PUTAIN : " + super.isComputer);
+        return super.isComputer;
     }
 
     public Domino() {
