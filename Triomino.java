@@ -119,7 +119,7 @@ public class Triomino extends Piece {
         String res = "";
         res += Main.ANSI_GREEN+"                     +--- ---+\n";
         res += "   +--- --- ---+     | O | O |\n";
-        res += "1. | O | O | O |   3.+--- ---+\n";
+        res += "1. | O | O | O |   2.+--- ---+\n";
         res += "   +--- --- ---+     | O |    \n"+Main.ANSI_RESET;
         res += "                      +---+   \n";
         return res;
@@ -146,7 +146,7 @@ public class Triomino extends Piece {
                 res+=Main.ANSI_GREEN+"\n"; 
                 res+="   +--- ---+     +--- ---+         +---+     +---+\n";
                 res+="   | O | O |     | O | O |         | O |     | O |\n";
-                res+=" 3.+--- ---+   4.+--- ---+   5.+--- ---+   6.+--- ---+\n";
+                res+=" 1.+--- ---+   2.+--- ---+   3.+--- ---+   4.+--- ---+\n";
                 res+="   | O |             | O |     | O | O |     | O | O |\n";
                 res+="   +---+             +---+     +--- ---+     +--- ---+\n";
                 res+="\n"+Main.ANSI_RESET;
