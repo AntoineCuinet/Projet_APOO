@@ -7,7 +7,6 @@
 */
 public abstract class Piece {
     
-
     protected int type;
     public boolean isComputer;
 
@@ -17,7 +16,6 @@ public abstract class Piece {
     public abstract String toString(int index);
     public abstract String toString(boolean seeAllDispositions);
     public boolean isComputer() {
-        System.out.println(this.isComputer);
-        return this.isComputer;}
-
+        return this.isComputer;
+    }
 }
