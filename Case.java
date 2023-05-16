@@ -37,7 +37,6 @@ public class Case {
     }
 
     public String toString() { 
-        if (this.p != null) System.out.println(this.p.isComputer());
         if (this.p == null) {return " . ";} 
         else return this.p.isComputer() ?  Main.ANSI_RED + " # " + Main.ANSI_RESET : Main.ANSI_BLUE+" O "+Main.ANSI_RESET;
     }
