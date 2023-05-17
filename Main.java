@@ -159,6 +159,7 @@ public class Main {
                 switch(formePieceChoisi){
                     case 1:
                         Ecran.afficher(t.toString(formePieceChoisi));
+                        pieceSelected = 
                     break;
                     case 2:
                         Ecran.afficher(t.toString(formePieceChoisi));
