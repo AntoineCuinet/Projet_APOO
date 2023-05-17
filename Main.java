@@ -79,7 +79,7 @@ public class Main {
             choicePiecePlayer(grid, d, t, te, piece);
             clearScreen();
             Ecran.afficherln(grid.toString());
-            c.choicePieceComputer(grid, d, t, te);
+            c.choicePieceComputer(grid);
             Ecran.afficherln(grid.toString());
             // affichage à l'écran du tour de l'ordinateur
         } 

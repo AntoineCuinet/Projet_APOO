@@ -20,10 +20,6 @@ public class Computer {
 
 
     Computer(Grid grid){
-        Domino d = new Domino();
-        Triomino t = new Triomino();
-        Tetromino te = new Tetromino();
-
         // Initialisation tableau de pièces
         pieceComputer = new Piece[NB_PIECE];
         for (int i=0; i<pieceComputer.length; i++) { 
@@ -34,15 +30,17 @@ public class Computer {
     }
 
 
-    public void choicePieceComputer(Grid grid, Domino d, Triomino t, Tetromino te){
+    /**
+     * Fonction qui permet à l'odinateur de choisir et de placer une piece sur la grille
+     * @param grid
+     */
+    public void choicePieceComputer(Grid grid){
         int pieceChoisi = (int) (Math.random()*3)+1;
         // vérification de la saisie
         while(pieceChoisi<1 || pieceChoisi>3 || (NB_DOMINO==0 && pieceChoisi==1) || (NB_TRIOMINO==0 && pieceChoisi==2) || (NB_TETROMINO==0 && pieceChoisi==3)){
             pieceChoisi = (int) (Math.random()*3);
         }
 
-
-        // ici vérifier les maths.random
         int formePieceChoisi = 0;
         if(pieceChoisi == 3){
             formePieceChoisi = (int) (Math.random()*7);
@@ -131,9 +129,7 @@ public class Computer {
             positionPiecePlace += "L";
             break;
         }
-
         positionPiecePlace += placeLigne;
-
         Ecran.afficherln(IA_NAME + " à posée un "+ pieceJouer +" à la position "+ positionPiecePlace +".");
     }
 }
