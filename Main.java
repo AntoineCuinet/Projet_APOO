@@ -117,7 +117,6 @@ public class Main {
             pieceChoisi = Clavier.saisirInt();
         }
 
-
         // choix de la forme à faire 
         // pas de choix si domino
         // choix entre 2 formes si triomino
@@ -129,13 +128,23 @@ public class Main {
             Ecran.sautDeLigne();
             Ecran.afficher("Choisisez l'une des 7 formes que vous souhaitez poser. Il vous reste "+ tetroI +" Tetromino(s) de forme I, "+ tetroT +" Tetromino(s) de forme T, "+ tetro0 +" Tetromino(s) de forme 0, "+ tetroJ +" Tetromino(s) de forme J, "+ tetroL +" Tetromino(s) de forme L, "+ tetroS +" Tetromino(s) de forme S, "+ tetroZ +" Tetromino(s) de forme Z.\nEntrez le numéro de la pièce: ");
             formePieceChoisi = Clavier.saisirInt();
-            // vérif à faire en fonction su nombre donné et de si il reste ou non des pièces de ce type
+            // vérification de la saisie
+            while(formePieceChoisi<1 || formePieceChoisi>7 || (tetroI==0 && formePieceChoisi==1) || (tetroT==0 && formePieceChoisi==2) || (tetro0==0 && formePieceChoisi==3) || (tetroJ==0 && formePieceChoisi==4) || (tetroL==0 && formePieceChoisi==5) || (tetroS==0 && formePieceChoisi==6) || (tetroZ==0 && formePieceChoisi==7)){
+                Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
+                Ecran.afficher("Choisisez l'une des 7 formes que vous souhaitez poser. Il vous reste "+ tetroI +" Tetromino(s) de forme I, "+ tetroT +" Tetromino(s) de forme T, "+ tetro0 +" Tetromino(s) de forme 0, "+ tetroJ +" Tetromino(s) de forme J, "+ tetroL +" Tetromino(s) de forme L, "+ tetroS +" Tetromino(s) de forme S, "+ tetroZ +" Tetromino(s) de forme Z.\nEntrez le numéro de la pièce: ");
+                formePieceChoisi = Clavier.saisirInt();
+            }
         } else if(pieceChoisi == 2){
             Ecran.afficher(t.toString()); // afficher les 2 forme de triomino 
             Ecran.sautDeLigne();
             Ecran.afficher("Choisisez l'une des 2 formes que vous souhaitez poser. Il vous reste "+ trioI +" Triomino(s) de forme I et "+ trioT +" Triomino(s) de forme T.\nEntrez le numéro de la pièce: ");
             formePieceChoisi = Clavier.saisirInt();
-            // vérif à faire en fonction su nombre donné et de si il reste ou non des pièces de ce type
+            // vérification de la saisie
+            while(formePieceChoisi<1 || formePieceChoisi>2 || (trioI==0 && formePieceChoisi==1) || (trioT==0 && formePieceChoisi==2)){
+                Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
+                Ecran.afficher("Choisisez l'une des 2 formes que vous souhaitez poser. Il vous reste "+ trioI +" Triomino(s) de forme I et "+ trioT +" Triomino(s) de forme T.\nEntrez le numéro de la pièce: ");
+                formePieceChoisi = Clavier.saisirInt();
+            }
         }
 
 
@@ -197,6 +206,12 @@ public class Main {
 
         Ecran.afficher(nomJoueur() + ", vous désirez poser la pièce choisie dans quelle disposition ? Entrez le numéro de la pièce: ");
         int pieceDisposition = Clavier.saisirInt();
+        // Vérification de saisie
+        while((pieceDisposition<1 || pieceDisposition>2 && pieceChoisi ==1)|| ((pieceDisposition<1 || pieceDisposition>4) && pieceChoisi !=1)){
+            Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
+            Ecran.afficher("Choisisez l'une des 2 formes que vous souhaitez poser. Il vous reste "+ trioI +" Triomino(s) de forme I et "+ trioT +" Triomino(s) de forme T.\nEntrez le numéro de la pièce: ");
+            pieceDisposition = Clavier.saisirInt();
+        }
         Position.Orientation orientationChoisie;
         switch(pieceDisposition){
             case 1:
