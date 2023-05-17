@@ -19,12 +19,20 @@ public class Main {
     private static boolean isWin = false;
     private static boolean isLoose = false;
 
-    public static final int TRIO_I = 3;
-
     private static final int NB_PIECE = 18;
     private static final int NB_DOMINO = 3;
     private static final int NB_TRIOMINO = 6;
     private static final int NB_TETROMINO = 9;
+
+    public static final int TRIO_I = 3;
+    public static final int TRIO_T = 3;
+    public static final int TETRO_I = 2; 
+    public static final int TETRO_J = 1;
+    public static final int TETRO_L = 1;
+    public static final int TETRO_0 = 1;
+    public static final int TETRO_T = 2;
+    public static final int TETRO_S = 1;
+    public static final int TETRO_Z = 1;
 
     private static int trioI = 3;
     private static int trioT = 3;
@@ -105,20 +113,7 @@ public class Main {
      * @param piece
      */
     public static void choicePiecePlayer(Grid grid, Domino d, Triomino t, Tetromino te, Piece[] piece){
-        Ecran.afficherln("Voici les différentes pièces dont vous disposez:");
-        Ecran.afficher(d.toString(true), t.toString(true), te.toString(true));
-        Ecran.sautDeLigne();
-
-        Ecran.afficher(nomJoueur() +", c'est à vous de jouer ! ");
-        Ecran.afficherln("Il vous reste ", NB_DOMINO, " dominos, ", NB_TRIOMINO," triominos et ", NB_TETROMINO, " tétrominos.");
-        Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
-        int pieceChoisi = Clavier.saisirInt();
-        // vérification de la saisie
-        while(pieceChoisi<1 || pieceChoisi>3 || (NB_DOMINO==0 && pieceChoisi==1) || (NB_TRIOMINO==0 && pieceChoisi==2) || (NB_TETROMINO==0 && pieceChoisi==3)){
-            Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
-            Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
-            pieceChoisi = Clavier.saisirInt();
-        }
+        choixTypePiece(grid, d, t, te, piece);
 
         // choix de la forme à faire 
         // pas de choix si domino
@@ -254,8 +249,21 @@ public class Main {
 
 
 
-    public void choixTypePiece(){
-        
+    public void choixTypePiece(Grid grid, Domino d, Triomino t, Tetromino te, Piece[] piece){
+        Ecran.afficherln("Voici les différentes pièces dont vous disposez:");
+        Ecran.afficher(d.toString(true), t.toString(true), te.toString(true));
+        Ecran.sautDeLigne();
+
+        Ecran.afficher(nomJoueur() +", c'est à vous de jouer ! ");
+        Ecran.afficherln("Il vous reste ", NB_DOMINO, " dominos, ", NB_TRIOMINO," triominos et ", NB_TETROMINO, " tétrominos.");
+        Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
+        int pieceChoisi = Clavier.saisirInt();
+        // vérification de la saisie
+        while(pieceChoisi<1 || pieceChoisi>3 || (NB_DOMINO==0 && pieceChoisi==1) || (NB_TRIOMINO==0 && pieceChoisi==2) || (NB_TETROMINO==0 && pieceChoisi==3)){
+            Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
+            Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
+            pieceChoisi = Clavier.saisirInt();
+        }
     }
 
 
