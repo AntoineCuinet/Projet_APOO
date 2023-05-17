@@ -75,48 +75,27 @@ public class Triomino extends Piece {
         return arr;
     }
 
-    /*
-    @Override
-    public Domino[] getDispositions() { 
-        Domino[] d = new Domino[1];
-        d[0] = new Domino();
-        return d;
-    }
-    */
-
     @Override
     public String toString(boolean isUnique) {  
         String res = "";
-        res += Main.ANSI_GREEN+"   +--- --- ---+\n";
-        res += "2. | O | O | O |\n";
-        res += "   +--- --- ---+\n"+Main.ANSI_RESET;
+        res+=Main.ANSI_GREEN;
+        res+="    +--- --- ---+  \n";
+        res+=" 2. |   |   |   |  \n";
+        res+="    +--- --- ---+  \n";
+        res+=Main.ANSI_RESET;
         return res;
     }
-
-    /* 
-    @Override
-    public String toString(boolean seeAllDispositions) {
-        String res = "";
-        res+=Main.ANSI_GREEN+"                    +---+\n"; 
-        res+="                    | O |     +--- ---+     +--- ---+         +---+     +---+\n";
-        res+="  +--- --- ---+     +---+     | O | O |     | O | O |         | O |     | O |\n";
-        res+="1.| O | O | O |   2.| O |   3.+--- ---+   4.+--- ---+   5.+--- ---+   6.+--- ---+\n";
-        res+="  +--- --- ---+     +---+     | O |             | O |     | O | O |     | O | O |\n";
-        res+="                    | O |     +---+             +---+     +--- ---+     +--- ---+\n";
-        res+="                    +---+\n"+Main.ANSI_RESET;
-        return res;
-    }
-
-    */
 
     @Override
     public String toString(){
         String res = "";
-        res += Main.ANSI_GREEN+"                     +--- ---+\n";
-        res += "   +--- --- ---+     | O | O |\n";
-        res += "1. | O | O | O |   2.+--- ---+\n";
-        res += "   +--- --- ---+     | O |    \n";
-        res += "                     +---+   \n"+Main.ANSI_RESET;
+        res+=Main.ANSI_GREEN;
+        res+="                         +--- ---+  \n";
+        res+="    +--- --- ---+        |   |   |  \n";
+        res+=" 1. |   |   |   |     2. +--- ---+  \n";
+        res+="    +--- --- ---+        |   |      \n";
+        res+="                         +---+      \n";
+        res+="\n"+Main.ANSI_RESET;
         return res;
     }
 
@@ -125,26 +104,24 @@ public class Triomino extends Piece {
         String res = "";
         switch(formePieceChoisi){
                 case 1:
-                res += "\n";
-                res+=Main.ANSI_GREEN+"                    +---+\n"; 
-                res+="                    |   |\n";
-                res+="  +--- --- ---+     +---+\n";
-                res+="1.| • |   |   |   2.|   |\n";
-                res+="  +--- --- ---+     +---+\n";
-                res+="                    | • |\n";
-                res+="                    +---+\n"+Main.ANSI_RESET;
-                res += "\n";
+                res+=Main.ANSI_GREEN+"\n";
+                res+="                         +---+  \n"; 
+                res+="                         |   |  \n";
+                res+="    +--- --- ---+        +---+  \n";
+                res+=" 1. | • |   |   |     2. |   |  \n";
+                res+="    +--- --- ---+        +---+  \n";
+                res+="                         | • |  \n";
+                res+="                         +---+  \n";
+                res+="\n"+Main.ANSI_RESET;
             break;
             case 2:
-                res += "\n";
                 res+=Main.ANSI_GREEN+"\n"; 
-                res+="   +--- ---+     +--- ---+         +---+     +---+\n";
-                res+="   | • |   |     |   | • |         |   |     |   |\n";
-                res+=" 1.+--- ---+   2.+--- ---+   3.+--- ---+   4.+--- ---+\n";
-                res+="   |   |             |   |     |   | • |     | • |   |\n";
-                res+="   +---+             +---+     +--- ---+     +--- ---+\n";
+                res+="    +--- ---+        +---+                +---+        +--- ---+  \n";
+                res+="    | • |   |        |   |                |   |        |   | • |  \n";
+                res+=" 1. +--- ---+     2. +--- ---+     3. +--- ---+     4. +--- ---+  \n";
+                res+="    |   |            | • |   |        |   | • |            |   |  \n";
+                res+="    +---+            +--- ---+        +--- ---+            +---+  \n";
                 res+="\n"+Main.ANSI_RESET;
-                res += "\n";
             break;
             default:
                 res+="";

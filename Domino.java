@@ -36,14 +36,6 @@ public class Domino extends Piece {
         }
         return arr;
     }
-    /*
-    @Override
-    public Domino[] getDispositions() { 
-        Domino[] d = new Domino[1];
-        d[0] = new Domino();
-        return d;
-    }
-    */
 
     /*
     @Override
@@ -55,22 +47,24 @@ public class Domino extends Piece {
     @Override
     public String toString(boolean isUnique) { 
         String res = "";
-        res += Main.ANSI_GREEN+"   +--- ---+\n";
-        res += "1. | O | O |\n";
-        res += "   +--- ---+\n"+Main.ANSI_RESET;
+        res+=Main.ANSI_GREEN;
+        res+="    +--- ---+  \n";
+        res+=" 1. |   |   |  \n";
+        res+="    +--- ---+  \n";
+        res+=Main.ANSI_RESET;
         return res;
     }
 
     @Override
     public String toString(int index) {
         String res = "";
-        res += "\n";
-        res += Main.ANSI_GREEN+ "                    +---+\n";
-        res += "   +--- ---+        |   |\n";
-        res += "1. | • |   |     2. +---+\n";
-        res += "   +--- ---+        | • |\n";
-        res += "                    +---+\n";
-        res += "\n"+Main.ANSI_RESET;
+        res+=Main.ANSI_GREEN+"\n";
+        res+="                     +---+  \n";
+        res+="    +--- ---+        |   |  \n";
+        res+=" 1. | • |   |     2. +---+  \n";
+        res+="    +--- ---+        | • |  \n";
+        res+="                     +---+  \n";
+        res+="\n"+Main.ANSI_RESET;
         return res;
     } 
 }

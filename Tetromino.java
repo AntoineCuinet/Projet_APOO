@@ -50,9 +50,11 @@ public class Tetromino extends Piece {
     @Override
     public String toString(boolean isUnique) { 
         String res = "";
-        res += Main.ANSI_GREEN+"   +--- --- --- ---+\n";
-        res += "3. | O | O | O | O |\n";
-        res += "   +--- --- --- ---+\n"+Main.ANSI_RESET;
+        res+=Main.ANSI_GREEN;
+        res+="    +--- --- --- ---+  \n";
+        res+=" 3. |   |   |   |   |  \n";
+        res+="    +--- --- --- ---+  \n";
+        res+=Main.ANSI_RESET;
         return res;
     }
 
