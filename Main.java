@@ -159,7 +159,6 @@ public class Main {
                 switch(formePieceChoisi){
                     case 1:
                         Ecran.afficher(t.toString(formePieceChoisi));
-                        pieceSelected = 
                     break;
                     case 2:
                         Ecran.afficher(t.toString(formePieceChoisi));
@@ -211,6 +210,7 @@ public class Main {
             Ecran.afficher("Choisisez l'une des 2 formes que vous souhaitez poser. Il vous reste "+ trioI +" Triomino(s) de forme I et "+ trioT +" Triomino(s) de forme T.\nEntrez le numéro de la pièce: ");
             pieceDisposition = Clavier.saisirInt();
         }
+        /*
         Position.Orientation orientationChoisie;
         switch(pieceDisposition){
             case 1:
@@ -225,7 +225,7 @@ public class Main {
             default:
                 orientationChoisie = Position.Orientation.SOUTH;
         }
-
+        */
         clearScreen();
         Ecran.afficherln("Voici la grille de jeu: ");
         Ecran.afficherln(grid.toString());
@@ -234,7 +234,7 @@ public class Main {
         int placeColonne = (int) positionPiecePlace.charAt(0) - 'A';
         int placeLigne = Character.getNumericValue(positionPiecePlace.charAt(1));
 
-        while (!grid.isPiecePlaceable(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne))){
+        while (!grid.isPiecePlaceable(piece[pieceSelected + pieceDisposition - 1], new Position(placeColonne, placeLigne))){
             clearScreen();
             Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
             Ecran.afficherln("Voici la grille de jeu: ");
@@ -244,7 +244,8 @@ public class Main {
             placeColonne = (int) positionPiecePlace.charAt(0) - 'A';
             placeLigne = Character.getNumericValue(positionPiecePlace.charAt(1));
         } 
-        grid.placePiece(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne));
+        grid.placePiece(piece[pieceSelected + pieceDisposition - 1], new Position(placeColonne, placeLigne));
+        piece[pieceSelected + pieceDisposition - 1] = null;
     }
 
 
@@ -293,7 +294,7 @@ public class Main {
             for (int j=0; j<Grid.SIZE_Y; j++) { 
                 Position origin = new Position(i, j);
                 for (Piece p: pieces) { 
-                    res &= !grid.isPiecePlaceableInAnyPosition(p, origin);
+                    res &= !grid.isPiecePlaceable(p, origin);
                 }
             }
         }

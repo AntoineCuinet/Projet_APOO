@@ -8,10 +8,11 @@
 public abstract class Piece {
     
     protected int type;
-    public boolean isComputer;
+    protected boolean isComputer;
+    protected Position.Orientation orientation;
 
-    public abstract Position[] getPositions(Position.Orientation o);
-    public abstract Position[] getPositions();
+    public abstract Position[] getPositions(); // Position.Orientation o
+    //public abstract Position[] getAllPositions();
     //public abstract Piece[] getDispositions();
     public abstract String toString(int index);
     public abstract String toString(boolean seeAllDispositions);

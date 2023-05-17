@@ -14,6 +14,7 @@ public class Domino extends Piece {
         instanceNbr++;
         assert instanceNbr <= 3;
         super.type = instanceNbr > 1 ? 1: instanceNbr;
+        super.orientation = instanceNbr == 0 ? Position.Orientation.EAST: Position.Orientation.NORTH;
     }
 
     @Override
@@ -26,10 +27,10 @@ public class Domino extends Piece {
     }
 
     @Override
-    public Position[] getPositions(Position.Orientation o) { 
+    public Position[] getPositions() { 
         Position[] arr = new Position[2];
         arr[0] = new Position();
-        switch (o) {
+        switch (super.orientation) {
             case NORTH, SOUTH : { arr[1] = new Position(0, 1); break;}
             default : {arr[1] = new Position(1, 0); break;}
         }
@@ -44,10 +45,12 @@ public class Domino extends Piece {
     }
     */
 
+    /*
     @Override
-    public Position[] getPositions() { 
+    public Position[] getAllPositions() { 
         return getPositions(Position.Orientation.EAST);
     }
+    */
     
     @Override
     public String toString(boolean isUnique) { 

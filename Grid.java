@@ -45,9 +45,9 @@ public class Grid {
      * @param origin le point à partir duquel on souhaite poser la pièce
      * @return vrai si la pièce est posable (elle est dans la grille), faux sinon.
     */
-    public boolean isInGrid(Piece p, Position.Orientation o, Position origin) { 
+    public boolean isInGrid(Piece p, Position origin) { 
         boolean res = true;
-        for (Position it: p.getPositions(o)) { 
+        for (Position it: p.getPositions()) { 
             it.add(origin);
             res &= isInGrid(it);
         }
@@ -62,8 +62,8 @@ public class Grid {
      * @param o l'orientation de la pièce
      * @param origin le point à partir duquel on souhaite poser la pièce
     */
-    public void placePiece(Piece p, Position.Orientation o, Position origin) { 
-        for (Position it: p.getPositions(o)) { 
+    public void placePiece(Piece p, Position origin) { 
+        for (Position it: p.getPositions()) { 
             it.add(origin);
             getCaseAt(it).setPiece(p);
             getCaseAt(it).setIsComputer(p.isComputer());
@@ -78,21 +78,24 @@ public class Grid {
      * @param origin
      * @return
     */
-    public boolean isPiecePlaceable(Piece p, Position.Orientation o, Position origin) { 
-        if (!isInGrid(p, o, origin)) return false;
-        for (Position it: p.getPositions(o)) { 
+    public boolean isPiecePlaceable(Piece p, Position origin) { 
+        if (p == null) return false;
+        if (!isInGrid(p, origin)) return false;
+        for (Position it: p.getPositions()) { 
             it.add(origin);
             if (getCaseAt(it).getPiece() != null) return false;
         }
         return true;
     }
 
+    /*
     public boolean isPiecePlaceableInAnyPosition(Piece p, Position origin) { 
         return isPiecePlaceable(p, Position.Orientation.EAST, origin) ||
             isPiecePlaceable(p, Position.Orientation.NORTH, origin) ||
             isPiecePlaceable(p, Position.Orientation.SOUTH, origin) || 
             isPiecePlaceable(p, Position.Orientation.WEST, origin);
     }
+    /*
 
     /**
      * affichage des pièces sur la grille: (O) pour le joueur et (#) pour l'ordinateur
