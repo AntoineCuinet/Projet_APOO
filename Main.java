@@ -19,6 +19,7 @@ public class Main {
     private static boolean isWin = false;
     private static boolean isLoose = false;
 
+    // Déclaration des constantes
     private static final int NB_PIECE = 18;
     private static final int NB_DOMINO = 3;
     private static final int NB_TRIOMINO = 6;
@@ -34,6 +35,7 @@ public class Main {
     public static final int TETRO_S = 1;
     public static final int TETRO_Z = 1;
 
+    // Déclaration des variables
     private static int trioI = 3;
     private static int trioT = 3;
     private static int tetroI = 2;
@@ -44,8 +46,15 @@ public class Main {
     private static int tetroS = 1;
     private static int tetroZ = 1;
 
+    private static int pieceChoisi = 0;
+    private static int formePieceChoisi = 0;
+    private static int pieceSelected = 0;
+    private static int pieceDisposition = 0;
+
     public enum Type {Domino, Triomino, Tetromino};
 
+
+    // Main
     public static void main(String[] args) { 
         Grid grid = new Grid();
         Domino d = new Domino();
@@ -114,13 +123,53 @@ public class Main {
      */
     public static void choicePiecePlayer(Grid grid, Domino d, Triomino t, Tetromino te, Piece[] piece){
         choixTypePiece(grid, d, t, te, piece);
+        choixFormePiece(grid, d, t, te, piece);
+        choixOrientationPiece(grid, d, t, te, piece);
+        positionnementPieceChoisi(grid, d, t, te, piece);
+    }
 
+
+
+    /**
+     * Fonction qui permet au joueur de choisir le type de pièce qu'il souhaite poser
+     * @param grid
+     * @param d
+     * @param t
+     * @param te
+     * @param piece
+     */
+    public static void choixTypePiece(Grid grid, Domino d, Triomino t, Tetromino te, Piece[] piece){
+        Ecran.afficherln("Voici les différentes pièces dont vous disposez:");
+        Ecran.afficher(d.toString(true), t.toString(true), te.toString(true));
+        Ecran.sautDeLigne();
+
+        Ecran.afficher(nomJoueur() +", c'est à vous de jouer ! ");
+        Ecran.afficherln("Il vous reste ", NB_DOMINO, " dominos, ", NB_TRIOMINO," triominos et ", NB_TETROMINO, " tétrominos.");
+        Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
+        pieceChoisi = Clavier.saisirInt();
+        // vérification de la saisie
+        while(pieceChoisi<1 || pieceChoisi>3 || (NB_DOMINO==0 && pieceChoisi==1) || (NB_TRIOMINO==0 && pieceChoisi==2) || (NB_TETROMINO==0 && pieceChoisi==3)){
+            Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
+            Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
+            pieceChoisi = Clavier.saisirInt();
+        }
+    }
+
+
+    /**
+     * Fonction qui permet au joueur de choisir la forme de la pièce qu'il souhaite poser
+     * @param grid
+     * @param d
+     * @param t
+     * @param te
+     * @param piece
+     */
+    public static void choixFormePiece(Grid grid, Domino d, Triomino t, Tetromino te, Piece[] piece){
         // choix de la forme à faire 
         // pas de choix si domino
         // choix entre 2 formes si triomino
         // choix entre 7 formes si tetromino
         clearScreen();
-        int formePieceChoisi = 0;
         if(pieceChoisi == 3){
             Ecran.afficher(te.toString()); // afficher les 7 formes de tetromino
             Ecran.sautDeLigne();
@@ -144,10 +193,19 @@ public class Main {
                 formePieceChoisi = Clavier.saisirInt();
             }
         }
+    }
 
-
+   
+    /**
+     * Fonction qui permet au joueur de choisir la disposition de la pièce qu'il souhaite poser
+     * @param grid
+     * @param d
+     * @param t
+     * @param te
+     * @param piece
+     */
+    public static void choixOrientationPiece(Grid grid, Domino d, Triomino t, Tetromino te, Piece[] piece){
         clearScreen(); // choix dans l'orientation 
-        int pieceSelected = 0;
         Ecran.afficherln("Voici les dispositions possibles pour cette pièce:");
         switch(pieceChoisi){
             case 1:
@@ -203,13 +261,25 @@ public class Main {
         Ecran.sautDeLigne();
 
         Ecran.afficher(nomJoueur() + ", vous désirez poser la pièce choisie dans quelle disposition ? Entrez le numéro de la pièce: ");
-        int pieceDisposition = Clavier.saisirInt();
+        pieceDisposition = Clavier.saisirInt();
         // Vérification de saisie
         while((pieceDisposition<1 || pieceDisposition>2 && pieceChoisi ==1)|| ((pieceDisposition<1 || pieceDisposition>4) && pieceChoisi !=1)){
             Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
             Ecran.afficher("Choisisez l'une des 2 formes que vous souhaitez poser. Il vous reste "+ trioI +" Triomino(s) de forme I et "+ trioT +" Triomino(s) de forme T.\nEntrez le numéro de la pièce: ");
             pieceDisposition = Clavier.saisirInt();
         }
+    }
+
+
+    /**
+     * Fonction qui permet de gérer l'orientation de la pièce ainsi que de la poser dans la grille
+     * @param grid
+     * @param d
+     * @param t
+     * @param te
+     * @param piece
+     */
+    public static void positionnementPieceChoisi(Grid grid, Domino d, Triomino t, Tetromino te, Piece[] piece){
         Position.Orientation orientationChoisie;
         switch(pieceDisposition){
             case 1:
@@ -249,37 +319,11 @@ public class Main {
 
 
 
-    public void choixTypePiece(Grid grid, Domino d, Triomino t, Tetromino te, Piece[] piece){
-        Ecran.afficherln("Voici les différentes pièces dont vous disposez:");
-        Ecran.afficher(d.toString(true), t.toString(true), te.toString(true));
-        Ecran.sautDeLigne();
 
-        Ecran.afficher(nomJoueur() +", c'est à vous de jouer ! ");
-        Ecran.afficherln("Il vous reste ", NB_DOMINO, " dominos, ", NB_TRIOMINO," triominos et ", NB_TETROMINO, " tétrominos.");
-        Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
-        int pieceChoisi = Clavier.saisirInt();
-        // vérification de la saisie
-        while(pieceChoisi<1 || pieceChoisi>3 || (NB_DOMINO==0 && pieceChoisi==1) || (NB_TRIOMINO==0 && pieceChoisi==2) || (NB_TETROMINO==0 && pieceChoisi==3)){
-            Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
-            Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
-            pieceChoisi = Clavier.saisirInt();
-        }
-    }
-
-
-    public void choixFormePiece(){
-
-    }
-
-   
-    public void choixOrientationPiece(){
-        
-    }
-
-
-
-
-
+    /**
+     * Fonction qui créer le nom du joueur
+     * @return
+     */
     public static String nomJoueur(){
         return ANSI_BLUE + Player_Name + ANSI_RESET;
     }
