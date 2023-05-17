@@ -19,10 +19,13 @@ public class Main {
     private static boolean isWin = false;
     private static boolean isLoose = false;
 
+    public static final int TRIO_I = 3;
+
     private static final int NB_PIECE = 18;
-    private static int NB_DOMINO = 3;
-    private static int NB_TRIOMINO = 6;
-    private static int NB_TETROMINO = 9;
+    private static final int NB_DOMINO = 3;
+    private static final int NB_TRIOMINO = 6;
+    private static final int NB_TETROMINO = 9;
+
     private static int trioI = 3;
     private static int trioT = 3;
     private static int tetroI = 2;
@@ -159,10 +162,11 @@ public class Main {
                 switch(formePieceChoisi){
                     case 1:
                         Ecran.afficher(t.toString(formePieceChoisi));
-                        pieceSelected = 3;
+                        pieceSelected = NB_DOMINO;
                     break;
                     case 2:
                         Ecran.afficher(t.toString(formePieceChoisi));
+                        pieceSelected += TRIO_I + NB_DOMINO + 1;
                     break;
                 }
             break;
@@ -234,6 +238,7 @@ public class Main {
         int placeColonne = (int) positionPiecePlace.charAt(0) - 'A';
         int placeLigne = Character.getNumericValue(positionPiecePlace.charAt(1));
 
+        
         while (!grid.isPiecePlaceable(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne))){
             clearScreen();
             Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
@@ -246,6 +251,23 @@ public class Main {
         } 
         grid.placePiece(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne));
     }
+
+
+
+    public void choixTypePiece(){
+        
+    }
+
+
+    public void choixFormePiece(){
+
+    }
+
+   
+    public void choixOrientationPiece(){
+        
+    }
+
 
 
 

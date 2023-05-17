@@ -12,9 +12,29 @@ public class Triomino extends Piece {
 
     public Triomino(boolean isComputer) { 
         super.isComputer = isComputer;
-        if(!isComputer) instanceNbr++;
+        if (!isComputer) { 
+            if (instanceNbr < Main.TRIO_I) { 
+                super.type = 1;
+            } else { 
+                super.type = 2;
+            }
+        }
+        else { 
+            if (instanceNbrPC < Main.TRIO_I) { 
+                super.type = 1;
+            } else { 
+                super.type = 2;
+            }
+        }
+        /*if(!isComputer) instanceNbr++;
         else instanceNbrPC++;
         assert (instanceNbr <= 6 && instanceNbrPC <= 6);
+        if (!isComputer && instanceNbr < Main.TRIO_I) { 
+            super.type = 1;
+        }
+        else if (!isComputer) super.type = 2;
+        if (isComputer && instanceNbrPC < Main.TRIO_I) super.type = 1;
+        else if (isComputer) super.type = 2; 
         if (instanceNbr > 2) {
             super.type = ( (instanceNbr%2) == 0) ? 2: 1;
             if (instanceNbr%2==0) super.type = 2;
@@ -25,6 +45,8 @@ public class Triomino extends Piece {
         }
         if (instanceNbrPC > 2) super.type = ( (instanceNbrPC % 2) == 0) ? 2: 1;
         else if (isComputer) super.type = instanceNbrPC;
+        */
+    
     }
 
     public Triomino() {this(false);}
@@ -36,7 +58,7 @@ public class Triomino extends Piece {
         switch (super.type) { 
             case 1:
                 switch(o) { 
-                    case NORTH, SOUTH : { 
+                    case EAST, WEST : { 
                         arr[1] = new Position(1, 0);
                         arr[2] = new Position(2, 0);
                         break;

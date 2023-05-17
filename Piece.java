@@ -7,7 +7,7 @@
 */
 public abstract class Piece {
     
-    protected int type;
+    public int type;
     public boolean isComputer;
 
     public abstract Position[] getPositions(Position.Orientation o);
