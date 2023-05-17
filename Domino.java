@@ -14,7 +14,7 @@ public class Domino extends Piece {
         instanceNbr++;
         assert instanceNbr <= 3;
         super.type = instanceNbr > 1 ? 1: instanceNbr;
-        super.orientation = instanceNbr == 0 ? Position.Orientation.EAST: Position.Orientation.NORTH;
+        super.orientation = instanceNbr == 1 ? Position.Orientation.EAST: Position.Orientation.NORTH;
     }
 
     @Override

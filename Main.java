@@ -20,15 +20,15 @@ public class Main {
     private static boolean isLoose = false;
 
     private static final int NB_PIECE = 18;
-    private static int NB_DOMINO = 3;
+    private static int NB_DOMINO = 2;
     private static int NB_TRIOMINO = 6;
-    private static int NB_TETROMINO = 9;
+    private static int NB_TETROMINO = 10;
     private static int trioI = 3;
     private static int trioT = 3;
     private static int tetroI = 2;
     private static int tetroJ = 1;
     private static int tetroL = 1;
-    private static int tetro0 = 1;
+    private static int tetro0 = 2;
     private static int tetroT = 2;
     private static int tetroS = 1;
     private static int tetroZ = 1;
@@ -160,7 +160,6 @@ public class Main {
                     case 1:
                         Ecran.afficher(t.toString(formePieceChoisi));
 
-                        pieceSelected = 3;
                     break;
                     case 2:
                         Ecran.afficher(t.toString(formePieceChoisi));
