@@ -96,7 +96,7 @@ public class Triomino extends Piece {
             default: { 
                 Position[] arr = new Position[3];
                 arr[0] = new Position();
-                arr[1] = new Position(0, 1);
+                arr[1] = new Position(0, -1);
                 arr[2] = new Position(1, 0);
                 return arr;
             }
