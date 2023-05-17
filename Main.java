@@ -36,15 +36,15 @@ public class Main {
     public static final int TETRO_Z = 1;
 
     // Déclaration des variables
-    private static int trioI = 3;
-    private static int trioT = 3;
-    private static int tetroI = 2;
-    private static int tetroJ = 1;
-    private static int tetroL = 1;
-    private static int tetro0 = 1;
-    private static int tetroT = 2;
-    private static int tetroS = 1;
-    private static int tetroZ = 1;
+    private static int trioI = 0;
+    private static int trioT = 0;
+    private static int tetroI = 0;
+    private static int tetroJ = 0;
+    private static int tetroL = 0;
+    private static int tetro0 = 0;
+    private static int tetroT = 0;
+    private static int tetroS = 0;
+    private static int tetroZ = 0;
 
     private static int pieceChoisi = 0;
     private static int formePieceChoisi = 0;
@@ -219,7 +219,7 @@ public class Main {
                     break;
                     case 2:
                         Ecran.afficher(t.toString(formePieceChoisi));
-                        pieceSelected += TRIO_I + NB_DOMINO + 1;
+                        pieceSelected += TRIO_I + NB_DOMINO;
                     break;
                 }
             break;
@@ -268,6 +268,7 @@ public class Main {
             Ecran.afficher("Choisisez l'une des 2 formes que vous souhaitez poser. Il vous reste "+ trioI +" Triomino(s) de forme I et "+ trioT +" Triomino(s) de forme T.\nEntrez le numéro de la pièce: ");
             pieceDisposition = Clavier.saisirInt();
         }
+
     }
 
 
@@ -315,6 +316,11 @@ public class Main {
             placeLigne = Character.getNumericValue(positionPiecePlace.charAt(1));
         } 
         grid.placePiece(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne));
+    
+        pieceChoisi = 0;
+        formePieceChoisi = 0;
+        pieceSelected = 0;
+    
     }
 
 
