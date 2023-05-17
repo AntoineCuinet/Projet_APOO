@@ -73,11 +73,11 @@ public class Computer {
         int placeColonne = (int) (Math.random()*11);
         int placeLigne = (int) (Math.random()*9);
 
-        while (!grid.isPiecePlaceable(pieceComputer[pieceChoisi], orientationChoisie, new Position(placeColonne, placeLigne))){
+        while (!grid.isPiecePlaceable(pieceComputer[pieceChoisi], new Position(placeColonne, placeLigne))){
             placeColonne = (int) Math.random()*11;
             placeLigne = (int) Math.random()*9;
         } 
-        grid.placePiece(pieceComputer[pieceChoisi], orientationChoisie, new Position(placeColonne, placeLigne));
+        grid.placePiece(pieceComputer[pieceChoisi], new Position(placeColonne, placeLigne));
 
         String pieceJouer = "";
         switch(pieceChoisi){

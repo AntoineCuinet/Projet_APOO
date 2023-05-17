@@ -25,17 +25,23 @@ public class Triomino extends Piece {
         }
         if (instanceNbrPC > 2) super.type = ( (instanceNbrPC % 2) == 0) ? 2: 1;
         else if (isComputer) super.type = instanceNbrPC;
+        switch (instanceNbr) { 
+            case 1,3: super.orientation = Position.Orientation.EAST;
+            case 2,4: super.orientation = Position.Orientation.NORTH;
+            case 5: super.orientation = Position.Orientation.WEST;
+            default: super.orientation = Position.Orientation.SOUTH;
+        }
     }
 
     public Triomino() {this(false);}
 
     @Override
-    public Position[] getPositions(Position.Orientation o) { 
+    public Position[] getPositions() { 
         Position[] arr = new Position[3];
         arr[0] = new Position();
         switch (super.type) { 
             case 1:
-                switch(o) { 
+                switch(super.orientation) { 
                     case NORTH, SOUTH : { 
                         arr[1] = new Position(1, 0);
                         arr[2] = new Position(2, 0);
@@ -49,9 +55,13 @@ public class Triomino extends Piece {
                 }
                 break;
             default:
-                Position[] temp = getPositions();
+                Position[] temp = new Position[3];
+                temp[0] = new Position();
+                temp[1] = new Position(0, 1);
+                temp[2] = new Position(1, 0);
+
                 Position rotationVector;
-                switch(o) {
+                switch(super.orientation) {
                     case EAST: {rotationVector = new Position(1, 1);break;}
                     case SOUTH: {rotationVector = new Position(-1, 1);break;}
                     case WEST: {rotationVector = new Position(-1, -1); break;}
@@ -65,20 +75,6 @@ public class Triomino extends Piece {
         return arr;
     }
 
-    @Override
-    public Position[] getPositions() { 
-        switch(super.type) { 
-            case 1: return getPositions(Position.Orientation.EAST);
-            default: { 
-                Position[] arr = new Position[3];
-                arr[0] = new Position();
-                arr[1] = new Position(0, 1);
-                arr[2] = new Position(1, 0);
-                return arr;
-            }
-        }
-    }
-    
     @Override
     public String toString(boolean isUnique) {  
         String res = "";

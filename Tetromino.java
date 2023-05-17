@@ -8,10 +8,10 @@
 public class Tetromino extends Piece { 
     
     @Override
-    public Position[] getPositions(Position.Orientation o) { 
+    public Position[] getPositions() { 
         Position[] arr = new Position[2];
         arr[0] = new Position();
-        switch (o) {
+        switch (super.orientation) {
             case NORTH : { arr[1] = new Position(0, -1);}
             case SOUTH: {arr[1] = new Position(0, 1);}
             case WEST: {arr[1] = new Position(-1, 0);}
@@ -33,17 +33,19 @@ public class Tetromino extends Piece {
     public Tetromino(boolean isComputer) { 
 
         super.isComputer = isComputer;
+        super.orientation = Position.Orientation.EAST;
     }
 
     public Tetromino() { 
         this(false);
     }
 
+    /*
     @Override
     public Position[] getPositions() { 
         return getPositions(Position.Orientation.EAST);
     }
-    
+    */
 
     @Override
     public String toString(boolean isUnique) { 
