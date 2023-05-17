@@ -38,7 +38,7 @@ public class Computer {
         int pieceChoisi = (int) (Math.random()*3)+1;
         // vérification de la saisie
         while(pieceChoisi<1 || pieceChoisi>3 || (NB_DOMINO==0 && pieceChoisi==1) || (NB_TRIOMINO==0 && pieceChoisi==2) || (NB_TETROMINO==0 && pieceChoisi==3)){
-            pieceChoisi = (int) (Math.random()*3);
+            pieceChoisi = (int) (Math.random()*3)+1;
         }
 
         int formePieceChoisi = 0;
