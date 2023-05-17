@@ -158,12 +158,10 @@ public class Main {
             case 2:
                 switch(formePieceChoisi){
                     case 1:
-                        Ecran.afficher(displayPieces(piece, Type.Triomino));
-                        pieceSelected = 3;
+                        Ecran.afficher(t.toString(formePieceChoisi));
                     break;
                     case 2:
-                        Ecran.afficher(displayPieces(piece, Type.Triomino));
-                        pieceSelected = 4;
+                        Ecran.afficher(t.toString(formePieceChoisi));
                     break;
                 }
             break;
@@ -215,16 +213,16 @@ public class Main {
         Position.Orientation orientationChoisie;
         switch(pieceDisposition){
             case 1:
-                orientationChoisie = Position.Orientation.NORTH;
-            break;
-            case 2:
                 orientationChoisie = Position.Orientation.EAST;
             break;
+            case 2:
+                orientationChoisie = Position.Orientation.NORTH;
+            break;
             case 3:
-                orientationChoisie = Position.Orientation.SOUTH;
+                orientationChoisie = Position.Orientation.WEST;
             break;
             default:
-                orientationChoisie = Position.Orientation.WEST;
+                orientationChoisie = Position.Orientation.SOUTH;
         }
 
         clearScreen();

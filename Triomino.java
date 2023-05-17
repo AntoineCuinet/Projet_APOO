@@ -126,10 +126,9 @@ public class Triomino extends Piece {
     }
 
     @Override
-    public String toString(int index){
+    public String toString(int formePieceChoisi){
         String res = "";
-        index -= 2;
-        switch(index){
+        switch(formePieceChoisi){
                 case 1:
                 res += "\n";
                 res+=Main.ANSI_GREEN+"                    +---+\n"; 
