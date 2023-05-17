@@ -8,10 +8,18 @@
 public class Domino extends Piece { 
     
     private static int instanceNbr = 0;
+    private static int instanceNbrPC = 0;
 
     public Domino(boolean isComputer) {
         super.isComputer = isComputer;
-        instanceNbr++;
+        if (isComputer) { 
+            instanceNbrPC++;
+            super.type = instanceNbrPC > 1 ? 1: instanceNbrPC;
+        }
+        else { 
+            instanceNbr++;
+            super.type = instanceNbr > 1 ? 1: instanceNbr;
+        }
         assert instanceNbr <= 3;
         super.type = instanceNbr > 1 ? 1: instanceNbr;
     }

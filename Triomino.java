@@ -18,6 +18,7 @@ public class Triomino extends Piece {
             } else { 
                 super.type = 2;
             }
+            instanceNbr++;
         }
         else { 
             if (instanceNbrPC < Main.TRIO_I) { 
@@ -25,6 +26,7 @@ public class Triomino extends Piece {
             } else { 
                 super.type = 2;
             }
+            instanceNbrPC++;
         }
         /*if(!isComputer) instanceNbr++;
         else instanceNbrPC++;
