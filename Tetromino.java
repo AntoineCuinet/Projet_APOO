@@ -13,12 +13,12 @@ public class Tetromino extends Piece {
     public Tetromino(boolean isComputer) { 
         super.isComputer = isComputer;
         if (!isComputer) {
-            instanceNbr++;
-            if (instanceNbr <= 2) { 
+            if (instanceNbr <= Main.TETRO_I) { 
                 super.type = 1;
             }else { 
                 super.type = instanceNbr - 1;
             }
+            instanceNbr++;
         }
         else { 
             instanceNbrPC++;
@@ -64,7 +64,7 @@ public class Tetromino extends Piece {
                 arr[3] = new Position(3, 0);
                 break;
             }
-            case 2 : { 
+            case 2 : { // TETRO L
                 arr[1] = new Position(1, 0);
                 arr[2] = new Position(0, -1);
                 arr[3] = new Position(0, -2);
@@ -72,14 +72,14 @@ public class Tetromino extends Piece {
             }
             case 3 : { 
                 arr[1] = new Position(1, 0);
-                arr[2] = new Position(0, -1);
+                arr[2] = new Position(1, -2);
                 arr[3] = new Position(1, -1);
                 break;
             } 
             case 4 : { 
-                arr[1] = new Position(1, 0);
-                arr[2] = new Position(2, 0);
-                arr[3] = new Position(1, -1);
+                arr[1] = new Position(0, -1);
+                arr[2] = new Position(-1, -1);
+                arr[3] = new Position(0, -2);
                 break;
             }
             case 5 : {
@@ -88,10 +88,15 @@ public class Tetromino extends Piece {
                 arr[3] = new Position(1, -2);
                 break;
             }
-            default : {
-                arr[1] = new Position(0, -1);
-                arr[2] = new Position(1, -1);
-                arr[3] = new Position(2, -1);
+            case 6 : { 
+                arr[1] = new Position(-1, -1);
+                arr[2] = new Position(0, -1);
+                arr[3] = new Position(-1, -2);
+            }
+            default : { // TETRO 0
+                arr[1] = new Position(1, 0);
+                arr[2] = new Position(0, -1);
+                arr[3] = new Position(1, -1);
                 break;
             }
         }

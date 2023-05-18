@@ -54,6 +54,7 @@ public class Position {
             case WEST: {rotationVector = new Position(-1, -1); break;}
             default: {rotationVector = new Position(1, -1); break;}
         }
+
         return rotationVector; 
     }
 }

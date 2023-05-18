@@ -230,31 +230,38 @@ public class Main {
                 switch(formePieceChoisi){ 
                     case 1:
                         Ecran.afficher(te.toString(formePieceChoisi));
-                        pieceSelected = 9;
+                        pieceSelected = NB_TRIOMINO + NB_DOMINO + tetroI;
+                        tetroI++;
                     break;
                     case 2:
                         Ecran.afficher(te.toString(formePieceChoisi));
-                        pieceSelected = 9;
+                        pieceSelected = NB_TRIOMINO + NB_DOMINO + TETRO_I + tetroJ;
+                        tetroJ++;
                     break;
                     case 3:
                         Ecran.afficher(te.toString(formePieceChoisi));
-                        pieceSelected = 9;
+                        pieceSelected = NB_TRIOMINO + NB_DOMINO + TETRO_I + TETRO_J + tetroL;
+                        tetroL++;
                     break;
                     case 4:
                         Ecran.afficher(te.toString(formePieceChoisi));
-                        pieceSelected = 9;
+                        pieceSelected = NB_TRIOMINO + NB_DOMINO + TETRO_I + TETRO_J + TETRO_L + tetroT;
+                        tetroT++;
                     break;
                     case 5:
                         Ecran.afficher(te.toString(formePieceChoisi));
-                        pieceSelected = 9;
+                        pieceSelected = NB_TRIOMINO + NB_DOMINO + TETRO_I + TETRO_J + TETRO_L + TETRO_T;
+                        tetroT++;
                     break;
                     case 6:
                         Ecran.afficher(te.toString(formePieceChoisi));
-                        pieceSelected = 9;
+                        pieceSelected = NB_TRIOMINO + NB_DOMINO + TETRO_I + TETRO_J + TETRO_L + TETRO_T + tetroS;
+                        tetroS++;
                     break;
                     case 7:
                         Ecran.afficher(te.toString(formePieceChoisi));
-                        pieceSelected = 9;
+                        pieceSelected = NB_TRIOMINO + NB_DOMINO + TETRO_I + TETRO_J + TETRO_L + TETRO_T + TETRO_S + tetro0;
+                        tetro0++;
                     break;
                 }
             break;
@@ -319,6 +326,9 @@ public class Main {
             placeLigne = Character.getNumericValue(positionPiecePlace.charAt(1));
         } 
         grid.placePiece(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne));
+        
+        System.out.println(pieceSelected);
+        System.out.println(piece[pieceSelected].type);
     
         pieceChoisi = 0;
         formePieceChoisi = 0;
