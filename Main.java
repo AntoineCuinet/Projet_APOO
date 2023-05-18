@@ -176,9 +176,9 @@ public class Main {
             Ecran.afficher("Choisisez l'une des 7 formes que vous souhaitez poser. Il vous reste "+ tetroI +" Tetromino(s) de forme I, "+ tetroT +" Tetromino(s) de forme T, "+ tetro0 +" Tetromino(s) de forme 0, "+ tetroJ +" Tetromino(s) de forme J, "+ tetroL +" Tetromino(s) de forme L, "+ tetroS +" Tetromino(s) de forme S, "+ tetroZ +" Tetromino(s) de forme Z.\nEntrez le numéro de la pièce: ");
             formePieceChoisi = Clavier.saisirInt();
             // vérification de la saisie
-            while(formePieceChoisi<1 || formePieceChoisi>7 || (tetroI==0 && formePieceChoisi==1) || (tetroT==0 && formePieceChoisi==2) || (tetro0==0 && formePieceChoisi==3) || (tetroJ==0 && formePieceChoisi==4) || (tetroL==0 && formePieceChoisi==5) || (tetroS==0 && formePieceChoisi==6) || (tetroZ==0 && formePieceChoisi==7)){
+            while(formePieceChoisi<1 || formePieceChoisi>7 || (tetroI==TETRO_I && formePieceChoisi==1) || (tetroT==TETRO_T && formePieceChoisi==2) || (tetro0==TETRO_0 && formePieceChoisi==3) || (tetroJ==TETRO_J && formePieceChoisi==4) || (tetroL==TETRO_L && formePieceChoisi==5) || (tetroS==TETRO_S && formePieceChoisi==6) || (tetroZ==TETRO_Z && formePieceChoisi==7)){
                 Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
-                Ecran.afficher("Choisisez l'une des 7 formes que vous souhaitez poser. Il vous reste "+ tetroI +" Tetromino(s) de forme I, "+ tetroT +" Tetromino(s) de forme T, "+ tetro0 +" Tetromino(s) de forme 0, "+ tetroJ +" Tetromino(s) de forme J, "+ tetroL +" Tetromino(s) de forme L, "+ tetroS +" Tetromino(s) de forme S, "+ tetroZ +" Tetromino(s) de forme Z.\nEntrez le numéro de la pièce: ");
+                Ecran.afficher("Choisisez l'une des 7 formes que vous souhaitez poser. Il vous reste "+ Integer.toString( TETRO_I-tetroI )+" Tetromino(s) de forme I, "+ Integer.toString( TETRO_T - tetroT )+" Tetromino(s) de forme T, "+Integer.toString( TETRO_0 - tetro0 )+" Tetromino(s) de forme 0, "+ Integer.toString( TETRO_J - tetroJ )+" Tetromino(s) de forme J, "+Integer.toString( TETRO_L - tetroL )+" Tetromino(s) de forme L, "+ Integer.toString( TETRO_S - tetroS ) +" Tetromino(s) de forme S, "+Integer.toString( TETRO_Z-tetroZ )+" Tetromino(s) de forme Z.\nEntrez le numéro de la pièce: ");
                 formePieceChoisi = Clavier.saisirInt();
             }
         } else if(pieceChoisi == 2){
@@ -187,9 +187,9 @@ public class Main {
             Ecran.afficher("Choisisez l'une des 2 formes que vous souhaitez poser. Il vous reste "+ trioI +" Triomino(s) de forme I et "+ trioT +" Triomino(s) de forme T.\nEntrez le numéro de la pièce: ");
             formePieceChoisi = Clavier.saisirInt();
             // vérification de la saisie
-            while(formePieceChoisi<1 || formePieceChoisi>2 || (trioI==0 && formePieceChoisi==1) || (trioT==0 && formePieceChoisi==2)){
+            while(formePieceChoisi<1 || formePieceChoisi>2 || (trioI==TRIO_I && formePieceChoisi==1) || (trioT==TRIO_T && formePieceChoisi==2)){
                 Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
-                Ecran.afficher("Choisisez l'une des 2 formes que vous souhaitez poser. Il vous reste "+ trioI +" Triomino(s) de forme I et "+ trioT +" Triomino(s) de forme T.\nEntrez le numéro de la pièce: ");
+                Ecran.afficher("Choisisez l'une des 2 formes que vous souhaitez poser. Il vous reste "+ Integer.toString(TRIO_I-trioI) +" Triomino(s) de forme I et "+Integer.toString(  TRIO_T - trioT) +" Triomino(s) de forme T.\nEntrez le numéro de la pièce: ");
                 formePieceChoisi = Clavier.saisirInt();
             }
         }
@@ -221,7 +221,7 @@ public class Main {
                     break;
                     case 2:
                         Ecran.afficher(t.toString(formePieceChoisi));
-                        pieceSelected += TRIO_I + NB_DOMINO + trioT;
+                        pieceSelected = TRIO_I + NB_DOMINO + trioT;
                         trioT++;
                     break;
                 }
