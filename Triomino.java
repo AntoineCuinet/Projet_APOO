@@ -131,7 +131,7 @@ public class Triomino extends Piece {
     public String toString(int formePieceChoisi){
         String res = "";
         switch(formePieceChoisi){
-                case 1:
+            case 1:
                 res+=Main.ANSI_GREEN+"\n";
                 res+="                         +---+  \n"; 
                 res+="                         |   |  \n";
@@ -151,7 +151,7 @@ public class Triomino extends Piece {
                 res+="    +---+            +--- ---+        +--- ---+            +---+  \n";
                 res+="\n"+Main.ANSI_RESET;
             break;
-            default:
+            default: 
                 res+="";
         }
         return res;

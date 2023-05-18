@@ -229,31 +229,31 @@ public class Main {
             case 3:
                 switch(formePieceChoisi){ 
                     case 1:
-                        Ecran.afficher(displayPieces(piece, Type.Tetromino));
+                        Ecran.afficher(te.toString(formePieceChoisi));
                         pieceSelected = 9;
                     break;
                     case 2:
-                        Ecran.afficher(displayPieces(piece, Type.Tetromino));
+                        Ecran.afficher(te.toString(formePieceChoisi));
                         pieceSelected = 9;
                     break;
                     case 3:
-                        Ecran.afficher(displayPieces(piece, Type.Tetromino));
+                        Ecran.afficher(te.toString(formePieceChoisi));
                         pieceSelected = 9;
                     break;
                     case 4:
-                        Ecran.afficher(displayPieces(piece, Type.Tetromino));
+                        Ecran.afficher(te.toString(formePieceChoisi));
                         pieceSelected = 9;
                     break;
                     case 5:
-                        Ecran.afficher(displayPieces(piece, Type.Tetromino));
+                        Ecran.afficher(te.toString(formePieceChoisi));
                         pieceSelected = 9;
                     break;
                     case 6:
-                        Ecran.afficher(displayPieces(piece, Type.Tetromino));
+                        Ecran.afficher(te.toString(formePieceChoisi));
                         pieceSelected = 9;
                     break;
                     case 7:
-                        Ecran.afficher(displayPieces(piece, Type.Tetromino));
+                        Ecran.afficher(te.toString(formePieceChoisi));
                         pieceSelected = 9;
                     break;
                 }

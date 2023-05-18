@@ -111,32 +111,102 @@ public class Tetromino extends Piece {
     }
 
     @Override
-    public String toString(int index) {
+    public String toString(){
         String res = "";
-        res+=Main.ANSI_GREEN+"                        +---+\n"; 
-        res+="                        | O |     +--- ---+     +--- ---+         +---+     +---+\n";
-        res+="                        +---+     | O | O |     | O | O |         | O |     | O |         +--- ---+\n";
-        res+="  +--- --- --- ---+     | O |     +--- ---+     +--- ---+         +---+     +---+         | O | O |\n";
-        res+="1.| O | O | O | O |   2.+---+   3.| O |       4.    | O |   5.    | O |   6.| O |       7.+--- ---+\n";
-        res+="  +--- --- --- ---+     | O |     +---+             +---+     +--- ---+     +--- ---+     | O | O |\n";
-        res+="                        +---+     | O |             | O |     | O | O |     | O | O |     +--- ---+\n";
-        res+="                        | O |     +---+             +---+     +--- ---+     +--- ---+\n";
-        res+="                        +---+\n";
-        res+="\n";
-        res+="                                           +---+      +---+          +---+              +---+\n";
-        res+="  +--- --- ---+         +---+              | O |      | O |          | O |              | O |\n";
-        res+="  | O | O | O |         | O |          +--- ---+      +--- ---+      +--- ---+      +--- ---+\n";
-        res+="8.+--- --- ---+   9.+--- --- ---+   10.| O | O |   11.| O | O |   12.| O | O |   13.| O | O |\n";
-        res+="      | O |         | O | O | O |      +--- ---+      +--- ---+      +--- ---+      +--- ---+\n";
-        res+="      +---+         +--- --- ---+          | O |      | O |              | O |      | O |\n";
-        res+="                                           +---+      +---+              +---+      +---+\n";
-        res+="\n";
-        res+="       +--- ---+      +--- ---+          +---+              +--- --- ---+              +---+      +--- --- ---+\n";
-        res+="       | O | O |      | O | O |          | O |              | O | O | O |              | O |      | O | O | O |\n";
-        res+="14.+--- --- ---+   15.+--- --- ---+   16.+--- --- ---+   17.+--- --- ---+   18.+--- --- ---+   19.+--- --- ---+\n";
-        res+="   | O | O |              | O | O |      | O | O | O |      | O |              | O | O | O |              | O |\n";
-        res+="   +--- ---+              +--- ---+      +--- --- ---+      +---+              +--- --- ---+              +---+\n";
+        res+=Main.ANSI_GREEN;
+        res+="                         +--- ---+     +--- ---+         +---+     +---+             +---+               \n";
+        res+="                         |   |   |     |   |   |         |   |     |   |             |   |     +--- ---+ \n";
+        res+="   +--- --- --- ---+     +--- ---+     +--- ---+     +--- ---+     +--- ---+     +--- ---+     |   |   | \n";
+        res+=" 1.|   |   |   |   |   2.|   |       3.    |   |   4.|   |   |   5.|   |   |   6.|   |   |   7.+--- ---+ \n";
+        res+="   +--- --- --- ---+     +---+             +---+     +--- ---+     +--- ---+     +--- ---+     |   |   | \n";
+        res+="                         |   |             |   |         |   |         |   |     |   |         +--- ---+ \n";
+        res+="                         +---+             +---+         +---+         +---+     +---+                   \n";
         res+="\n"+Main.ANSI_RESET;
+        return res;
+    }
+
+    @Override
+    public String toString(int formePieceChoisi) {
+        String res = "";
+        switch(formePieceChoisi){
+            case 1:
+                res+=Main.ANSI_GREEN;
+                res+="                         +---+ \n"; 
+                res+="                         |   | \n";
+                res+="                         +---+ \n";
+                res+="   +--- --- --- ---+     |   | \n";
+                res+=" 1.|   |   |   |   |   2.+---+ \n";
+                res+="   +--- --- --- ---+     |   | \n";
+                res+="                         +---+ \n";
+                res+="                         |   | \n";
+                res+="                         +---+ \n";
+                res+="\n"+Main.ANSI_RESET;
+            break;
+            case 2:
+                res+=Main.ANSI_GREEN;
+                res+="   +--- ---+  tourne dans le sens anti-horaire  \n";
+                res+="   |   |   |   \n";
+                res+="   +--- ---+    \n";
+                res+=" 1.|   |       2.   3.   4.\n";
+                res+="   +---+      \n";
+                res+="   |   |       \n";
+                res+="   +---+          \n";
+                res+="\n"+Main.ANSI_RESET;
+            break;
+            case 3:
+                res+=Main.ANSI_GREEN;
+                res+="   +--- ---+    tourne dans le sens anti-horaire \n";
+                res+="   |   |   |   \n";
+                res+="   +--- ---+    \n";
+                res+=" 1.    |   |   2.   3.   4.   \n";
+                res+="       +---+      \n";
+                res+="       |   |       \n";
+                res+="       +---+          \n";
+                res+="\n"+Main.ANSI_RESET;
+            break;
+            case 4:
+                res+=Main.ANSI_GREEN;
+                res+="       +---+    tourne dans le sens anti-horaire \n";
+                res+="       |   |   \n";
+                res+="   +--- ---+    \n";
+                res+=" 1.|   |   |   2.   3.   4.    \n";
+                res+="   +--- ---+        \n";
+                res+="       |   |       \n";
+                res+="       +---+          \n";
+                res+="\n"+Main.ANSI_RESET;
+            break;
+            case 5:
+                res+=Main.ANSI_GREEN;
+                res+="   +---+       tourne dans le sens anti-horaire\n";
+                res+="   |   |      \n";
+                res+="   +--- ---+    \n";
+                res+=" 1.|   |   |   2.     \n";
+                res+="   +--- ---+      \n";
+                res+="       |   |       \n";
+                res+="       +---+          \n";
+                res+="\n"+Main.ANSI_RESET;
+            break;
+            case 6:
+                res+=Main.ANSI_GREEN;
+                res+="       +---+    tourne dans le sens anti-horaire \n";
+                res+="       |   |      \n";
+                res+="   +--- ---+    \n";
+                res+=" 1.|   |   |   2.      \n";
+                res+="   +--- ---+      \n";
+                res+="   |   |       \n";
+                res+="   +---+          \n";
+                res+="\n"+Main.ANSI_RESET;
+            break;
+            case 7:
+                res+=Main.ANSI_GREEN;
+                res+="   +--- ---+    \n";
+                res+="   |   |   |   \n";
+                res+=" 1.+--- ---+    \n";
+                res+="   |   |   |   \n";
+                res+="   +--- ---+     \n";
+                res+="\n"+Main.ANSI_RESET;
+            break;
+        }
         return res;
     }
 }
