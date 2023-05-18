@@ -13,7 +13,7 @@ public class Triomino extends Piece {
     public Triomino(boolean isComputer) { 
         super.isComputer = isComputer;
         if (!isComputer) { 
-            if (instanceNbr < Main.TRIO_I) { 
+            if (instanceNbr <= Main.TRIO_I) { 
                 super.type = 1;
             } else { 
                 super.type = 2;
@@ -21,7 +21,7 @@ public class Triomino extends Piece {
             instanceNbr++;
         }
         else { 
-            if (instanceNbrPC < Main.TRIO_I) { 
+            if (instanceNbrPC <= Main.TRIO_I) { 
                 super.type = 1;
             } else { 
                 super.type = 2;
