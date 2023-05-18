@@ -1,10 +1,15 @@
 /* Gaspard QUENTIN & Antoine CUINET
  *
+ * Mini-projet APOO
+ * 
  * groupe TP I2-CMI
- * Université de Franche-Comte UFR-ST
+ * Université de Franche-Comte UFR-ST 
+ *
+ * Année universitaire 2022/2023
  *
  * Position.java
 */
+
 public class Position {
     public enum Orientation { 
         EAST, WEST, NORTH, SOUTH
