@@ -12,11 +12,14 @@ public class Tetromino extends Piece {
     
     public Tetromino(boolean isComputer) { 
         super.isComputer = isComputer;
+        int cond = Main.TETRO_I + Main.TETRO_J + Main.TETRO_L ;
         if (!isComputer) {
             if (instanceNbr <= Main.TETRO_I) { 
                 super.type = 1;
+            }else if (instanceNbr > cond && instanceNbr < cond + Main.TETRO_T) { 
+                super.type = cond;
             }else { 
-                super.type = instanceNbr - 1;
+                super.type = instanceNbr + (instanceNbr > cond ? -2 : - 1);
             }
             instanceNbr++;
         }
@@ -24,8 +27,10 @@ public class Tetromino extends Piece {
             instanceNbrPC++;
             if (instanceNbrPC <= 2) { 
                 super.type = 1;
-            }else { 
-                super.type = instanceNbrPC - 1;
+            }else if (instanceNbrPC > cond && instanceNbrPC <= cond + Main.TETRO_T) { 
+                super.type = cond ;
+            }else {
+                super.type = instanceNbrPC + (instanceNbr > cond ? -2 : -1);
             }
         }
     }
@@ -98,11 +103,15 @@ public class Tetromino extends Piece {
                 arr[2] = new Position(0, -1);
                 arr[3] = new Position(-1, -2);
             }
-            default : { // TETRO 0
+            case 7 : { // TETRO 0
                 arr[1] = new Position(1, 0);
                 arr[2] = new Position(0, -1);
                 arr[3] = new Position(1, -1);
                 break;
+            }
+            default : { 
+                System.out.println("FATAL ERROR in <Tetromino.java> : no tetromino with type > 7 or type < 1");
+                return null;
             }
         }
         return arr;

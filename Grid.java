@@ -63,7 +63,8 @@ public class Grid {
      * @param origin le point à partir duquel on souhaite poser la pièce
     */
     public void placePiece(Piece p, Position.Orientation o, Position origin) { 
-        Position[] pos = p.getPositions(o);
+        Position[] pos = p.getPositions();
+        System.out.println(p.type);
         for (Position e: pos) {System.out.println(e);}
         for (Position it: p.getPositions(o)) { 
             it.add(origin);

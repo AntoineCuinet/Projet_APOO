@@ -250,13 +250,13 @@ public class Main {
                     break;
                     case 5:
                         Ecran.afficher(te.toString(formePieceChoisi));
-                        pieceSelected = NB_TRIOMINO + NB_DOMINO + TETRO_I + TETRO_J + TETRO_L + TETRO_T;
-                        tetroT++;
+                        pieceSelected = NB_TRIOMINO + NB_DOMINO + TETRO_I + TETRO_J + TETRO_L + TETRO_T + tetroS;
+                        tetroS++;
                     break;
                     case 6:
                         Ecran.afficher(te.toString(formePieceChoisi));
-                        pieceSelected = NB_TRIOMINO + NB_DOMINO + TETRO_I + TETRO_J + TETRO_L + TETRO_T + tetroS;
-                        tetroS++;
+                        pieceSelected = NB_TRIOMINO + NB_DOMINO + TETRO_I + TETRO_J + TETRO_L + TETRO_T + TETRO_S + tetroZ;
+                        tetroZ++;
                     break;
                     case 7:
                         Ecran.afficher(te.toString(formePieceChoisi));
@@ -327,9 +327,10 @@ public class Main {
         } 
         grid.placePiece(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne));
         //grid.placePiece(piece[11], Position.Orientation.NORTH, new Position(5,5));
-        System.out.println(pieceSelected);
         System.out.println(piece[pieceSelected].type);
-    
+        for (Position it: piece[pieceSelected].getPositions()) { 
+            System.out.println(it);
+        }
         pieceChoisi = 0;
         formePieceChoisi = 0;
         pieceSelected = 0;
