@@ -214,12 +214,15 @@ public class Main {
             case 2:
                 switch(formePieceChoisi){
                     case 1:
+                        //TODO: if (trioI == TRIO_I) recommencer la saisie
                         Ecran.afficher(t.toString(formePieceChoisi));
-                        pieceSelected = NB_DOMINO;
+                        pieceSelected = NB_DOMINO + trioI;
+                        trioI++;
                     break;
                     case 2:
                         Ecran.afficher(t.toString(formePieceChoisi));
-                        pieceSelected += TRIO_I + NB_DOMINO;
+                        pieceSelected += TRIO_I + NB_DOMINO + trioT;
+                        trioT++;
                     break;
                 }
             break;
