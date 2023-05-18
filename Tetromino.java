@@ -102,6 +102,7 @@ public class Tetromino extends Piece {
                 arr[1] = new Position(-1, -1);
                 arr[2] = new Position(0, -1);
                 arr[3] = new Position(-1, -2);
+                break;
             }
             case 7 : { // TETRO 0
                 arr[1] = new Position(1, 0);

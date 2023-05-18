@@ -27,8 +27,6 @@ public class Case {
     }
 
     public void setPiece(Piece nouvellePiece) { 
-        System.out.println("here");
-        // if (nouvellePiece != null) System.out.println(nouvellePiece.isComputer());
         this.p = nouvellePiece;
     }
     

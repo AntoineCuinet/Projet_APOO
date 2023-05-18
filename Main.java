@@ -327,10 +327,6 @@ public class Main {
         } 
         grid.placePiece(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne));
         //grid.placePiece(piece[11], Position.Orientation.NORTH, new Position(5,5));
-        System.out.println(piece[pieceSelected].type);
-        for (Position it: piece[pieceSelected].getPositions()) { 
-            System.out.println(it);
-        }
         pieceChoisi = 0;
         formePieceChoisi = 0;
         pieceSelected = 0;
