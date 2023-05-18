@@ -104,16 +104,16 @@ public class Tetromino extends Piece {
                 arr[3] = new Position(-1, -2);
                 break;
             }
-            case 7 : { // TETRO 0
+            default : { // TETRO 0
                 arr[1] = new Position(1, 0);
                 arr[2] = new Position(0, -1);
                 arr[3] = new Position(1, -1);
                 break;
             }
-            default : { 
+            /*default : { 
                 System.out.println("FATAL ERROR in <Tetromino.java> : no tetromino with type > 7 or type < 1");
                 return null;
-            }
+            }*/
         }
         return arr;
     }

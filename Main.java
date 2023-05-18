@@ -268,7 +268,7 @@ public class Main {
                     break;
                     case 7:
                         Ecran.afficher(te.toString(formePieceChoisi));
-                        pieceSelected = NB_TRIOMINO + NB_DOMINO + TETRO_I + TETRO_J + TETRO_L + TETRO_T + TETRO_S + tetro0;
+                        pieceSelected = NB_TRIOMINO + NB_DOMINO + TETRO_I + TETRO_J + TETRO_L + TETRO_T + TETRO_S + TETRO_Z + tetro0;
                         tetro0++;
                     break;
                 }
@@ -335,6 +335,8 @@ public class Main {
         // permet de poser la piece choisi dans la grille
         grid.placePiece(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne));
         // réinitialisation des variables
+                
+        
         pieceChoisi = 0;
         formePieceChoisi = 0;
         pieceSelected = 0;
