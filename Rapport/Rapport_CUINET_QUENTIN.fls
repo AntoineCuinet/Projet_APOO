@@ -1,8 +1,8 @@
-PWD /Users/antoinecuinet/Documents/fac/Prog L1 S2/Projet
+PWD /Users/antoinecuinet/Documents/GitHub/Projet_APOO/Rapport
 INPUT /usr/local/texlive/2022/texmf.cnf
 INPUT /usr/local/texlive/2022/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/antoinecuinet/Documents/fac/Prog L1 S2/Projet/Rapport_CUINET_QUENTIN.tex
+INPUT /Users/antoinecuinet/Documents/GitHub/Projet_APOO/Rapport/Rapport_CUINET_QUENTIN.tex
 OUTPUT Rapport_CUINET_QUENTIN.log
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/base/report.cls
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/base/report.cls
@@ -1359,7 +1359,6 @@ INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/wasy/wasy8.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/wasy/wasy6.tfm
 OUTPUT Rapport_CUINET_QUENTIN.toc
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmr12.tfm
-INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT Rapport_CUINET_QUENTIN.aux
 INPUT ./Rapport_CUINET_QUENTIN.out

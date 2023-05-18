@@ -85,7 +85,7 @@ public class Main {
             Ecran.afficherln(grid.toString());
             // affichage à l'écran du tour de l'ordinateur
         } 
-        if(isLoose){ // todo: si computer à perdu (je sais pas si c'est déja créer ou non)
+        if(isLoose){ //TODO: si computer à perdu (je sais pas si c'est déja créer ou non)
             Ecran.afficherln(nomJoueur(), ", vous avez gagné !!");
         }else{
             Ecran.afficherln(Computer.IA_NAME, " a gagnée.");

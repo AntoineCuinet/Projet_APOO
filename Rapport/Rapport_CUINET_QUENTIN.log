@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.10.1)  29 APR 2023 13:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.10.1)  18 MAY 2023 23:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/antoinecuinet/Documents/fac/Prog L1 S2/Projet/Rapport_CUINET_QUENTIN.tex"
-(/Users/antoinecuinet/Documents/fac/Prog L1 S2/Projet/Rapport_CUINET_QUENTIN.tex
+**/Users/antoinecuinet/Documents/GitHub/Projet_APOO/Rapport/Rapport_CUINET_QUENTIN.tex
+(/Users/antoinecuinet/Documents/GitHub/Projet_APOO/Rapport/Rapport_CUINET_QUENTIN.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-02-24> (/usr/local/texlive/2022/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2021/10/04 v1.4n Standard LaTeX document class
@@ -1134,7 +1134,7 @@ LaTeX Info: Redefining \nameref on input line 110.
 \@outlinefile=\write5
 \openout5 = `Rapport_CUINET_QUENTIN.out'.
 
-<ufclogo.jpg, id=67, 268.75406pt x 150.5625pt>
+<ufclogo.jpg, id=95, 268.75406pt x 150.5625pt>
 File: ufclogo.jpg Graphic file (type jpg)
 <use ufclogo.jpg>
 Package pdftex.def Info: ufclogo.jpg  used on input line 134.
@@ -1226,21 +1226,21 @@ Chapitre 8.
 
 ] (./Rapport_CUINET_QUENTIN.aux)
 Package rerunfilecheck Info: File `Rapport_CUINET_QUENTIN.out' has not changed.
-(rerunfilecheck)             Checksum: C0A139F35684AC5D818C3760CD18EE0B;2202.
+(rerunfilecheck)             Checksum: FFFF2494EA6AD714EF21F0FF92947561;3145.
  ) 
 Here is how much of TeX's memory you used:
- 28900 strings out of 478268
- 527779 string characters out of 5846347
- 923884 words of memory out of 5000000
- 46535 multiletter control sequences out of 15000+600000
- 518995 words of font info for 64 fonts, out of 8000000 for 9000
+ 28912 strings out of 478268
+ 527898 string characters out of 5846347
+ 926882 words of memory out of 5000000
+ 46540 multiletter control sequences out of 15000+600000
+ 515997 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,12n,77p,520b,426s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 73i,12n,77p,523b,426s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr12.pfb>
-Output written on Rapport_CUINET_QUENTIN.pdf (10 pages, 151132 bytes).
+Output written on Rapport_CUINET_QUENTIN.pdf (10 pages, 161658 bytes).
 PDF statistics:
- 163 PDF objects out of 1000 (max. 8388607)
- 138 compressed objects within 2 object streams
- 26 named destinations out of 1000 (max. 500000)
- 138 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 199 PDF objects out of 1000 (max. 8388607)
+ 174 compressed objects within 2 object streams
+ 33 named destinations out of 1000 (max. 500000)
+ 194 words of extra memory for PDF output out of 10000 (max. 10000000)
 

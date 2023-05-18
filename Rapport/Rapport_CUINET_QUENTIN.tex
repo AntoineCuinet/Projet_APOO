@@ -146,36 +146,172 @@
 
 \newpage
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \chapter{Introduction}
+
+Le projet est un projet de fin d'année de première année de licence informatique à l'université de Franche-Compté.
+
+\bigskip
+
+Ce rapport décrit et explique la conception de ce projet, qui est le jeu de blocage avec polyominos.
+
+\bigskip
+
+Le jeu est codé en Java et le jouer joue contre un ordinateur depuis le terminal.
+
+\bigskip
+
+Le but du jeu est relativement simple, chaque joueur dispose d'un ensemble de pièces, qui sont des polyominos, et qu'il place
+tour à tour sur un plateau, qui est sous forme de grille rectangulaire. 
+
+Il s'agit d'un jeu de blocage: le perdant est le premier
+joueur qui ne peut plus placer de pièce.
+
+Le jeu se déroule en mode
+humain contre ordinateur: le joueur humain interagit via des affichages et des saisies sur la console.
+
+\bigskip
+
+Ce jeu à été coder par CUINET Antoine et QUENTIN Gaspard.
+
+
 
 \newpage
 
 \chapter{Les fonctionnalités}
 
-\chapter{Les classe}
-\section{La classe Grille}
-\subsection{Nom de la classe}
+Les fonctionnalités du jeu sont multiples.
 
-\subsection{Description de la classe}
+Le joueur peu
+
+\color{red}
+// ici à faire
+\color{black}
+
+\chapter{Les classe}
+
+Le jeu dispose de 10 classes.
+\bigskip
+
+\color{red}
+// faire les classes, bonne chance à celui qui le fera
+\color{black}
+
+\section{La classe Main}
+\bigskip
+
+\section{La classe Computeur}
+\bigskip
+
+\section{La classe Piece}
+\bigskip
+
+\section{La classe Grid}
+\bigskip
+
+\section{La classe Position}
+\bigskip
+
+\section{La classe Case}
+\bigskip
+
+\section{La classe Matrix}
+\bigskip
+
+\section{La classe Domino}
+\bigskip
+
+\section{La classe Triomino}
+\bigskip
+
+\section{La classe Tetromino}
+\bigskip
 
 \chapter{Initialisation de jeu}
 
+Au début du jeu, un affichage permettant de saisir de pseudo du jeueur est mis à l'écran.
+
+Une fois cette saisie faite, une explication du jeu, de l'ordinateur (qui se nome Yumi), ainsi que des pièces disponible est présenté.
+
+
+
 \section{Dimensions du jeu}
+
+Le plateau de jeu est un rectangle de 12 cases par 10 cases, qui sont numérotés en lettres (de A à L) en abscisse et en chiffre (de 0 à 9) en ordonné.
 
 \section{Distribution des pièces}
 
+Au début du jeu, le joueur comme l'ordinateur ont à disposition un même nombre de pièce.
+\bigskip
+
+Il est distribué 3 Dominos, 6 Triomino posable en 2 positions avec 3 pièces disponibles par position, et 9 Tétrominos posable en 7 positions avec 1 pièce disponible par position sauf pour les tétrominos de formes I et T qui sont aux nombre de 2.
+
+Ainsi, chaque joueur un nobre de 60 cases sur un plateau faisant en tout 120 cases.
+
 \chapter{Description des conditions}
 
+Plusieur types de conditions sont utilisé afin de faire fonctionner au mieux le jeu.
+
 \section{Placement des pièces}
+
+\color{red}
+// ici à faire
+\color{black}
+
+
 \section{La partie est finie}
+
+\color{red}
+// ici à faire
+\color{black}
+
 
 \chapter{Jeu de l'ordinateur}
 
+Par manque de temps pour réaliser ce projet, notre ordinateur choisi ses pièce et les places aléatoirement.
 \chapter{Ajouts/libertés prises}
 
+Afin de rajouter de la créativité, l'affichage de la grille est réalisé de façon originale.
+\bigskip
 
+Le placement des pièces dans la grilles se fait en couleur, de façon à distinguer facilement et faire un affichage coloré (rouge pour l'ordinateur et bleu pour le joueur).
+\bigskip
+
+Le nom du jeueur ainsi que celui de l'ordinateur sont eux aussi en couleur (de même, rouge pour l'ordinateur et bleu pour le joueur).
+\bigskip
+
+Enfin, l'affichage des pièces en vert, qui est guidé tout au long du processus de choix d'une pièce, permet au joueur de facilement se rendre compte des pièces possible de poser.
 
 
 \chapter{Conclusion}
+
+Pour conclure ce rapport, nous avons produit un jeu amusant, autant dans la conception que dans son utilisation.
+\bigskip
+
+Certain problèmes ont été rencontrer comme celui de faire les tétrominons qui à été très long (autant dans la création des pièce que dans les affichages).
+De plus, celui de distinguer les formes possibles de chaques pièces, en plus des différentes pièces et de leurs orientations.
+\bigskip
+
+Ces problèmes ont bien évidement trouver leurs solutions et nous ont permis de nous surpasser dans la création de ce jeu.
+\bigskip
+
+Concevoir ce jeu nous à également permis de mettre en pratique les cours appris tout au long de l'année et spécifiquement la programmation orienté objet.
 
 \end{document}
