@@ -72,19 +72,7 @@ public class Triomino extends Piece {
                     }
                 }
                 break;
-            default:
-                Position[] temp = getPositions();
-                Position rotationVector;
-                switch(o) {
-                    case EAST: {rotationVector = new Position(1, 1);break;}
-                    case SOUTH: {rotationVector = new Position(-1, 1);break;}
-                    case WEST: {rotationVector = new Position(-1, -1); break;}
-                    default: {rotationVector = new Position(1, -1); break;}
-                }
-                for (int i=0; i<arr.length; i++) { 
-                    arr[i] = Position.multiply(temp[i], rotationVector);
-                }
-                break;
+            default: arr = Matrix.rotate(getPositions(), o);
         }
         return arr;
     }

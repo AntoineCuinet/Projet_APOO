@@ -10,6 +10,7 @@ public class Position {
         EAST, WEST, NORTH, SOUTH
     }
 
+
     private int x;
     private int y;
 
@@ -56,5 +57,26 @@ public class Position {
         }
 
         return rotationVector; 
+    }
+
+    /*
+    public static Position[] getRotationMatrix(Orientation o) { 
+        Position[] matrix = new Position[2];
+        switch(o) { 
+            case EAST: {
+                arr[0] = new Position()
+            }
+        }
+        
+    }
+
+    public static Position[] matrixMultplication(Position[] m1, Position[] m2) { 
+        assert 
+    }
+
+    */
+
+    public String toString() { 
+        return "(" + this.x + ", " + this.y + ")";
     }
 }

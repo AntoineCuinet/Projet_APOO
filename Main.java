@@ -326,7 +326,7 @@ public class Main {
             placeLigne = Character.getNumericValue(positionPiecePlace.charAt(1));
         } 
         grid.placePiece(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne));
-        
+        //grid.placePiece(piece[11], Position.Orientation.NORTH, new Position(5,5));
         System.out.println(pieceSelected);
         System.out.println(piece[pieceSelected].type);
     

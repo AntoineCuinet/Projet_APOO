@@ -30,6 +30,7 @@ public class Tetromino extends Piece {
         }
     }
 
+    /*
     @Override
     public Position[] getPositions(Position.Orientation o) { 
         Position rotationVector = Position.getRotationVector(o);
@@ -38,6 +39,10 @@ public class Tetromino extends Piece {
             e.multiply(rotationVector);
         }
         return piece;
+    }
+    */
+    public Position[] getPositions(Position.Orientation o) { 
+        return Matrix.rotate(getPositions(), o);
     }
     /*
     @Override

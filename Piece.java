@@ -18,4 +18,5 @@ public abstract class Piece {
     public boolean isComputer() {
         return this.isComputer;
     }
+    
 }
