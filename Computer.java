@@ -1,13 +1,26 @@
+/**
+ *
+ *
+ */
+
 public class Computer {
     
-    Piece[] pieceComputer;
+    private Piece[] pieceComputer;
+    private boolean hasLost;
+    private Grid grid;
+
+
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String IA_NAME = ANSI_RED + "Yumi" + ANSI_RESET;
     private static final int NB_PIECE = 18;
-    private static int NB_DOMINO = 3;
-    private static int NB_TRIOMINO = 6;
-    private static int NB_TETROMINO = 9;
+    private static final int NB_DOMINO = 3;
+    private static final int NB_TRIOMINO = 6;
+    private static final int NB_TETROMINO = 9;
+    
+    private static int nbDominoPlaced = 0;
+    private static int nbTriominoPlaced = 0;
+    private static int nbTetrominoPlaced = 0;
     private static int trioI = 3;
     private static int trioT = 3;
     private static int tetroI = 2;
@@ -20,38 +33,76 @@ public class Computer {
 
 
     Computer(Grid grid){
+        this.hasLost = false;
+        this.grid = grid;
         // Initialisation tableau de pièces
-        pieceComputer = new Piece[NB_PIECE];
-        for (int i=0; i<pieceComputer.length; i++) { 
-            if (i<NB_DOMINO) pieceComputer[i] = new Domino(true);
-            else if (i<NB_TRIOMINO+NB_DOMINO) pieceComputer[i] = new Triomino(true);
-            else pieceComputer[i] = new Tetromino(true); 
+        this.pieceComputer = new Piece[NB_PIECE];
+        for (int i=0; i<this.pieceComputer.length; i++) { 
+            if (i<NB_DOMINO) this.pieceComputer[i] = new Domino(true);
+            else if (i<NB_TRIOMINO+NB_DOMINO) this.pieceComputer[i] = new Triomino(true);
+            else this.pieceComputer[i] = new Tetromino(true); 
         }
+
     }
 
+
+    private static int randomRange(int bInf, int bSup) { 
+        return (int) (Math.random()*(bSup-bInf)) + bInf;
+    }
+
+    private static int randomRange(int bSup) { 
+        return randomRange(0, bSup);
+    }
+    /**
+     * Cette méthode privée permet de retourner une forme de pièce choisie 
+     * aléatoirement. Cette fonction renvoie -1 si le nombre aléatoire calculé 
+     * représente une pièce déjà posée.
+     * */
+    private int selectPieceShape(int type) {
+        int res;
+        switch (type) { 
+            case 1 : { 
+                res = randomRange(NB_DOMINO);
+                if (this.pieceComputer[res] == null) res = -1;
+                break;
+            }case 2 : { 
+                res = randomRange(NB_DOMINO, NB_DOMINO + NB_TRIOMINO);
+                if (this.pieceComputer[res] == null) res = -1;
+                break;
+            }case 3 : { 
+                res = randomRange(NB_DOMINO + NB_TRIOMINO, NB_DOMINO + NB_TRIOMINO + NB_TETROMINO);
+                if (this.pieceComputer[res] == null) res = -1;
+                break;
+            }default : { 
+                res = -1;
+                break;
+            }
+        }
+        return res;
+    }
 
     /**
      * Fonction qui permet à l'odinateur de choisir et de placer une piece sur la grille
      * @param grid
      */
-    public void choicePieceComputer(Grid grid){
-        int pieceChoisi = (int) (Math.random()*3)+1;
-        // vérification de la saisie
-        while(pieceChoisi<1 || pieceChoisi>3 || (NB_DOMINO==0 && pieceChoisi==1) || (NB_TRIOMINO==0 && pieceChoisi==2) || (NB_TETROMINO==0 && pieceChoisi==3)){
-            pieceChoisi = (int) (Math.random()*3)+1;
+    public void choicePieceComputer(){
+        hasYumiLost();
+        int selectedPieceType = randomRange(1, 4);
+        while((NB_DOMINO==nbDominoPlaced && selectedPieceType==1) || (NB_TRIOMINO==nbTriominoPlaced && selectedPieceType==2) || (NB_TETROMINO==nbTetrominoPlaced && selectedPieceType==3)){
+            selectedPieceType = randomRange(1, 4);
         }
 
-        int formePieceChoisi = 0;
-        if(pieceChoisi == 3){
-            formePieceChoisi = (int) (Math.random()*7);
-            // vérif à faire en fonction su nombre donné et de si il reste ou non des pièces de ce type
-        } else if(pieceChoisi == 2){
-            formePieceChoisi = (int) (Math.random()*2);
-            // vérif à faire en fonction su nombre donné et de si il reste ou non des pièces de ce type
-        }
+        nbDominoPlaced += (selectedPieceType == 1 ? 1: 0); 
+        nbTriominoPlaced += (selectedPieceType == 2 ? 1: 0); 
+        nbTetrominoPlaced += (selectedPieceType == 3 ? 1: 0); 
+
+        int pieceChoisi = -1;
+        do { 
+            pieceChoisi = selectPieceShape(selectedPieceType);
+        }while(pieceChoisi == -1);
 
 
-        int pieceDisposition = (int) (Math.random()*4);
+        int pieceDisposition = randomRange(4);
         Position.Orientation orientationChoisie;
         switch(pieceDisposition){
             case 1:
@@ -68,17 +119,19 @@ public class Computer {
         }
 
         
-        int placeColonne = (int) (Math.random()*11);
-        int placeLigne = (int) (Math.random()*9);
+        int placeColonne = randomRange(11);
+        int placeLigne = randomRange(9);
 
         while (!grid.isPiecePlaceable(pieceComputer[pieceChoisi], orientationChoisie, new Position(placeColonne, placeLigne))){
-            placeColonne = (int) Math.random()*11;
-            placeLigne = (int) Math.random()*9;
+            placeColonne = randomRange(11);
+            placeLigne = randomRange(9);
         } 
         grid.placePiece(pieceComputer[pieceChoisi], orientationChoisie, new Position(placeColonne, placeLigne));
+        pieceComputer[pieceChoisi] = null;
+        
 
         String pieceJouer = "";
-        switch(pieceChoisi){
+        switch(selectedPieceType){
             case 1:
                 pieceJouer = "Domino";
             break;
@@ -90,8 +143,9 @@ public class Computer {
             break;
         }
 
-        String positionPiecePlace = "";
-        switch(placeColonne){
+        String positionPiecePlace = (new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"})[placeColonne];
+
+        /*switch(placeColonne){
             case 0:
             positionPiecePlace += "A";
             break;
@@ -129,7 +183,32 @@ public class Computer {
             positionPiecePlace += "L";
             break;
         }
+        */
         positionPiecePlace += placeLigne;
         Ecran.afficherln(IA_NAME + " à posée un "+ pieceJouer +" à la position "+ positionPiecePlace +".");
+        hasYumiLost();
     }
+
+    /**
+     * Méthode qui modifie l'état de l'attribut hasLost de l'ordinateur.
+     * hasLost prends la valeur true si l'ordinateur a perdu (il est incapable de placer ses pièces restantes)
+     */
+    public void hasYumiLost() { 
+        boolean res = true;
+        for (int i = 0; i<Grid.SIZE_X; i++) { 
+            for (int j=0; j<Grid.SIZE_Y; j++) { 
+                Position origin = new Position(i, j);
+                for (Piece p: this.pieceComputer) { 
+                    if (p != null)
+                        res &= !grid.isPiecePlaceableInAnyPosition(p, origin);
+                }
+            }
+        }
+        this.hasLost = res;
+    }
+
+    public boolean hasPlayerWon() { 
+        return this.hasLost;
+    }
+
 }

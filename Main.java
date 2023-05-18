@@ -75,13 +75,14 @@ public class Main {
         // affichage début du jeu 
         beginDisplay(grid);
         // boucle de jeu 
-        while(!isWin || !isLoose){
+        while(!isWin && !isLoose){
             isLoose = isLoose(piece, grid);
+            isWin = c.hasPlayerWon();
             // affichage à l'écran du tour du joueur
             choicePiecePlayer(grid, d, t, te, piece);
             clearScreen();
             Ecran.afficherln(grid.toString());
-            c.choicePieceComputer(grid);
+            c.choicePieceComputer();
             Ecran.afficherln(grid.toString());
             // affichage à l'écran du tour de l'ordinateur
         } 

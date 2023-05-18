@@ -28,26 +28,7 @@ public class Triomino extends Piece {
             }
             instanceNbrPC++;
         }
-        /*if(!isComputer) instanceNbr++;
-        else instanceNbrPC++;
-        assert (instanceNbr <= 6 && instanceNbrPC <= 6);
-        if (!isComputer && instanceNbr < Main.TRIO_I) { 
-            super.type = 1;
-        }
-        else if (!isComputer) super.type = 2;
-        if (isComputer && instanceNbrPC < Main.TRIO_I) super.type = 1;
-        else if (isComputer) super.type = 2; 
-        if (instanceNbr > 2) {
-            super.type = ( (instanceNbr%2) == 0) ? 2: 1;
-            if (instanceNbr%2==0) super.type = 2;
-            else super.type = 1;
-        }
-        else {
-            super.type = instanceNbr;
-        }
-        if (instanceNbrPC > 2) super.type = ( (instanceNbrPC % 2) == 0) ? 2: 1;
-        else if (isComputer) super.type = instanceNbrPC;
-        */
+        
     
     }
 
