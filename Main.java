@@ -36,6 +36,7 @@ public class Main {
     public static final int TETRO_Z = 1;
 
     // Déclaration des variables
+    private static int domino = 0;
     private static int trioI = 0;
     private static int trioT = 0;
     private static int tetroI = 0;
@@ -56,6 +57,7 @@ public class Main {
 
     // Main
     public static void main(String[] args) { 
+        // Instantiation des class 
         Grid grid = new Grid();
         Domino d = new Domino();
         Triomino t = new Triomino();
@@ -74,7 +76,7 @@ public class Main {
         beginDisplay(grid);
         // boucle de jeu 
         while(!isWin || !isLoose){
-            isLoose(piece, grid);
+            isLoose = isLoose(piece, grid);
             // affichage à l'écran du tour du joueur
             choicePiecePlayer(grid, d, t, te, piece);
             clearScreen();
@@ -83,7 +85,13 @@ public class Main {
             Ecran.afficherln(grid.toString());
             // affichage à l'écran du tour de l'ordinateur
         } 
+        if(isLoose){ // todo: si computer à perdu (je sais pas si c'est déja créer ou non)
+            Ecran.afficherln(nomJoueur(), ", vous avez gagné !!");
+        }else{
+            Ecran.afficherln(Computer.IA_NAME, " a gagnée.");
+        }
     }
+        
 
 
 
@@ -144,11 +152,11 @@ public class Main {
         Ecran.sautDeLigne();
 
         Ecran.afficher(nomJoueur() +", c'est à vous de jouer ! ");
-        Ecran.afficherln("Il vous reste ", NB_DOMINO, " dominos, ", NB_TRIOMINO," triominos et ", NB_TETROMINO, " tétrominos.");
+        Ecran.afficherln("Il vous reste ", (NB_DOMINO-domino), " dominos, ", (NB_TRIOMINO-trioI-trioT)," triominos et ", (NB_TETROMINO-(tetro0+tetroI+tetroJ+tetroL+tetroS+tetroT+tetroZ)), " tétrominos.");
         Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
         pieceChoisi = Clavier.saisirInt();
         // vérification de la saisie
-        while(pieceChoisi<1 || pieceChoisi>3 || (NB_DOMINO==0 && pieceChoisi==1) || (NB_TRIOMINO==0 && pieceChoisi==2) || (NB_TETROMINO==0 && pieceChoisi==3)){
+        while(pieceChoisi<1 || pieceChoisi>3 || (domino==NB_DOMINO && pieceChoisi==1) || (NB_TRIOMINO==trioI+trioT && pieceChoisi==2) || (NB_TETROMINO==tetro0+tetroI+tetroJ+tetroL+tetroS+tetroT+tetroZ && pieceChoisi==3)){
             Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
             Ecran.afficher("Vous désirez poser quelle pièce ? Entrez le numéro de la pièce: ");
             pieceChoisi = Clavier.saisirInt();
@@ -173,10 +181,10 @@ public class Main {
         if(pieceChoisi == 3){
             Ecran.afficher(te.toString()); // afficher les 7 formes de tetromino
             Ecran.sautDeLigne();
-            Ecran.afficher("Choisisez l'une des 7 formes que vous souhaitez poser. Il vous reste "+ tetroI +" Tetromino(s) de forme I, "+ tetroT +" Tetromino(s) de forme T, "+ tetro0 +" Tetromino(s) de forme 0, "+ tetroJ +" Tetromino(s) de forme J, "+ tetroL +" Tetromino(s) de forme L, "+ tetroS +" Tetromino(s) de forme S, "+ tetroZ +" Tetromino(s) de forme Z.\nEntrez le numéro de la pièce: ");
+            Ecran.afficher("Choisisez l'une des 7 formes que vous souhaitez poser. Il vous reste "+ Integer.toString( TETRO_I-tetroI )+" Tetromino(s) de forme I, "+ Integer.toString( TETRO_T - tetroT )+" Tetromino(s) de forme T, "+Integer.toString( TETRO_0 - tetro0 )+" Tetromino(s) de forme 0, "+ Integer.toString( TETRO_J - tetroJ )+" Tetromino(s) de forme J, "+Integer.toString( TETRO_L - tetroL )+" Tetromino(s) de forme L, "+ Integer.toString( TETRO_S - tetroS ) +" Tetromino(s) de forme S, "+Integer.toString( TETRO_Z-tetroZ )+" Tetromino(s) de forme Z.\nEntrez le numéro de la pièce: ");
             formePieceChoisi = Clavier.saisirInt();
             // vérification de la saisie
-            while(formePieceChoisi<1 || formePieceChoisi>7 || (tetroI==TETRO_I && formePieceChoisi==1) || (tetroT==TETRO_T && formePieceChoisi==2) || (tetro0==TETRO_0 && formePieceChoisi==3) || (tetroJ==TETRO_J && formePieceChoisi==4) || (tetroL==TETRO_L && formePieceChoisi==5) || (tetroS==TETRO_S && formePieceChoisi==6) || (tetroZ==TETRO_Z && formePieceChoisi==7)){
+            while(formePieceChoisi<1 || formePieceChoisi>7 || (tetroI==TETRO_I && formePieceChoisi==1) || (tetroT==TETRO_T && formePieceChoisi==4) || (tetro0==TETRO_0 && formePieceChoisi==7) || (tetroJ==TETRO_J && formePieceChoisi==2) || (tetroL==TETRO_L && formePieceChoisi==3) || (tetroS==TETRO_S && formePieceChoisi==5) || (tetroZ==TETRO_Z && formePieceChoisi==6)){
                 Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
                 Ecran.afficher("Choisisez l'une des 7 formes que vous souhaitez poser. Il vous reste "+ Integer.toString( TETRO_I-tetroI )+" Tetromino(s) de forme I, "+ Integer.toString( TETRO_T - tetroT )+" Tetromino(s) de forme T, "+Integer.toString( TETRO_0 - tetro0 )+" Tetromino(s) de forme 0, "+ Integer.toString( TETRO_J - tetroJ )+" Tetromino(s) de forme J, "+Integer.toString( TETRO_L - tetroL )+" Tetromino(s) de forme L, "+ Integer.toString( TETRO_S - tetroS ) +" Tetromino(s) de forme S, "+Integer.toString( TETRO_Z-tetroZ )+" Tetromino(s) de forme Z.\nEntrez le numéro de la pièce: ");
                 formePieceChoisi = Clavier.saisirInt();
@@ -184,12 +192,12 @@ public class Main {
         } else if(pieceChoisi == 2){
             Ecran.afficher(t.toString()); // afficher les 2 forme de triomino 
             Ecran.sautDeLigne();
-            Ecran.afficher("Choisisez l'une des 2 formes que vous souhaitez poser. Il vous reste "+ trioI +" Triomino(s) de forme I et "+ trioT +" Triomino(s) de forme T.\nEntrez le numéro de la pièce: ");
+            Ecran.afficher("Choisisez l'une des 2 formes que vous souhaitez poser. Il vous reste "+ Integer.toString(TRIO_I-trioI) +" Triomino(s) de forme I et "+Integer.toString(TRIO_T - trioT) +" Triomino(s) de forme T.\nEntrez le numéro de la pièce: ");
             formePieceChoisi = Clavier.saisirInt();
             // vérification de la saisie
             while(formePieceChoisi<1 || formePieceChoisi>2 || (trioI==TRIO_I && formePieceChoisi==1) || (trioT==TRIO_T && formePieceChoisi==2)){
                 Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
-                Ecran.afficher("Choisisez l'une des 2 formes que vous souhaitez poser. Il vous reste "+ Integer.toString(TRIO_I-trioI) +" Triomino(s) de forme I et "+Integer.toString(  TRIO_T - trioT) +" Triomino(s) de forme T.\nEntrez le numéro de la pièce: ");
+                Ecran.afficher("Choisisez l'une des 2 formes que vous souhaitez poser. Il vous reste "+ Integer.toString(TRIO_I-trioI) +" Triomino(s) de forme I et "+Integer.toString(TRIO_T - trioT) +" Triomino(s) de forme T.\nEntrez le numéro de la pièce: ");
                 formePieceChoisi = Clavier.saisirInt();
             }
         }
@@ -210,11 +218,11 @@ public class Main {
         switch(pieceChoisi){
             case 1:
                Ecran.afficher(d.toString(pieceSelected));
+               domino++;
             break;
             case 2:
                 switch(formePieceChoisi){
                     case 1:
-                        //TODO: if (trioI == TRIO_I) recommencer la saisie
                         Ecran.afficher(t.toString(formePieceChoisi));
                         pieceSelected = NB_DOMINO + trioI;
                         trioI++;
@@ -275,10 +283,9 @@ public class Main {
         // Vérification de saisie
         while((pieceDisposition<1 || pieceDisposition>2 && pieceChoisi ==1)|| ((pieceDisposition<1 || pieceDisposition>4) && pieceChoisi !=1)){
             Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
-            Ecran.afficher("Choisisez l'une des 2 formes que vous souhaitez poser. Il vous reste "+ trioI +" Triomino(s) de forme I et "+ trioT +" Triomino(s) de forme T.\nEntrez le numéro de la pièce: ");
+            Ecran.afficher(nomJoueur() + ", vous désirez poser la pièce choisie dans quelle disposition ? Entrez le numéro de la pièce: ");
             pieceDisposition = Clavier.saisirInt();
         }
-
     }
 
 
@@ -314,7 +321,7 @@ public class Main {
         int placeColonne = (int) positionPiecePlace.charAt(0) - 'A';
         int placeLigne = Character.getNumericValue(positionPiecePlace.charAt(1));
 
-        
+        // vérification de la saisie (si la pièce est posable ou non)
         while (!grid.isPiecePlaceable(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne))){
             clearScreen();
             Ecran.afficherln(YELLOW_BG+"/!\\ " + Player_Name + ", vous vous êtes trompé dans votre saisie ! Recommencer. /!\\"+RESET_BG);
@@ -324,13 +331,13 @@ public class Main {
             positionPiecePlace = Clavier.saisirString();
             placeColonne = (int) positionPiecePlace.charAt(0) - 'A';
             placeLigne = Character.getNumericValue(positionPiecePlace.charAt(1));
-        } 
+        }
+        // permet de poser la piece choisi dans la grille
         grid.placePiece(piece[pieceSelected], orientationChoisie, new Position(placeColonne, placeLigne));
-        //grid.placePiece(piece[11], Position.Orientation.NORTH, new Position(5,5));
+        // réinitialisation des variables
         pieceChoisi = 0;
         formePieceChoisi = 0;
         pieceSelected = 0;
-    
     }
 
 
@@ -338,7 +345,7 @@ public class Main {
 
     /**
      * Fonction qui créer le nom du joueur
-     * @return
+     * @return le nom du joueur en couleur
      */
     public static String nomJoueur(){
         return ANSI_BLUE + Player_Name + ANSI_RESET;
@@ -357,6 +364,11 @@ public class Main {
     }
 
 
+    /**
+     * Permet d'afficher une pièce dans grille
+     * @param arr
+     * @return res, le resultat en chaine 
+     */
     public static String displayPieces(Piece[] arr) { 
         String res = "";
         for (Piece p: arr) { 
@@ -367,6 +379,12 @@ public class Main {
         return res;
     }
 
+    /**
+     * Permet d'afficher une pièce dans grille
+     * @param arr
+     * @param t
+     * @return res, le resultat en chaine 
+     */
     public static String displayPieces(Piece[] arr, Type t) { 
         String res = "";
         for (int i=0; i<arr.length; i++) { 
@@ -377,9 +395,15 @@ public class Main {
         return res;
     }
 
+    /**
+     * fonction qui renvoie un booleen en fonction de la défaite (renvoie true si on a perdu)
+     * @param pieces
+     * @param grid
+     * @return  res, un booleen
+     */
     public static boolean isLoose(Piece[] pieces, Grid grid) { 
         boolean res = true;
-        for (int i = 0; i<Grid.SIZE_Y; i++) { 
+        for (int i = 0; i<Grid.SIZE_X; i++) { 
             for (int j=0; j<Grid.SIZE_Y; j++) { 
                 Position origin = new Position(i, j);
                 for (Piece p: pieces) { 
@@ -390,6 +414,12 @@ public class Main {
         return res;
     }
 
+    /**
+     * Fonction qui permet de savoir si le type de la piece est le bon
+     * @param p
+     * @param t
+     * @returnnun un booleen
+     */
     private static boolean isPieceOfType(Piece p, Type t) { 
         return (p instanceof Domino && t == Type.Domino) || 
             (p instanceof Triomino && t == Type.Triomino) ||
