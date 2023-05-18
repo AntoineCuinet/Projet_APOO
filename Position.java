@@ -45,4 +45,15 @@ public class Position {
     public static Position add(Position p1, Position p2) { 
         return new Position(p1.getX() + p2.getX(), p1.getY() + p2.getY());
     }
+
+    public static Position getRotationVector(Orientation o) { 
+        Position rotationVector;
+        switch (o) {
+            case EAST: {rotationVector = new Position(1, 1);break;}
+            case SOUTH: {rotationVector = new Position(-1, 1);break;}
+            case WEST: {rotationVector = new Position(-1, -1); break;}
+            default: {rotationVector = new Position(1, -1); break;}
+        }
+        return rotationVector; 
+    }
 }

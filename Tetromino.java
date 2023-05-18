@@ -6,20 +6,38 @@
  * Tetromino.java
 */
 public class Tetromino extends Piece { 
+
+    private static int instanceNbr = 0;
+    private static int instanceNbrPC = 0;
     
-    @Override
-    public Position[] getPositions(Position.Orientation o) { 
-        Position[] arr = new Position[2];
-        arr[0] = new Position();
-        switch (o) {
-            case NORTH : { arr[1] = new Position(0, -1);}
-            case SOUTH: {arr[1] = new Position(0, 1);}
-            case WEST: {arr[1] = new Position(-1, 0);}
-            default : {
-                arr[1] = new Position(1, 0);
+    public Tetromino(boolean isComputer) { 
+        super.isComputer = isComputer;
+        if (!isComputer) {
+            instanceNbr++;
+            if (instanceNbr <= 2) { 
+                super.type = 1;
+            }else { 
+                super.type = instanceNbr - 1;
             }
         }
-        return arr;
+        else { 
+            instanceNbrPC++;
+            if (instanceNbrPC <= 2) { 
+                super.type = 1;
+            }else { 
+                super.type = instanceNbrPC - 1;
+            }
+        }
+    }
+
+    @Override
+    public Position[] getPositions(Position.Orientation o) { 
+        Position rotationVector = Position.getRotationVector(o);
+        Position[] piece = getPositions();
+        for (Position e: piece) { 
+            e.multiply(rotationVector);
+        }
+        return piece;
     }
     /*
     @Override
@@ -30,10 +48,6 @@ public class Tetromino extends Piece {
     }
     */
 
-    public Tetromino(boolean isComputer) { 
-
-        super.isComputer = isComputer;
-    }
 
     public Tetromino() { 
         this(false);
@@ -41,7 +55,47 @@ public class Tetromino extends Piece {
 
     @Override
     public Position[] getPositions() { 
-        return getPositions(Position.Orientation.EAST);
+        Position[] arr = new Position[4];
+        arr[0] = new Position();
+        switch (super.type) { 
+            case 1 : { 
+                arr[1] = new Position(1, 0);
+                arr[2] = new Position(2, 0);
+                arr[3] = new Position(3, 0);
+                break;
+            }
+            case 2 : { 
+                arr[1] = new Position(1, 0);
+                arr[2] = new Position(0, -1);
+                arr[3] = new Position(0, -2);
+                break;
+            }
+            case 3 : { 
+                arr[1] = new Position(1, 0);
+                arr[2] = new Position(0, -1);
+                arr[3] = new Position(1, -1);
+                break;
+            } 
+            case 4 : { 
+                arr[1] = new Position(1, 0);
+                arr[2] = new Position(2, 0);
+                arr[3] = new Position(1, -1);
+                break;
+            }
+            case 5 : {
+                arr[1] = new Position(0, -1);
+                arr[2] = new Position(1, -1);
+                arr[3] = new Position(1, -2);
+                break;
+            }
+            default : {
+                arr[1] = new Position(0, -1);
+                arr[2] = new Position(1, -1);
+                arr[3] = new Position(2, -1);
+                break;
+            }
+        }
+        return arr;
     }
     
 
