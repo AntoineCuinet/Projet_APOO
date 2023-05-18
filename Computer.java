@@ -21,15 +21,7 @@ public class Computer {
     private static int nbDominoPlaced = 0;
     private static int nbTriominoPlaced = 0;
     private static int nbTetrominoPlaced = 0;
-    private static int trioI = 3;
-    private static int trioT = 3;
-    private static int tetroI = 2;
-    private static int tetroJ = 1;
-    private static int tetroL = 1;
-    private static int tetro0 = 1;
-    private static int tetroT = 2;
-    private static int tetroS = 1;
-    private static int tetroZ = 1;
+    
 
 
     Computer(Grid grid){
@@ -145,45 +137,6 @@ public class Computer {
 
         String positionPiecePlace = (new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"})[placeColonne];
 
-        /*switch(placeColonne){
-            case 0:
-            positionPiecePlace += "A";
-            break;
-            case 1:
-            positionPiecePlace += "B";
-            break;
-            case 2:
-            positionPiecePlace += "C";
-            break;
-            case 3:
-            positionPiecePlace += "D";
-            break;
-            case 4:
-            positionPiecePlace += "E";
-            break;
-            case 5:
-            positionPiecePlace += "F";
-            break;
-            case 6:
-            positionPiecePlace += "G";
-            break;
-            case 7:
-            positionPiecePlace += "H";
-            break;
-            case 8:
-            positionPiecePlace += "I";
-            break;
-            case 9:
-            positionPiecePlace += "J";
-            break;
-            case 10:
-            positionPiecePlace += "K";
-            break;
-            case 11:
-            positionPiecePlace += "L";
-            break;
-        }
-        */
         positionPiecePlace += placeLigne;
         Ecran.afficherln(IA_NAME + " à posée un "+ pieceJouer +" à la position "+ positionPiecePlace +".");
         hasYumiLost();
