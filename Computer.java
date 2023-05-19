@@ -28,6 +28,7 @@ public class Computer {
     private static int nbDominoPlaced = 0;
     private static int nbTriominoPlaced = 0;
     private static int nbTetrominoPlaced = 0;
+    private static int unplaceableIndex = -1;
     
 
 
@@ -45,10 +46,21 @@ public class Computer {
     }
 
 
+    /**
+     * Cette fonction renvoie un entier aléatoire dans l'intervalle [bInf, bSup[
+     * @param bInf 
+     * @param bSup
+     * @return
+    */
     private static int randomRange(int bInf, int bSup) { 
         return (int) (Math.random()*(bSup-bInf)) + bInf;
     }
 
+    /**
+     * Surcharge de la fonction précédente renvoyant un entier aléatoire dans l'intervalle [0, bSup[ 
+     * @param bSup
+     * @return
+    */
     private static int randomRange(int bSup) { 
         return randomRange(0, bSup);
     }
@@ -62,15 +74,15 @@ public class Computer {
         switch (type) { 
             case 1 : { 
                 res = randomRange(NB_DOMINO);
-                if (this.pieceComputer[res] == null) res = -1;
+                if (this.pieceComputer[res] == null || res == unplaceableIndex) res = -1;
                 break;
             }case 2 : { 
                 res = randomRange(NB_DOMINO, NB_DOMINO + NB_TRIOMINO);
-                if (this.pieceComputer[res] == null) res = -1;
+                if (this.pieceComputer[res] == null || res == unplaceableIndex) res = -1;
                 break;
             }case 3 : { 
                 res = randomRange(NB_DOMINO + NB_TRIOMINO, NB_DOMINO + NB_TRIOMINO + NB_TETROMINO);
-                if (this.pieceComputer[res] == null) res = -1;
+                if (this.pieceComputer[res] == null || res == unplaceableIndex) res = -1;
                 break;
             }default : { 
                 res = -1;
@@ -97,8 +109,11 @@ public class Computer {
         nbTetrominoPlaced += (selectedPieceType == 3 ? 1: 0); 
 
         int pieceChoisi = -1;
+        int tries = 0;
         do { 
             pieceChoisi = selectPieceShape(selectedPieceType);
+            tries++;
+            if (tries > 1000) choicePieceComputer();
         }while(pieceChoisi == -1);
 
 
@@ -122,9 +137,15 @@ public class Computer {
         int placeColonne = randomRange(11);
         int placeLigne = randomRange(9);
 
+        tries = 0;
         while (!grid.isPiecePlaceable(pieceComputer[pieceChoisi], orientationChoisie, new Position(placeColonne, placeLigne))){
             placeColonne = randomRange(11);
             placeLigne = randomRange(9);
+            tries++;
+            if (tries >= 1000) { 
+                unplaceableIndex = pieceChoisi;
+                choicePieceComputer();
+            }
         } 
         grid.placePiece(pieceComputer[pieceChoisi], orientationChoisie, new Position(placeColonne, placeLigne));
         pieceComputer[pieceChoisi] = null;
