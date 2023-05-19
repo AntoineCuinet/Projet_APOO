@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.1.8)  19 MAY 2023 14:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.1.8)  19 MAY 2023 18:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1447,48 +1447,55 @@ Chapitre 3.
 [4
 
 ]
+Missing character: There is no Å in font lmsy10!
+ [5]
 Chapitre 4.
-[5
-
-]
-Chapitre 5.
 [6
 
 ]
-Chapitre 6.
+Chapitre 5.
 [7
 
 ]
-Chapitre 7.
+Chapitre 6.
 [8
 
 ]
-Chapitre 8.
+Chapitre 7.
 [9
+
+]
+Chapitre 8.
+[10
 
 ] (./Rapport_CUINET_QUENTIN.aux)
 Package rerunfilecheck Info: File `Rapport_CUINET_QUENTIN.out' has not changed.
 
-(rerunfilecheck)             Checksum: FFFF2494EA6AD714EF21F0FF92947561;3145.
+(rerunfilecheck)             Checksum: 626E663947CC6A1C5F093F103A447424;3140.
  ) 
 Here is how much of TeX's memory you used:
- 27369 strings out of 478994
- 478446 string characters out of 5858185
+ 27370 strings out of 478994
+ 478453 string characters out of 5858185
  914998 words of memory out of 5000000
  44269 multiletter control sequences out of 15000+600000
  450168 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,88p,465b,424s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/
-texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/20
-21/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2021/texmf-d
-ist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2021/texmf-dist/fonts
-/type1/public/lm/lmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/publ
-ic/lm/lmr12.pfb>
-Output written on Rapport_CUINET_QUENTIN.pdf (10 pages, 156998 bytes).
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/lo
+cal/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texliv
+e/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2021/texmf-d
+ist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/texlive/2021/texmf-dist/fonts/type
+1/public/lm/lmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/l
+m/lmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmcsc10.
+pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/
+local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texli
+ve/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2021/tex
+mf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2021/texmf-dist/fo
+nts/type1/public/lm/lmsy8.pfb>
+Output written on Rapport_CUINET_QUENTIN.pdf (11 pages, 169522 bytes).
 PDF statistics:
- 194 PDF objects out of 1000 (max. 8388607)
- 174 compressed objects within 2 object streams
- 33 named destinations out of 1000 (max. 500000)
+ 215 PDF objects out of 1000 (max. 8388607)
+ 191 compressed objects within 2 object streams
+ 34 named destinations out of 1000 (max. 500000)
  194 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -241,24 +241,79 @@ l'utilisateur. Ces dernières seront donc entièrement redéfinies dans les clas
 \bigskip
 
 \section{La classe Grid}
+
+La classe Grid représente la grille de jeu. Elle se charge également de l'affichage du plateau de jeu.
+Elle est composée d'un tableau de 2 dimensions d'objets de type Case.
+Elle comporte également les méthodes permettant au joueur et à l'ordinateur de voir si il est possible de
+placer une pièce (méthode isPiecePlaceable()) et de la placer (méthode placePiece).
+
 \bigskip
 
 \section{La classe Position}
+
+Cette classe est constituée de deux attributs : une positon en abscisse sur la grille et une position en 
+ordonnée. Ces deux attributs sont des entiers. 
+Elle possède également plusieurs méthodes utiles comme la méthode add() qui permet d'additionner deux 
+positions entre elles.
+
 \bigskip
 
 \section{La classe Case}
+
+Cette classe représente une case sur le plateau. Une case contient une pièce qui peut être nulle.
+Elle possède également une redéfinition de la méthode toString() permettant d'afficher 
+un rond si une pièce se trouve sur cette case et qu'elle appartient au joueur, un croisillon si une 
+pièce se trouve sur cette case mais que cette pièce est une pièce ennemie et rien sinon.
+
 \bigskip
 
 \section{La classe Matrix}
+
+Une pièce étant constituée de plusieurs objets Position, pour trouver l'orientation voulue pour placer
+la pièce dans la grille, nous avons dû avoir recours à quelques petits calculs matriciels.
+Cette classe sert donc principalement à calculer des coordonnées rotationnées à l'aide de cette
+formule mathématique :
+
+\[
+    \begin{pmatrix}
+        x' \\
+        y'
+    \end{pmatrix}
+    \quad
+    =
+    \begin{pmatrix}
+        \cos \psi & - \sin \psi \\
+        \sin \psi & \cos \psi
+    \end{pmatrix}
+    \begin{pmatrix}
+        x \\
+        y
+    \end{pmatrix}
+\]
+
+
 \bigskip
 
 \section{La classe Domino}
+
+La classe Domino, qui hérite de la classe Piece, se charge de créer des dominos avec le bon type 
+en fonction du nombre d'instances déjà crées. Cette classe comporte une surchage de la métode toString()
+permettant d'afficher toutes les différentes dispositions des dominos et de la méthode getPositions()
+renvoyant toutes les positions représentant la pièce crée dans un repère orthonormé.
+
 \bigskip
 
 \section{La classe Triomino}
+
+Cette classe fonctionne de façon identique à celle de la classe Domino.
+
 \bigskip
 
 \section{La classe Tetromino}
+
+La classe Tetromino comporte la même logique d'implémentation que ces deux classes soeures, la classe Domino
+et la classe Triomino.
+
 \bigskip
 
 \chapter{Initialisation de jeu}
