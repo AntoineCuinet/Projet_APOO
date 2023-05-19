@@ -92,7 +92,7 @@ public class Main {
             if (!isWin) Ecran.afficherln(grid.toString());
             // affichage à l'écran du tour de l'ordinateur
         } 
-        if(isWin){ //TODO: si computer à perdu (je sais pas si c'est déja créer ou non)
+        if(isWin){ 
             Ecran.afficherln(nomJoueur(), ", vous avez gagné !!");
         }else{
             Ecran.afficherln(Computer.IA_NAME, " a gagnée.");
