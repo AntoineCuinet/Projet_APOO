@@ -86,6 +86,7 @@ public class Computer {
      */
     public void choicePieceComputer(){
         hasYumiLost();
+        if (hasLost) return;
         int selectedPieceType = randomRange(1, 4);
         while((NB_DOMINO==nbDominoPlaced && selectedPieceType==1) || (NB_TRIOMINO==nbTriominoPlaced && selectedPieceType==2) || (NB_TETROMINO==nbTetrominoPlaced && selectedPieceType==3)){
             selectedPieceType = randomRange(1, 4);
