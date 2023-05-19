@@ -198,21 +198,29 @@ Ce jeu à été coder par CUINET Antoine et QUENTIN Gaspard.
 \chapter{Les fonctionnalités}
 
 Les fonctionnalités du jeu sont multiples.
+\bigskip
 
-Le joueur peu
 
-\color{red}
-// ici à faire
-\color{black}
+Toutes fonctionnalités demander dans le sujet ont été implantés.
+\bigskip
+
+Le joueur peu donc choisir son pseudo, choisir les pièces qu'il souhaites poser (Dominos, Triominos ou Tetrominos, elles ont toutes étés implantés) s'il lui en reste (des vérifications ont étés mises en places sur le nombre de pièce possible de choisir ainsi que sur la saisie qui doit être correcte).
+
+Un affichage de chaque étapes du processus de choix d'une pièce est présenté au joueur ainsi que l'affichage de la pièce finalement choisi sur la grille (si elle ne sort pas de la grille et qu'elle ne chevauche aucune autre pièce, des vérifications demande au joueur de recommencer sa saisie si celle-ci est incorrecte).
+\bigskip
+
+Ensuite, l'ordinateur peu également jouer, il choisi et place ses pièces sur la grille de la même façon que le joueur.
+
+Un affichage de la grille est présenté au joueur une fois que l'ordinateur à jouer avec un affichage de la pièce sur la grille ainsi qu'un message indiquant le type de pièce poser et la position de celle-ci.
+\bigskip
+
+Enfin, des fonctions ont été mises en place pour détecter la fin d'une partie. A ce moment, la partie s'arrête automatiquement et un message est afficher spécifiant le nom du gagnant.
+
 
 \chapter{Les classe}
 
 Le jeu dispose de 10 classes.
 \bigskip
-
-\color{red}
-// faire les classes, bonne chance à celui qui le fera
-\color{black}
 
 \section{La classe Main}
 
@@ -241,24 +249,79 @@ l'utilisateur. Ces dernières seront donc entièrement redéfinies dans les clas
 \bigskip
 
 \section{La classe Grid}
+
+La classe Grid représente la grille de jeu. Elle se charge également de l'affichage du plateau de jeu.
+Elle est composée d'un tableau de 2 dimensions d'objets de type Case.
+Elle comporte également les méthodes permettant au joueur et à l'ordinateur de voir si il est possible de
+placer une pièce (méthode isPiecePlaceable()) et de la placer (méthode placePiece).
+
 \bigskip
 
 \section{La classe Position}
+
+Cette classe est constituée de deux attributs : une positon en abscisse sur la grille et une position en 
+ordonnée. Ces deux attributs sont des entiers. 
+Elle possède également plusieurs méthodes utiles comme la méthode add() qui permet d'additionner deux 
+positions entre elles.
+
 \bigskip
 
 \section{La classe Case}
+
+Cette classe représente une case sur le plateau. Une case contient une pièce qui peut être nulle.
+Elle possède également une redéfinition de la méthode toString() permettant d'afficher 
+un rond si une pièce se trouve sur cette case et qu'elle appartient au joueur, un croisillon si une 
+pièce se trouve sur cette case mais que cette pièce est une pièce ennemie et rien sinon.
+
 \bigskip
 
 \section{La classe Matrix}
+
+Une pièce étant constituée de plusieurs objets Position, pour trouver l'orientation voulue pour placer
+la pièce dans la grille, nous avons dû avoir recours à quelques petits calculs matriciels.
+Cette classe sert donc principalement à calculer des coordonnées rotationnées à l'aide de cette
+formule mathématique :
+
+\[
+    \begin{pmatrix}
+        x' \\
+        y'
+    \end{pmatrix}
+    \quad
+    =
+    \begin{pmatrix}
+        \cos \psi & - \sin \psi \\
+        \sin \psi & \cos \psi
+    \end{pmatrix}
+    \begin{pmatrix}
+        x \\
+        y
+    \end{pmatrix}
+\]
+
+
 \bigskip
 
 \section{La classe Domino}
+
+La classe Domino, qui hérite de la classe Piece, se charge de créer des dominos avec le bon type 
+en fonction du nombre d'instances déjà crées. Cette classe comporte une surchage de la métode toString()
+permettant d'afficher toutes les différentes dispositions des dominos et de la méthode getPositions()
+renvoyant toutes les positions représentant la pièce crée dans un repère orthonormé.
+
 \bigskip
 
 \section{La classe Triomino}
+
+Cette classe fonctionne de façon identique à celle de la classe Domino.
+
 \bigskip
 
 \section{La classe Tetromino}
+
+La classe Tetromino comporte la même logique d'implémentation que ces deux classes soeures, la classe Domino
+et la classe Triomino.
+
 \bigskip
 
 \chapter{Initialisation de jeu}
@@ -303,6 +366,11 @@ Plusieur types de conditions sont utilisé afin de faire fonctionner au mieux le
 \chapter{Jeu de l'ordinateur}
 
 Par manque de temps pour réaliser ce projet, notre ordinateur choisi ses pièce et les places aléatoirement.
+\bigskip
+
+Il place tout de même les pièce de façon coherente. C'est à dire qu'il place, tout comme le joueur, un nombre pré-définie de pièces d'un certain type et d'une certaine forme.
+
+Autrement dit, l'ordinateur possède au début de la partie les mêmes pièce que le joueur et des vérifications sont faites afin q'il ne pose que les pièce dont il a le droit de poser et dans le nombre qu'il possède.
 \chapter{Ajouts/libertés prises}
 
 Afin de rajouter de la créativité, l'affichage de la grille est réalisé de façon originale.
