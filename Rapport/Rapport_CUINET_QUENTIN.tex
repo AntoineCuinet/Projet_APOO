@@ -215,12 +215,29 @@ Le jeu dispose de 10 classes.
 \color{black}
 
 \section{La classe Main}
+
+La classe Main est comme son nom l'indique la classe principale de notre projet.
+Celle ci contient la méthode statique main qui s'occupe de créer les bons objets et
+d'appeler les bonnes méthodes afin de créer une partie.
+Cette classe contient également les méthodes permettant à l'utilisateur de jouer.
+
 \bigskip
 
-\section{La classe Computeur}
+\section{La classe Computer}
+
+La classe Computer s'occupe de faire jouer l'ordinateur contre le joueur. Les pièces placées
+par l'ordinateur sont toutes choisies de manière aléatoire et placées de manière aléatoire également.
+
 \bigskip
 
 \section{La classe Piece}
+
+La classe Pièce est une classe abstraite servant de modèles pour les classes Domino, Triomino et Tetromino
+qui en hériteront.
+Cette classe contient plusieurs méthodes virtuelles pures telles que getPositions() (qui renvoie un tableau de Position représentant
+la pièce dans un espace orthonormé) ou encore la méthode toString() qui s'occupera d'afficher la pièce pour aider
+l'utilisateur. Ces dernières seront donc entièrement redéfinies dans les classes enfant.
+
 \bigskip
 
 \section{La classe Grid}
